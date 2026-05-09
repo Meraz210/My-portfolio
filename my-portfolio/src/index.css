@@ -1,1 +1,138 @@
+@import "@fontsource/space-grotesk";
 @import "tailwindcss";
+
+html {
+  scroll-behavior: smooth;
+  font-family: "Space Grotesk", sans-serif;
+}
+
+body {
+  background: #000;
+  cursor: none;
+  color: #f8fafc;
+  font-family: "Space Grotesk", sans-serif;
+  font-synthesis: none;
+  text-rendering: geometricPrecision;
+}
+
+::selection {
+  background: rgba(34, 211, 238, 0.35);
+  color: #fff;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(34, 211, 238, 0.55) rgba(2, 6, 23, 0.9);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #020617;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(#22d3ee, #a855f7);
+  border-radius: 999px;
+}
+
+a,
+button,
+input,
+textarea {
+  cursor: none;
+}
+
+@media (max-width: 768px) {
+  body,
+  a,
+  button,
+  input,
+  textarea {
+    cursor: auto;
+  }
+}
+
+.hero-scene,
+.hero-copy,
+.hero-profile,
+.reveal-up,
+.stagger-item,
+.motion-title,
+.section-transition,
+.parallax-slow {
+  will-change: transform, opacity;
+}
+
+.luxury-shell {
+  background:
+    radial-gradient(circle at 50% 0%, rgba(34, 211, 238, 0.1), transparent 30%),
+    linear-gradient(180deg, #020617 0%, #000 42%, #020617 100%);
+}
+
+.luxury-glass {
+  border: 1px solid rgba(103, 232, 249, 0.18);
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.025)),
+    rgba(2, 6, 23, 0.68);
+  box-shadow:
+    0 24px 80px rgba(0, 0, 0, 0.38),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 0 34px rgba(34, 211, 238, 0.08);
+  backdrop-filter: blur(22px);
+}
+
+.luxury-card {
+  border: 1px solid rgba(103, 232, 249, 0.16);
+  background:
+    radial-gradient(circle at 12% 0%, rgba(34, 211, 238, 0.12), transparent 28%),
+    linear-gradient(145deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.018));
+  box-shadow:
+    0 18px 60px rgba(0, 0, 0, 0.34),
+    0 0 0 1px rgba(255, 255, 255, 0.025) inset;
+  backdrop-filter: blur(18px);
+}
+
+.luxury-card:hover {
+  border-color: rgba(103, 232, 249, 0.42);
+  box-shadow:
+    0 24px 70px rgba(0, 0, 0, 0.44),
+    0 0 44px rgba(34, 211, 238, 0.14),
+    0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+}
+
+.luxury-eyebrow {
+  color: #67e8f9;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+}
+
+.luxury-heading {
+  color: #fff;
+  font-weight: 950;
+  letter-spacing: 0;
+  text-wrap: balance;
+}
+
+.luxury-copy {
+  color: #a7b4c7;
+  line-height: 1.8;
+}
+
+.luxury-button-primary {
+  border: 1px solid rgba(103, 232, 249, 0.42);
+  background: linear-gradient(135deg, #67e8f9, #22d3ee);
+  color: #001016;
+  box-shadow: 0 0 34px rgba(34, 211, 238, 0.24);
+}
+
+.luxury-button-secondary {
+  border: 1px solid rgba(103, 232, 249, 0.36);
+  background: rgba(2, 6, 23, 0.5);
+  color: #a5f3fc;
+  backdrop-filter: blur(18px);
+}
