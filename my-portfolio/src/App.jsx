@@ -229,7 +229,7 @@ const heroMetrics = [
   { value: "3D", label: "Interactive UI" },
 ];
 
-// PREMIUM MINIMAL HOLOGRAPHIC AI-CORE
+// PROFESSIONAL CORE - CORPORATE AESTHETIC
 function PremiumAICore() {
   const groupRef = useRef(null);
   const coreRef = useRef(null);
@@ -241,27 +241,27 @@ function PremiumAICore() {
     let animationId;
     
     const animate = () => {
-      // Subtle group rotation
+      // Very subtle group rotation
       if (groupRef.current) {
-        groupRef.current.rotation.z += 0.00015;
+        groupRef.current.rotation.z += 0.00008;
       }
-      // Core pulsing rotation
+      // Core smooth rotation
       if (coreRef.current) {
-        coreRef.current.rotation.x += 0.0008;
-        coreRef.current.rotation.y += 0.0004;
+        coreRef.current.rotation.x += 0.0004;
+        coreRef.current.rotation.y += 0.0002;
       }
-      // Sphere elegant rotation
+      // Sphere gentle rotation
       if (sphereRef.current) {
-        sphereRef.current.rotation.x += 0.0003;
-        sphereRef.current.rotation.y += 0.0006;
+        sphereRef.current.rotation.x += 0.00015;
+        sphereRef.current.rotation.y += 0.0003;
       }
       // Ring 1 rotation
       if (ring1Ref.current) {
-        ring1Ref.current.rotation.x += 0.0004;
+        ring1Ref.current.rotation.x += 0.0002;
       }
       // Ring 2 rotation
       if (ring2Ref.current) {
-        ring2Ref.current.rotation.z += 0.0005;
+        ring2Ref.current.rotation.z += 0.00025;
       }
       animationId = requestAnimationFrame(animate);
     };
@@ -272,89 +272,90 @@ function PremiumAICore() {
 
   return (
     <group ref={groupRef} position={[0, 0, 0]}>
-      {/* CENTRAL HOLOGRAPHIC CORE - MINIMAL DESIGN */}
+      {/* PROFESSIONAL CORE - CORPORATE BLUE */}
       <mesh position={[0, 0, 0]} ref={coreRef}>
-        <octahedronGeometry args={[0.35, 2]} />
+        <octahedronGeometry args={[0.3, 2]} />
         <meshStandardMaterial
-          color="#0891b2"
-          emissive="#22d3ee"
-          emissiveIntensity={1.5}
-          metalness={0.95}
-          roughness={0.05}
+          color="#3b82f6"
+          emissive="#60a5fa"
+          emissiveIntensity={0.6}
+          metalness={0.85}
+          roughness={0.15}
           wireframe={false}
         />
       </mesh>
 
-      {/* HOLOGRAPHIC GLOW SHELL - SUBTLE */}
-      <mesh position={[0, 0, 0]} scale={1.3}>
-        <octahedronGeometry args={[0.35, 2]} />
+      {/* CORPORATE GLOW SHELL */}
+      <mesh position={[0, 0, 0]} scale={1.2}>
+        <octahedronGeometry args={[0.3, 2]} />
         <meshStandardMaterial
-          color="#06b6d4"
-          emissive="#22d3ee"
-          emissiveIntensity={0.5}
+          color="#1e40af"
+          emissive="#60a5fa"
+          emissiveIntensity={0.25}
           transparent
-          opacity={0.08}
+          opacity={0.05}
         />
       </mesh>
 
-      {/* ELEGANT WIREFRAME SPHERE - MINIMAL */}
-      <mesh position={[0, 0, 0]} ref={sphereRef} scale={1.6}>
-        <icosahedronGeometry args={[0.3, 3]} />
+      {/* PROFESSIONAL WIREFRAME SPHERE */}
+      <mesh position={[0, 0, 0]} ref={sphereRef} scale={1.5}>
+        <icosahedronGeometry args={[0.28, 2]} />
         <meshStandardMaterial
-          color="#a855f7"
-          emissive="#c084fc"
-          emissiveIntensity={0.6}
+          color="#6366f1"
+          emissive="#818cf8"
+          emissiveIntensity={0.3}
           wireframe={true}
+          transparent
+          opacity={0.25}
+        />
+      </mesh>
+
+      {/* PRIMARY PROFESSIONAL RING - BLUE */}
+      <mesh position={[0, 0, 0]} rotation={[0.4, 0.25, 0.15]} ref={ring1Ref}>
+        <torusGeometry args={[0.9, 0.0025, 10, 120]} />
+        <meshStandardMaterial
+          color="#60a5fa"
+          emissive="#3b82f6"
+          emissiveIntensity={0.5}
+          metalness={0.9}
+          roughness={0.1}
+        />
+      </mesh>
+
+      {/* SECONDARY PROFESSIONAL RING - SLATE */}
+      <mesh position={[0, 0, 0]} rotation={[-0.3, 0.15, 0.35]} ref={ring2Ref}>
+        <torusGeometry args={[1.15, 0.002, 8, 100]} />
+        <meshStandardMaterial
+          color="#64748b"
+          emissive="#94a3b8"
+          emissiveIntensity={0.35}
+          metalness={0.8}
+          roughness={0.2}
           transparent
           opacity={0.4}
         />
       </mesh>
 
-      {/* PRIMARY SUBTLE ORBITAL RING - THIN AND ELEGANT */}
-      <mesh position={[0, 0, 0]} rotation={[0.4, 0.25, 0.15]} ref={ring1Ref}>
-        <torusGeometry args={[0.95, 0.004, 12, 150]} />
-        <meshStandardMaterial
-          color="#22d3ee"
-          emissive="#06b6d4"
-          emissiveIntensity={1}
-          metalness={0.99}
-          roughness={0.01}
-        />
-      </mesh>
-
-      {/* SECONDARY MINIMAL RING - PURPLE ACCENT */}
-      <mesh position={[0, 0, 0]} rotation={[-0.3, 0.15, 0.35]} ref={ring2Ref}>
-        <torusGeometry args={[1.25, 0.003, 10, 120]} />
-        <meshStandardMaterial
-          color="#a855f7"
-          emissive="#d8b4fe"
-          emissiveIntensity={0.7}
-          metalness={0.98}
-          roughness={0.02}
-          transparent
-          opacity={0.6}
-        />
-      </mesh>
-
-      {/* MINIMAL FLOATING ACCENT NODES */}
-      <Float speed={2.2} rotationIntensity={0.3} floatIntensity={0.25}>
-        <mesh position={[1.4, 0.6, 0.2]}>
-          <octahedronGeometry args={[0.08, 1]} />
+      {/* FLOATING ACCENT NODE 1 */}
+      <Float speed={1.8} rotationIntensity={0.15} floatIntensity={0.15}>
+        <mesh position={[1.2, 0.5, 0.15]}>
+          <octahedronGeometry args={[0.06, 1]} />
           <meshStandardMaterial
-            color="#22d3ee"
-            emissive="#06b6d4"
-            emissiveIntensity={0.8}
+            color="#60a5fa"
+            emissive="#3b82f6"
+            emissiveIntensity={0.4}
           />
         </mesh>
       </Float>
 
-      <Float speed={1.9} rotationIntensity={0.3} floatIntensity={0.25}>
-        <mesh position={[-1.3, 0.4, -0.15]}>
-          <octahedronGeometry args={[0.07, 1]} />
+      {/* FLOATING ACCENT NODE 2 */}
+      <Float speed={1.5} rotationIntensity={0.15} floatIntensity={0.15}>
+        <mesh position={[-1.1, 0.35, -0.1]}>
+          <octahedronGeometry args={[0.055, 1]} />
           <meshStandardMaterial
-            color="#c084fc"
-            emissive="#a855f7"
-            emissiveIntensity={0.75}
+            color="#818cf8"
+            emissive="#6366f1"
+            emissiveIntensity={0.35}
           />
         </mesh>
       </Float>
@@ -362,69 +363,69 @@ function PremiumAICore() {
   );
 }
 
-// PREMIUM CINEMATIC HERO SCENE
+// PROFESSIONAL HERO SCENE
 function HeroScene() {
   return (
     <Canvas
       camera={{ position: [0, 0.5, 4.8], fov: 50 }}
       className="hero-scene absolute inset-0"
     >
-      {/* CINEMATIC LIGHTING SETUP */}
+      {/* PROFESSIONAL LIGHTING SETUP */}
       
-      {/* Ambient - Subtle Fill */}
-      <ambientLight intensity={0.35} color="#ffffff" />
+      {/* Ambient - Professional Fill */}
+      <ambientLight intensity={0.3} color="#f8fafc" />
 
-      {/* Main Key Light - Cyan from Top-Right */}
+      {/* Main Key Light - Blue from Top-Right */}
       <spotLight
         position={[3, 2.5, 4]}
-        angle={0.7}
-        penumbra={1}
-        intensity={11}
-        color="#22d3ee"
+        angle={0.65}
+        penumbra={0.9}
+        intensity={8}
+        color="#60a5fa"
       />
 
-      {/* Secondary Key Light - Blue from Top-Left */}
+      {/* Secondary Key Light - Indigo from Top-Left */}
       <spotLight
         position={[-2.5, 2, 3]}
-        angle={0.6}
-        penumbra={0.8}
-        intensity={7}
-        color="#06b6d4"
+        angle={0.55}
+        penumbra={0.7}
+        intensity={5}
+        color="#818cf8"
       />
 
-      {/* Fill Light - Purple from Below */}
+      {/* Fill Light - Slate from Below */}
       <pointLight
         position={[0, -2, 1.5]}
-        intensity={5}
-        color="#a855f7"
+        intensity={3}
+        color="#cbd5e1"
       />
 
       {/* Rim Light - Back */}
       <pointLight
         position={[0, 0.5, -2.5]}
-        intensity={4}
-        color="#c084fc"
+        intensity={2.5}
+        color="#94a3b8"
       />
 
       {/* Top Accent */}
       <pointLight
         position={[0, 3, 0]}
-        intensity={2.5}
-        color="#67e8f9"
+        intensity={1.5}
+        color="#e0f2fe"
       />
 
-      {/* STARFIELD BACKGROUND */}
+      {/* STARFIELD BACKGROUND - SUBTLE */}
       <Stars
         radius={100}
         depth={60}
-        count={2500}
-        factor={4.8}
+        count={1200}
+        factor={3.5}
         saturation={0}
         fade
-        speed={0.6}
+        speed={0.3}
       />
 
-      {/* PREMIUM AI-CORE */}
+      {/* PROFESSIONAL CORE */}
       <PremiumAICore />
 
       {/* FOG FOR DEPTH */}
@@ -560,33 +561,48 @@ function ContactForm() {
   };
 
   return (
-    <form onSubmit={submitForm} className="space-y-5">
-      <motion.input
+    <form onSubmit={submitForm} className="space-y-6">
+      <motion.div
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.1 }}
-        required
-        placeholder="Your name"
-        className="w-full rounded-xl border border-cyan-500/20 bg-black/30 px-5 py-3.5 md:py-4 text-base text-white outline-none transition placeholder:text-gray-500 focus:border-cyan-400 focus:bg-black/50 focus:shadow-lg focus:shadow-cyan-500/10"
-      />
-      <motion.input
+      >
+        <label className="block text-xs font-bold uppercase tracking-[0.15em] text-blue-300 mb-2">Full Name</label>
+        <input
+          required
+          placeholder="Enter your name"
+          className="w-full rounded-lg border border-blue-500/20 bg-blue-500/5 px-5 py-3.5 md:py-4 text-base text-white outline-none transition placeholder:text-gray-500 focus:border-blue-400 focus:bg-blue-500/10 focus:shadow-lg focus:shadow-blue-500/10"
+        />
+      </motion.div>
+
+      <motion.div
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.15 }}
-        required
-        type="email"
-        placeholder="Email address"
-        className="w-full rounded-xl border border-cyan-500/20 bg-black/30 px-5 py-3.5 md:py-4 text-base text-white outline-none transition placeholder:text-gray-500 focus:border-cyan-400 focus:bg-black/50 focus:shadow-lg focus:shadow-cyan-500/10"
-      />
-      <motion.textarea
+      >
+        <label className="block text-xs font-bold uppercase tracking-[0.15em] text-blue-300 mb-2">Email Address</label>
+        <input
+          required
+          type="email"
+          placeholder="your@email.com"
+          className="w-full rounded-lg border border-blue-500/20 bg-blue-500/5 px-5 py-3.5 md:py-4 text-base text-white outline-none transition placeholder:text-gray-500 focus:border-blue-400 focus:bg-blue-500/10 focus:shadow-lg focus:shadow-blue-500/10"
+        />
+      </motion.div>
+
+      <motion.div
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.2 }}
-        required
-        rows="6"
-        placeholder="Your message..."
-        className="w-full resize-none rounded-xl border border-cyan-500/20 bg-black/30 px-5 py-3.5 md:py-4 text-base text-white outline-none transition placeholder:text-gray-500 focus:border-cyan-400 focus:bg-black/50 focus:shadow-lg focus:shadow-cyan-500/10"
-      />
+      >
+        <label className="block text-xs font-bold uppercase tracking-[0.15em] text-blue-300 mb-2">Project Details</label>
+        <textarea
+          required
+          rows="5"
+          placeholder="Tell me about your project..."
+          className="w-full resize-none rounded-lg border border-blue-500/20 bg-blue-500/5 px-5 py-3.5 md:py-4 text-base text-white outline-none transition placeholder:text-gray-500 focus:border-blue-400 focus:bg-blue-500/10 focus:shadow-lg focus:shadow-blue-500/10"
+        />
+      </motion.div>
+
       <motion.button
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
@@ -594,20 +610,23 @@ function ContactForm() {
         whileHover={{ scale: 1.02 }}
         whileTap={{ scale: 0.98 }}
         type="submit"
-        className="w-full rounded-xl bg-gradient-to-br from-cyan-400 to-cyan-500 px-6 py-4 font-bold text-base md:text-lg text-black shadow-lg shadow-cyan-500/30 transition hover:shadow-cyan-500/50"
+        className="w-full rounded-lg bg-gradient-to-br from-blue-500 to-blue-600 px-6 py-4 font-bold text-base md:text-lg text-white shadow-lg shadow-blue-500/25 transition hover:shadow-blue-500/40 hover:from-blue-400 hover:to-blue-500"
       >
-        Send Message
+        Send Inquiry
       </motion.button>
+
       <AnimatePresence>
         {sent && (
-          <motion.p
+          <motion.div
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
-            className="text-sm text-cyan-300 text-center font-medium"
+            className="rounded-lg border border-green-500/30 bg-green-500/10 p-4 text-center"
           >
-            ✓ Message sent! I'll get back to you soon.
-          </motion.p>
+            <p className="text-sm font-semibold text-green-300">
+              ✓ Message sent successfully! I'll respond within 24 hours.
+            </p>
+          </motion.div>
         )}
       </AnimatePresence>
     </form>
@@ -762,22 +781,22 @@ export default function App() {
           <HeroScene />
           
           {/* GRID OVERLAY - SUBTLE */}
-          <div className="parallax-slow absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.012)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.012)_1px,transparent_1px)] bg-[size:120px_120px] opacity-20" />
+          <div className="parallax-slow absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.008)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.008)_1px,transparent_1px)] bg-[size:120px_120px] opacity-15" />
           
           {/* TOP GLOW */}
-          <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-transparent via-cyan-500/40 to-transparent" />
+          <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-transparent via-blue-400/30 to-transparent" />
           
           {/* TOP FADE GRADIENT */}
-          <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-black/50 via-black/20 to-transparent" />
+          <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-black/60 via-black/30 to-transparent" />
           
           {/* BOTTOM FADE GRADIENT */}
-          <div className="absolute inset-x-0 bottom-0 h-60 bg-gradient-to-t from-black/70 via-black/40 to-transparent" />
+          <div className="absolute inset-x-0 bottom-0 h-60 bg-gradient-to-t from-black/80 via-black/50 to-transparent" />
           
-          {/* ATMOSPHERIC GLOW - CYAN LEFT */}
-          <div className="absolute left-0 top-1/2 -translate-y-1/2 w-[900px] h-[800px] rounded-full bg-cyan-500/8 blur-[200px] opacity-30" />
+          {/* ATMOSPHERIC GLOW - BLUE LEFT */}
+          <div className="absolute left-0 top-1/2 -translate-y-1/2 w-[900px] h-[800px] rounded-full bg-blue-400/4 blur-[200px] opacity-20" />
           
-          {/* ATMOSPHERIC GLOW - PURPLE RIGHT */}
-          <div className="absolute right-0 top-1/3 w-[700px] h-[700px] rounded-full bg-purple-500/5 blur-[180px] opacity-25" />
+          {/* ATMOSPHERIC GLOW - INDIGO RIGHT */}
+          <div className="absolute right-0 top-1/3 w-[700px] h-[700px] rounded-full bg-indigo-400/3 blur-[180px] opacity-15" />
         </div>
 
         {/* CENTER CONTENT - PROFESSIONAL COMPOSITION */}
@@ -796,18 +815,18 @@ export default function App() {
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.7, delay: 0.15 }}
-                className="inline-flex items-center gap-3 rounded-full border border-emerald-400/40 bg-gradient-to-r from-emerald-500/15 to-emerald-500/8 px-5 py-2.5 backdrop-blur-lg lg:justify-start w-full lg:w-auto justify-center relative overflow-hidden group hover:border-emerald-400/60 transition duration-500"
+                className="inline-flex items-center gap-3 rounded-full border border-green-500/40 bg-gradient-to-r from-green-500/15 to-green-500/8 px-5 py-2.5 backdrop-blur-lg lg:justify-start w-full lg:w-auto justify-center relative overflow-hidden group hover:border-green-500/60 transition duration-500"
               >
                 {/* Shimmer effect */}
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-0 group-hover:opacity-100 transition duration-700 transform -translate-x-full group-hover:translate-x-full" />
                 
-                {/* Animated dot */}
-                <div className="relative">
-                  <div className="h-2.5 w-2.5 rounded-full bg-emerald-400 shadow-lg shadow-emerald-500/70 animate-pulse" />
-                  <div className="absolute inset-0 h-2.5 w-2.5 rounded-full bg-emerald-300 animate-ping opacity-75" />
+                {/* Status indicator */}
+                <div className="relative flex items-center gap-2">
+                  <div className="h-2 w-2 rounded-full bg-green-400 shadow-lg shadow-green-500/70 animate-pulse" />
+                  <div className="absolute inset-0 h-2 w-2 rounded-full bg-green-400 animate-ping opacity-75" />
                 </div>
                 
-                <span className="text-xs font-bold uppercase tracking-[0.18em] text-emerald-300 relative z-10">
+                <span className="text-xs font-bold uppercase tracking-[0.18em] text-green-300 relative z-10">
                   Open to work
                 </span>
               </motion.div>
@@ -1083,18 +1102,18 @@ export default function App() {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.7, delay: 0.1 }}
-            className="inline-flex items-center gap-3 rounded-full border border-emerald-400/40 bg-gradient-to-r from-emerald-500/15 to-emerald-500/8 px-5 py-2.5 backdrop-blur-lg group hover:border-emerald-400/60 transition duration-500 relative overflow-hidden"
+            className="inline-flex items-center gap-3 rounded-full border border-green-500/40 bg-gradient-to-r from-green-500/15 to-green-500/8 px-5 py-2.5 backdrop-blur-lg relative overflow-hidden group hover:border-green-500/60 transition duration-500"
           >
             {/* Shimmer effect */}
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-0 group-hover:opacity-100 transition duration-700 transform -translate-x-full group-hover:translate-x-full" />
             
-            {/* Animated dot */}
-            <div className="relative">
-              <div className="h-2.5 w-2.5 rounded-full bg-emerald-400 shadow-lg shadow-emerald-500/70 animate-pulse" />
-              <div className="absolute inset-0 h-2.5 w-2.5 rounded-full bg-emerald-300 animate-ping opacity-75" />
+            {/* Status indicator */}
+            <div className="relative flex items-center gap-2">
+              <div className="h-2 w-2 rounded-full bg-green-400 shadow-lg shadow-green-500/70 animate-pulse" />
+              <div className="absolute inset-0 h-2 w-2 rounded-full bg-green-400 animate-ping opacity-75" />
             </div>
             
-            <span className="text-xs font-bold uppercase tracking-[0.18em] text-emerald-300 relative z-10">
+            <span className="text-xs font-bold uppercase tracking-[0.18em] text-green-300 relative z-10">
               Open to work
             </span>
           </motion.div>
@@ -1234,43 +1253,58 @@ export default function App() {
           className="mx-auto max-w-5xl"
         >
           <div className="space-y-4 mb-20">
-            <p className="text-xs md:text-sm font-bold uppercase tracking-[0.2em] text-cyan-400">Get In Touch</p>
+            <p className="text-xs md:text-sm font-bold uppercase tracking-[0.2em] text-blue-400">Get In Touch</p>
             <h2 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black text-white leading-[1.1] tracking-tight">
-              Let's work together
+              Let's collaborate
             </h2>
+            <p className="text-lg text-gray-400 max-w-2xl">Ready to discuss your next project? Reach out and let's create something exceptional together.</p>
           </div>
 
           <div className="grid md:grid-cols-2 gap-12 lg:gap-16">
             <div className="space-y-8">
               <p className="text-base md:text-lg leading-relaxed text-gray-300">
-                Whether you have an exciting project in mind or want to discuss frontend engineering, immersive 3D experiences, or career opportunities—I'm always open to meaningful conversations.
+                I'm open to full-stack development projects, consulting opportunities, and meaningful technical conversations about frontend engineering, 3D experiences, and digital innovation.
               </p>
 
               <div className="space-y-4">
                 <a 
                   href="mailto:merazahasan210@gmail.com" 
-                  className="group block rounded-xl border border-cyan-500/20 bg-cyan-500/5 p-6 transition hover:border-cyan-500/50 hover:bg-cyan-500/10"
+                  className="group block rounded-lg border border-blue-500/20 bg-blue-500/5 p-6 transition hover:border-blue-500/50 hover:bg-blue-500/15"
                 >
-                  <p className="text-xs font-bold uppercase tracking-[0.15em] text-cyan-400 mb-2">Email</p>
-                  <p className="text-lg font-semibold text-white break-all group-hover:text-cyan-200 transition">
+                  <p className="text-xs font-bold uppercase tracking-[0.15em] text-blue-300 mb-2">Email Address</p>
+                  <p className="text-lg font-semibold text-white break-all group-hover:text-blue-200 transition">
                     merazahasan210@gmail.com
                   </p>
+                  <p className="text-xs text-gray-500 mt-2">Typically responds within 24 hours</p>
                 </a>
 
                 <a 
                   href="tel:+8801568088936" 
-                  className="group block rounded-xl border border-cyan-500/20 bg-cyan-500/5 p-6 transition hover:border-cyan-500/50 hover:bg-cyan-500/10"
+                  className="group block rounded-lg border border-blue-500/20 bg-blue-500/5 p-6 transition hover:border-blue-500/50 hover:bg-blue-500/15"
                 >
-                  <p className="text-xs font-bold uppercase tracking-[0.15em] text-cyan-400 mb-2">Phone</p>
-                  <p className="text-lg font-semibold text-white group-hover:text-cyan-200 transition">
+                  <p className="text-xs font-bold uppercase tracking-[0.15em] text-blue-300 mb-2">Phone Number</p>
+                  <p className="text-lg font-semibold text-white group-hover:text-blue-200 transition">
                     +880 1568-088936
                   </p>
+                  <p className="text-xs text-gray-500 mt-2">Available for calls and WhatsApp</p>
                 </a>
+              </div>
+
+              <div className="rounded-lg border border-indigo-500/20 bg-indigo-500/5 p-6">
+                <p className="text-xs font-bold uppercase tracking-[0.15em] text-indigo-300 mb-3">Quick Links</p>
+                <div className="flex gap-4 flex-wrap">
+                  <a href="https://github.com/Meraz210" target="_blank" rel="noopener noreferrer" className="text-sm font-semibold text-indigo-300 hover:text-indigo-200 transition">GitHub →</a>
+                  <a href="/resume.pdf" download className="text-sm font-semibold text-indigo-300 hover:text-indigo-200 transition">Resume →</a>
+                  <a href="#projects" className="text-sm font-semibold text-indigo-300 hover:text-indigo-200 transition">Projects →</a>
+                </div>
               </div>
             </div>
 
-            <div className="rounded-2xl border border-cyan-500/20 bg-gradient-to-br from-cyan-500/5 via-transparent to-purple-500/5 p-8 md:p-10">
-              <h3 className="text-2xl md:text-3xl font-black text-white mb-8">Quick Message</h3>
+            <div className="rounded-lg border border-blue-500/20 bg-gradient-to-br from-blue-500/8 via-transparent to-indigo-500/8 p-8 md:p-10">
+              <div className="mb-8">
+                <h3 className="text-2xl md:text-3xl font-black text-white mb-2">Quick Message</h3>
+                <p className="text-sm text-gray-400">Fill out the form below and I'll get back to you promptly.</p>
+              </div>
               <ContactForm />
             </div>
           </div>
