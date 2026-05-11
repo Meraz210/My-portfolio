@@ -92,90 +92,132 @@ export default function PortfolioChatbot() {
   };
 
   return (
-    <div className="fixed bottom-5 right-5 z-50">
+    <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3 sm:bottom-8 sm:right-8">
       <AnimatePresence>
         {open && (
           <motion.div
-            initial={{ opacity: 0, y: 24, scale: 0.96 }}
+            initial={{ opacity: 0, y: 20, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 24, scale: 0.96 }}
-            transition={{ duration: 0.25 }}
-            className="mb-4 w-[calc(100vw-2.5rem)] max-w-md overflow-hidden rounded-lg border border-cyan-400/30 bg-black/80 shadow-2xl shadow-cyan-500/20 backdrop-blur-2xl"
+            exit={{ opacity: 0, y: 20, scale: 0.95 }}
+            transition={{ duration: 0.3, type: "spring", stiffness: 300, damping: 30 }}
+            className="w-[90vw] max-w-lg overflow-hidden rounded-2xl border border-cyan-400/40 bg-gradient-to-b from-black/90 to-black/95 shadow-2xl shadow-cyan-500/30 backdrop-blur-xl"
           >
-            <div className="relative overflow-hidden border-b border-white/10 bg-cyan-400/10 px-4 py-4">
-              <div className="absolute right-4 top-4 h-12 w-12 rounded-full bg-cyan-300/20 blur-xl" />
-              <p className="relative text-sm font-bold uppercase tracking-[0.22em] text-cyan-200">
-                AI Portfolio Assistant
-              </p>
-              <p className="relative mt-1 text-xs text-gray-400">
-                Ask about projects, skills, repositories, or contact info.
-              </p>
+            {/* Header */}
+            <div className="relative border-b border-cyan-400/20 bg-gradient-to-r from-cyan-400/15 to-purple-400/10 px-5 py-5">
+              <div className="absolute inset-0 overflow-hidden">
+                <div className="absolute -right-8 -top-8 h-32 w-32 rounded-full bg-cyan-300/10 blur-2xl" />
+              </div>
+              <div className="relative">
+                <p className="text-base font-bold uppercase tracking-[0.2em] text-cyan-200">
+                  AI Assistant
+                </p>
+                <p className="mt-1 text-xs text-cyan-300/70">
+                  Ask me about projects, skills, GitHub, or contact
+                </p>
+              </div>
             </div>
 
-            <div ref={listRef} className="max-h-80 space-y-3 overflow-y-auto p-4">
+            {/* Chat Messages */}
+            <div ref={listRef} className="max-h-96 space-y-4 overflow-y-auto p-5 scrollbar-thin scrollbar-thumb-cyan-400/30 scrollbar-track-transparent">
               {messages.map((message, index) => (
                 <motion.div
                   key={`${message.role}-${index}`}
-                  initial={{ opacity: 0, y: 8 }}
+                  initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className={`rounded-lg px-3 py-2 text-sm leading-relaxed ${
-                    message.role === "assistant"
-                      ? "mr-8 border border-white/10 bg-white/10 text-gray-200"
-                      : "ml-8 bg-cyan-300 font-semibold text-black"
+                  transition={{ delay: index * 0.05 }}
+                  className={`flex gap-2 ${
+                    message.role === "assistant" ? "justify-start" : "justify-end"
                   }`}
                 >
-                  {message.text}
+                  <div
+                    className={`max-w-xs rounded-xl px-4 py-3 text-sm leading-relaxed ${
+                      message.role === "assistant"
+                        ? "border border-cyan-400/25 bg-cyan-400/10 text-cyan-50"
+                        : "bg-gradient-to-r from-cyan-400 to-cyan-500 font-medium text-black shadow-lg shadow-cyan-500/20"
+                    }`}
+                  >
+                    {message.text}
+                  </div>
                 </motion.div>
               ))}
 
               {loading && (
-                <div className="mr-8 rounded-lg border border-white/10 bg-white/10 px-3 py-2 text-sm text-cyan-200">
-                  Thinking...
-                </div>
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="flex justify-start"
+                >
+                  <div className="rounded-xl border border-cyan-400/25 bg-cyan-400/10 px-4 py-3">
+                    <div className="flex gap-2">
+                      <div className="h-2 w-2 animate-bounce rounded-full bg-cyan-300" style={{ animationDelay: "0ms" }} />
+                      <div className="h-2 w-2 animate-bounce rounded-full bg-cyan-300" style={{ animationDelay: "150ms" }} />
+                      <div className="h-2 w-2 animate-bounce rounded-full bg-cyan-300" style={{ animationDelay: "300ms" }} />
+                    </div>
+                  </div>
+                </motion.div>
               )}
             </div>
 
-            <div className="flex flex-wrap gap-2 px-4 pb-3">
-              {quickPrompts.map((prompt) => (
-                <button
-                  key={prompt}
-                  type="button"
-                  onClick={(event) => sendMessage(event, prompt)}
-                  className="rounded-full border border-cyan-400/25 bg-cyan-400/10 px-3 py-1 text-xs font-bold text-cyan-200 transition hover:bg-cyan-300 hover:text-black"
-                >
-                  {prompt}
-                </button>
-              ))}
+            {/* Quick Prompts */}
+            <div className="border-t border-cyan-400/20 bg-black/50 px-5 py-4">
+              <div className="mb-3 text-xs font-semibold uppercase tracking-widest text-cyan-300/60">
+                Quick Prompts
+              </div>
+              <div className="grid grid-cols-2 gap-2">
+                {quickPrompts.map((prompt) => (
+                  <motion.button
+                    key={prompt}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    type="button"
+                    onClick={(event) => sendMessage(event, prompt)}
+                    disabled={loading}
+                    className="rounded-lg border border-cyan-400/40 bg-cyan-400/15 px-3 py-2 text-xs font-bold text-cyan-200 transition hover:border-cyan-300/60 hover:bg-cyan-400/25 hover:text-cyan-100 disabled:opacity-50"
+                  >
+                    {prompt}
+                  </motion.button>
+                ))}
+              </div>
             </div>
 
-            <form onSubmit={sendMessage} className="flex gap-2 border-t border-white/10 p-3">
+            {/* Input Form */}
+            <form onSubmit={sendMessage} className="flex gap-2 border-t border-cyan-400/20 bg-black/50 p-4">
               <input
                 value={input}
                 onChange={(event) => setInput(event.target.value)}
                 placeholder="Ask anything..."
-                className="min-w-0 flex-1 rounded-lg border border-white/10 bg-white/10 px-3 py-2 text-sm text-white outline-none placeholder:text-gray-500 focus:border-cyan-400"
-              />
-              <button
-                type="submit"
                 disabled={loading}
-                className="rounded-lg bg-cyan-300 px-4 py-2 text-sm font-black text-black transition hover:bg-white disabled:cursor-not-allowed disabled:opacity-60"
+                className="min-w-0 flex-1 rounded-lg border border-cyan-400/30 bg-white/5 px-4 py-2.5 text-sm text-white outline-none placeholder:text-gray-500 transition focus:border-cyan-300 focus:bg-white/10 disabled:opacity-50"
+              />
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                type="submit"
+                disabled={loading || !input.trim()}
+                className="rounded-lg bg-gradient-to-r from-cyan-400 to-cyan-500 px-5 py-2.5 font-black text-black shadow-lg shadow-cyan-500/30 transition hover:shadow-cyan-500/50 disabled:cursor-not-allowed disabled:opacity-50"
               >
                 Send
-              </button>
+              </motion.button>
             </form>
           </motion.div>
         )}
       </AnimatePresence>
 
-      <button
+      {/* AI Button */}
+      <motion.button
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.95 }}
         type="button"
         onClick={() => setOpen((value) => !value)}
         aria-label="Open AI portfolio assistant"
-        className="group relative rounded-full border border-cyan-300/50 bg-cyan-300 px-5 py-4 font-black text-black shadow-[0_0_35px_rgba(34,211,238,0.55)] transition hover:bg-white"
+        className="group relative h-16 w-16 rounded-full border-2 border-cyan-300/60 bg-gradient-to-br from-cyan-400 to-cyan-500 font-black text-black shadow-2xl shadow-cyan-500/60 transition hover:border-cyan-200 hover:shadow-cyan-400/80 sm:h-14 sm:w-14"
       >
-        <span className="absolute inset-0 -z-10 animate-ping rounded-full bg-cyan-300/30" />
-        {open ? "Close" : "AI"}
-      </button>
+        <span className="absolute inset-0 -z-10 animate-pulse rounded-full bg-cyan-300/20" />
+        <span className="absolute inset-0 -z-10 rounded-full border border-cyan-300/30 animate-ping opacity-75" />
+        <span className="flex h-full w-full items-center justify-center text-lg sm:text-base">
+          {open ? "✕" : "✨"}
+        </span>
+      </motion.button>
     </div>
   );
 }
