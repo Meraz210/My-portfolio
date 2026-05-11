@@ -229,21 +229,39 @@ const heroMetrics = [
   { value: "3D", label: "Interactive UI" },
 ];
 
-// PROFESSIONAL AI-CORE 3D VISUALIZATION
+// PREMIUM MINIMAL HOLOGRAPHIC AI-CORE
 function PremiumAICore() {
   const groupRef = useRef(null);
   const coreRef = useRef(null);
+  const sphereRef = useRef(null);
+  const ring1Ref = useRef(null);
+  const ring2Ref = useRef(null);
 
   useEffect(() => {
     let animationId;
     
     const animate = () => {
+      // Subtle group rotation
       if (groupRef.current) {
-        groupRef.current.rotation.z += 0.0004;
+        groupRef.current.rotation.z += 0.00015;
       }
+      // Core pulsing rotation
       if (coreRef.current) {
-        coreRef.current.rotation.x += 0.0006;
-        coreRef.current.rotation.y += 0.0003;
+        coreRef.current.rotation.x += 0.0008;
+        coreRef.current.rotation.y += 0.0004;
+      }
+      // Sphere elegant rotation
+      if (sphereRef.current) {
+        sphereRef.current.rotation.x += 0.0003;
+        sphereRef.current.rotation.y += 0.0006;
+      }
+      // Ring 1 rotation
+      if (ring1Ref.current) {
+        ring1Ref.current.rotation.x += 0.0004;
+      }
+      // Ring 2 rotation
+      if (ring2Ref.current) {
+        ring2Ref.current.rotation.z += 0.0005;
       }
       animationId = requestAnimationFrame(animate);
     };
@@ -254,88 +272,89 @@ function PremiumAICore() {
 
   return (
     <group ref={groupRef} position={[0, 0, 0]}>
-      {/* CENTRAL LUMINOUS CORE */}
+      {/* CENTRAL HOLOGRAPHIC CORE - MINIMAL DESIGN */}
       <mesh position={[0, 0, 0]} ref={coreRef}>
-        <icosahedronGeometry args={[0.4, 5]} />
+        <octahedronGeometry args={[0.35, 2]} />
         <meshStandardMaterial
           color="#0891b2"
           emissive="#22d3ee"
-          emissiveIntensity={1.3}
-          metalness={0.9}
-          roughness={0.08}
+          emissiveIntensity={1.5}
+          metalness={0.95}
+          roughness={0.05}
           wireframe={false}
         />
       </mesh>
 
-      {/* OUTER GLOW SHELL */}
-      <mesh position={[0, 0, 0]} scale={1.5}>
-        <icosahedronGeometry args={[0.4, 5]} />
+      {/* HOLOGRAPHIC GLOW SHELL - SUBTLE */}
+      <mesh position={[0, 0, 0]} scale={1.3}>
+        <octahedronGeometry args={[0.35, 2]} />
         <meshStandardMaterial
-          color="#067a8f"
-          emissive="#06b6d4"
-          emissiveIntensity={0.7}
+          color="#06b6d4"
+          emissive="#22d3ee"
+          emissiveIntensity={0.5}
           transparent
-          opacity={0.15}
+          opacity={0.08}
         />
       </mesh>
 
-      {/* SINGLE ELEGANT ORBITAL RING */}
-      <mesh position={[0, 0, 0]} rotation={[0.3, 0.4, 0.2]}>
-        <torusGeometry args={[1.2, 0.005, 16, 200]} />
-        <meshStandardMaterial
-          color="#22d3ee"
-          emissive="#0891b2"
-          emissiveIntensity={1.2}
-          metalness={0.98}
-          roughness={0.02}
-        />
-      </mesh>
-
-      {/* SECONDARY SUBTLE RING */}
-      <mesh position={[0, 0, 0]} rotation={[-0.25, 0.2, 0.5]}>
-        <torusGeometry args={[1.6, 0.003, 16, 200]} />
+      {/* ELEGANT WIREFRAME SPHERE - MINIMAL */}
+      <mesh position={[0, 0, 0]} ref={sphereRef} scale={1.6}>
+        <icosahedronGeometry args={[0.3, 3]} />
         <meshStandardMaterial
           color="#a855f7"
-          emissive="#7e22ce"
-          emissiveIntensity={0.8}
-          metalness={0.95}
-          roughness={0.05}
+          emissive="#c084fc"
+          emissiveIntensity={0.6}
+          wireframe={true}
+          transparent
+          opacity={0.4}
         />
       </mesh>
 
-      {/* MINIMAL FLOATING NODES */}
-      <Float speed={2} rotationIntensity={0.4} floatIntensity={0.3}>
-        <mesh position={[1.5, 0.8, 0.3]}>
-          <tetrahedronGeometry args={[0.1, 0]} />
+      {/* PRIMARY SUBTLE ORBITAL RING - THIN AND ELEGANT */}
+      <mesh position={[0, 0, 0]} rotation={[0.4, 0.25, 0.15]} ref={ring1Ref}>
+        <torusGeometry args={[0.95, 0.004, 12, 150]} />
+        <meshStandardMaterial
+          color="#22d3ee"
+          emissive="#06b6d4"
+          emissiveIntensity={1}
+          metalness={0.99}
+          roughness={0.01}
+        />
+      </mesh>
+
+      {/* SECONDARY MINIMAL RING - PURPLE ACCENT */}
+      <mesh position={[0, 0, 0]} rotation={[-0.3, 0.15, 0.35]} ref={ring2Ref}>
+        <torusGeometry args={[1.25, 0.003, 10, 120]} />
+        <meshStandardMaterial
+          color="#a855f7"
+          emissive="#d8b4fe"
+          emissiveIntensity={0.7}
+          metalness={0.98}
+          roughness={0.02}
+          transparent
+          opacity={0.6}
+        />
+      </mesh>
+
+      {/* MINIMAL FLOATING ACCENT NODES */}
+      <Float speed={2.2} rotationIntensity={0.3} floatIntensity={0.25}>
+        <mesh position={[1.4, 0.6, 0.2]}>
+          <octahedronGeometry args={[0.08, 1]} />
           <meshStandardMaterial
             color="#22d3ee"
-            emissive="#0891b2"
-            emissiveIntensity={0.9}
-            wireframe={true}
-          />
-        </mesh>
-      </Float>
-
-      <Float speed={1.8} rotationIntensity={0.4} floatIntensity={0.3}>
-        <mesh position={[-1.5, 0.5, -0.2]}>
-          <tetrahedronGeometry args={[0.1, 0]} />
-          <meshStandardMaterial
-            color="#06b6d4"
-            emissive="#22d3ee"
+            emissive="#06b6d4"
             emissiveIntensity={0.8}
-            wireframe={true}
           />
         </mesh>
       </Float>
 
-      <Float speed={2.1} rotationIntensity={0.4} floatIntensity={0.3}>
-        <mesh position={[0.7, -1.2, 0.1]}>
-          <tetrahedronGeometry args={[0.1, 0]} />
+      <Float speed={1.9} rotationIntensity={0.3} floatIntensity={0.25}>
+        <mesh position={[-1.3, 0.4, -0.15]}>
+          <octahedronGeometry args={[0.07, 1]} />
           <meshStandardMaterial
-            color="#a855f7"
-            emissive="#c084fc"
+            color="#c084fc"
+            emissive="#a855f7"
             emissiveIntensity={0.75}
-            wireframe={true}
           />
         </mesh>
       </Float>
@@ -733,17 +752,32 @@ export default function App() {
       {/* HERO SECTION - PREMIUM CINEMATIC COMPOSITION */}
       <section
         id="home"
-        className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[radial-gradient(circle_at_50%_30%,rgba(34,211,238,0.12),transparent_40%),radial-gradient(circle_at_20%_70%,rgba(168,85,247,0.08),transparent_35%),linear-gradient(180deg,#0a0e27_0%,#000000_45%,#0a0a0a_100%)] px-6 md:px-10 lg:px-16 py-20"
+        className="relative min-h-screen flex items-center justify-center overflow-hidden px-6 md:px-10 lg:px-16 py-20"
+        style={{
+          background: "linear-gradient(180deg, rgba(10,14,39,0.95) 0%, rgba(0,0,0,0.98) 40%, rgba(5,5,15,0.99) 100%), radial-gradient(circle at 50% 20%, rgba(34,211,238,0.15) 0%, transparent 35%), radial-gradient(circle at 15% 70%, rgba(168,85,247,0.08) 0%, transparent 40%)"
+        }}
       >
         {/* 3D SCENE - BACKGROUND LAYER */}
         <div className="absolute inset-0 pointer-events-none">
           <HeroScene />
-          <div className="parallax-slow absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.015)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.015)_1px,transparent_1px)] bg-[size:100px_100px] opacity-15" />
-          <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-cyan-500/20 to-transparent" />
-          <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-black/40 via-black/20 to-transparent" />
-          <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-black/60 via-black/30 to-transparent" />
-          <div className="absolute right-1/3 top-1/3 h-[700px] w-[700px] rounded-full bg-cyan-500/6 blur-[180px] opacity-40" />
-          <div className="absolute left-1/4 bottom-1/3 h-[600px] w-[600px] rounded-full bg-purple-500/4 blur-[160px]" />
+          
+          {/* GRID OVERLAY - SUBTLE */}
+          <div className="parallax-slow absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.012)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.012)_1px,transparent_1px)] bg-[size:120px_120px] opacity-20" />
+          
+          {/* TOP GLOW */}
+          <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-transparent via-cyan-500/40 to-transparent" />
+          
+          {/* TOP FADE GRADIENT */}
+          <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-black/50 via-black/20 to-transparent" />
+          
+          {/* BOTTOM FADE GRADIENT */}
+          <div className="absolute inset-x-0 bottom-0 h-60 bg-gradient-to-t from-black/70 via-black/40 to-transparent" />
+          
+          {/* ATMOSPHERIC GLOW - CYAN LEFT */}
+          <div className="absolute left-0 top-1/2 -translate-y-1/2 w-[900px] h-[800px] rounded-full bg-cyan-500/8 blur-[200px] opacity-30" />
+          
+          {/* ATMOSPHERIC GLOW - PURPLE RIGHT */}
+          <div className="absolute right-0 top-1/3 w-[700px] h-[700px] rounded-full bg-purple-500/5 blur-[180px] opacity-25" />
         </div>
 
         {/* CENTER CONTENT - PROFESSIONAL COMPOSITION */}
@@ -757,81 +791,134 @@ export default function App() {
               transition={{ duration: 1, delay: 0.1, ease: "easeOut" }}
               className="lg:col-span-1 text-center lg:text-left space-y-8"
             >
-              {/* STATUS INDICATOR */}
+              {/* STATUS INDICATOR - PREMIUM */}
               <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.7, delay: 0.15 }}
-                className="inline-flex items-center gap-2.5 rounded-full border border-cyan-400/30 bg-cyan-500/8 px-4 py-2 backdrop-blur-sm lg:justify-start w-full lg:w-auto justify-center"
+                className="inline-flex items-center gap-3 rounded-full border border-emerald-400/40 bg-gradient-to-r from-emerald-500/15 to-emerald-500/8 px-5 py-2.5 backdrop-blur-lg lg:justify-start w-full lg:w-auto justify-center relative overflow-hidden group hover:border-emerald-400/60 transition duration-500"
               >
-                <div className="h-2 w-2 rounded-full bg-emerald-400 shadow-lg shadow-emerald-500/50 animate-pulse" />
-                <span className="text-xs font-semibold uppercase tracking-[0.15em] text-cyan-300">
-                  Available for work
+                {/* Shimmer effect */}
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-0 group-hover:opacity-100 transition duration-700 transform -translate-x-full group-hover:translate-x-full" />
+                
+                {/* Animated dot */}
+                <div className="relative">
+                  <div className="h-2.5 w-2.5 rounded-full bg-emerald-400 shadow-lg shadow-emerald-500/70 animate-pulse" />
+                  <div className="absolute inset-0 h-2.5 w-2.5 rounded-full bg-emerald-300 animate-ping opacity-75" />
+                </div>
+                
+                <span className="text-xs font-bold uppercase tracking-[0.18em] text-emerald-300 relative z-10">
+                  Open to work
                 </span>
               </motion.div>
 
-              {/* MAIN HEADLINE */}
+              {/* CINEMATIC HEADLINE - PROFESSIONAL HIERARCHY */}
               <motion.h1
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 40 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1, delay: 0.25, ease: "easeOut" }}
-                className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black leading-[1.1] tracking-tight"
+                transition={{ duration: 1.1, delay: 0.25, ease: "easeOut" }}
+                className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-black leading-[0.95] tracking-[-0.03em]"
               >
-                <span className="block text-white">Engineer</span>
-                <span className="block bg-gradient-to-r from-cyan-300 via-cyan-400 to-cyan-300 bg-clip-text text-transparent">
-                  premium web
+                <span className="text-white">Building scalable</span>
+                <br />
+                <span className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-300 via-cyan-400 to-cyan-300 font-black block">
+                  full-stack digital
                 </span>
-                <span className="block text-white">experiences</span>
+                <span className="text-white font-black block">
+                  products.
+                </span>
               </motion.h1>
 
-              {/* SUBHEADING - PROFESSIONAL DESCRIPTION */}
+              {/* PREMIUM SUBHEADING - RECRUITER FOCUSED */}
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.9, delay: 0.35, ease: "easeOut" }}
-                className="text-base md:text-lg text-gray-300 leading-relaxed max-w-xl"
+                transition={{ duration: 0.95, delay: 0.4, ease: "easeOut" }}
+                className="text-lg md:text-xl text-gray-300 leading-[1.8] max-w-2xl font-light tracking-wide"
               >
-                Full-stack developer specializing in immersive 3D experiences, refined motion design, and award-level frontend engineering. Building the future of digital products.
+                MERN stack developer focused on modern frontend engineering, immersive UI systems, scalable backend architecture, and premium digital experiences. Crafting cinematic interfaces for high-growth startups and innovative products.
               </motion.p>
 
-              {/* CTA BUTTONS */}
+              {/* PREMIUM CTA BUTTONS */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.9, delay: 0.45, ease: "easeOut" }}
-                className="flex flex-col sm:flex-row gap-4 pt-4 lg:justify-start justify-center"
+                transition={{ duration: 0.9, delay: 0.5, ease: "easeOut" }}
+                className="flex flex-col sm:flex-row gap-4 pt-6 lg:justify-start justify-center"
               >
                 <MagneticButton
                   href="#projects"
-                  className="px-8 py-3.5 font-bold text-sm md:text-base bg-gradient-to-br from-cyan-400 to-cyan-500 text-black rounded-xl shadow-lg shadow-cyan-500/40 hover:shadow-cyan-500/60 transition duration-300"
+                  className="group px-10 py-4 font-bold text-base md:text-lg bg-gradient-to-br from-cyan-400 to-cyan-500 text-black rounded-xl shadow-lg shadow-cyan-500/40 hover:shadow-cyan-500/70 hover:scale-105 transition duration-300 relative overflow-hidden"
                 >
-                  Explore Work
+                  <span className="relative z-10 flex items-center justify-center gap-2">
+                    Explore Work
+                    <span className="group-hover:translate-x-1 transition duration-300">→</span>
+                  </span>
+                  <div className="absolute inset-0 bg-gradient-to-br from-cyan-300 to-cyan-500 opacity-0 group-hover:opacity-100 transition duration-300" />
                 </MagneticButton>
                 <MagneticButton
                   href="https://github.com/Meraz210"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-8 py-3.5 font-bold text-sm md:text-base border border-cyan-400/40 text-cyan-300 rounded-xl hover:bg-cyan-500/10 hover:border-cyan-400/70 transition duration-300"
+                  className="group px-10 py-4 font-bold text-base md:text-lg border border-cyan-400/60 text-cyan-300 rounded-xl hover:bg-cyan-500/15 hover:border-cyan-300/80 hover:scale-105 transition duration-300 relative overflow-hidden backdrop-blur-sm"
                 >
-                  GitHub
+                  <span className="relative z-10">GitHub</span>
+                  <div className="absolute inset-0 bg-cyan-500/10 opacity-0 group-hover:opacity-100 transition duration-300" />
                 </MagneticButton>
               </motion.div>
 
-              {/* METRICS */}
+              {/* PROFESSIONAL EXPERTISE BADGES */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.9, delay: 0.7 }}
+                className="flex flex-wrap gap-2 pt-6"
+              >
+                <div className="inline-flex items-center gap-2 rounded-lg border border-cyan-400/25 bg-cyan-500/8 px-3 py-1.5">
+                  <span className="text-xs font-bold text-cyan-400">★</span>
+                  <span className="text-xs font-semibold text-cyan-300">Full-Stack</span>
+                </div>
+                <div className="inline-flex items-center gap-2 rounded-lg border border-purple-400/25 bg-purple-500/8 px-3 py-1.5">
+                  <span className="text-xs font-bold text-purple-400">✦</span>
+                  <span className="text-xs font-semibold text-purple-300">3D & Motion</span>
+                </div>
+                <div className="inline-flex items-center gap-2 rounded-lg border border-emerald-400/25 bg-emerald-500/8 px-3 py-1.5">
+                  <span className="text-xs font-bold text-emerald-400">◆</span>
+                  <span className="text-xs font-semibold text-emerald-300">Performance</span>
+                </div>
+              </motion.div>
+
+              {/* PROFESSIONAL METRICS */}
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ duration: 0.9, delay: 0.55 }}
-                className="grid grid-cols-2 gap-4 pt-6 border-t border-cyan-500/10 lg:border-t-0 lg:pt-0"
+                transition={{ duration: 0.9, delay: 0.8 }}
+                className="grid grid-cols-3 gap-4 pt-8 border-t border-cyan-500/15 lg:border-t-0 lg:pt-0"
               >
-                <div className="space-y-1">
-                  <p className="text-2xl font-black text-cyan-300">6+</p>
-                  <p className="text-xs uppercase tracking-wider text-gray-400">Projects shipped</p>
-                </div>
-                <div className="space-y-1">
-                  <p className="text-2xl font-black text-cyan-300">3D</p>
-                  <p className="text-xs uppercase tracking-wider text-gray-400">Interactive web</p>
-                </div>
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  className="relative overflow-hidden rounded-lg border border-cyan-400/20 bg-cyan-500/5 p-4 backdrop-blur-sm group hover:border-cyan-400/40 transition duration-300"
+                >
+                  <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/10 to-transparent opacity-0 group-hover:opacity-100 transition duration-300" />
+                  <p className="relative z-10 text-2xl md:text-3xl font-black text-cyan-300">6+</p>
+                  <p className="relative z-10 text-xs md:text-sm uppercase tracking-wider text-gray-400 font-semibold mt-1">Projects</p>
+                </motion.div>
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  className="relative overflow-hidden rounded-lg border border-purple-400/20 bg-purple-500/5 p-4 backdrop-blur-sm group hover:border-purple-400/40 transition duration-300"
+                >
+                  <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-transparent opacity-0 group-hover:opacity-100 transition duration-300" />
+                  <p className="relative z-10 text-2xl md:text-3xl font-black text-purple-300">Full</p>
+                  <p className="relative z-10 text-xs md:text-sm uppercase tracking-wider text-gray-400 font-semibold mt-1">Stack</p>
+                </motion.div>
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  className="relative overflow-hidden rounded-lg border border-emerald-400/20 bg-emerald-500/5 p-4 backdrop-blur-sm group hover:border-emerald-400/40 transition duration-300"
+                >
+                  <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/10 to-transparent opacity-0 group-hover:opacity-100 transition duration-300" />
+                  <p className="relative z-10 text-2xl md:text-3xl font-black text-emerald-300">∞</p>
+                  <p className="relative z-10 text-xs md:text-sm uppercase tracking-wider text-gray-400 font-semibold mt-1">Learning</p>
+                </motion.div>
               </motion.div>
             </motion.div>
 
@@ -848,84 +935,105 @@ export default function App() {
               </div>
             </motion.div>
 
-            {/* RIGHT SIDE - PROFESSIONAL PROFILE CARD */}
+            {/* RIGHT SIDE - PREMIUM PROFILE CARD */}
             <motion.div
               initial={{ opacity: 0, x: 50 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
+              transition={{ duration: 1, delay: 0.35, ease: "easeOut" }}
               className="lg:col-span-1"
             >
               <motion.div
-                animate={{ y: [0, -8, 0] }}
-                transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+                animate={{ y: [0, -12, 0] }}
+                transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
                 className="relative"
               >
-                <div className="absolute -inset-1 rounded-2xl bg-gradient-to-br from-cyan-500/20 via-purple-500/10 to-transparent blur-3xl opacity-60" />
+                {/* Premium Glow Background */}
+                <div className="absolute -inset-1.5 rounded-3xl bg-gradient-to-br from-cyan-500/30 via-purple-500/20 to-cyan-500/10 blur-3xl opacity-70" />
                 
-                <div className="relative rounded-2xl border border-cyan-500/25 bg-gradient-to-br from-black/50 via-black/30 to-black/50 p-8 md:p-10 backdrop-blur-xl">
-                  {/* Top accent line */}
-                  <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-cyan-500/50 to-transparent" />
+                {/* Main Card */}
+                <div className="relative rounded-3xl border border-cyan-400/30 bg-gradient-to-br from-white/8 via-white/4 to-white/2 p-8 md:p-10 backdrop-blur-2xl shadow-2xl">
+                  {/* Premium Border Accent */}
+                  <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-cyan-400/60 to-transparent" />
+                  <div className="absolute inset-y-0 right-0 w-px bg-gradient-to-b from-cyan-400/40 via-cyan-400/20 to-transparent" />
 
-                  {/* Profile Image */}
-                  <div className="relative overflow-hidden rounded-xl mb-8 aspect-square">
+                  {/* Profile Image - Premium Frame */}
+                  <div className="relative overflow-hidden rounded-2xl mb-8 aspect-square border border-cyan-400/20">
+                    {/* Cinematic Overlay */}
                     <motion.div
-                      animate={{ opacity: [0.1, 0.3, 0.1] }}
-                      transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-                      className="absolute inset-0 z-10 bg-[linear-gradient(transparent_0%,rgba(34,211,238,0.15)_50%,transparent_100%)]"
+                      animate={{ opacity: [0.08, 0.25, 0.08] }}
+                      transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                      className="absolute inset-0 z-10 bg-gradient-to-b from-transparent via-cyan-500/10 to-cyan-500/20 pointer-events-none"
                     />
                     <img
                       src={profileImage}
                       alt="Meraz Ahasan - Frontend Developer"
-                      className="w-full h-full object-cover saturate-125 brightness-100 hover:brightness-110 transition duration-500"
+                      className="w-full h-full object-cover brightness-105 hover:brightness-125 transition duration-500"
                     />
                   </div>
 
-                  {/* Profile Info */}
-                  <div className="space-y-6">
-                    <div>
-                      <p className="text-xs font-bold uppercase tracking-[0.15em] text-cyan-400 mb-2">
-                        Frontend Engineer
+                  {/* Profile Information */}
+                  <div className="space-y-7">
+                    {/* Title & Name */}
+                    <div className="space-y-2">
+                      <p className="text-xs font-bold uppercase tracking-[0.2em] text-cyan-400 letter-spacing-wide">
+                        Full-Stack Engineer
                       </p>
-                      <h3 className="text-2xl md:text-3xl font-black text-white">Meraz Ahasan</h3>
+                      <h3 className="text-3xl md:text-4xl font-black text-white leading-tight">
+                        Meraz Ahasan
+                      </h3>
                     </div>
 
-                    {/* Tech Stack */}
+                    {/* Divider */}
+                    <div className="h-px bg-gradient-to-r from-cyan-400/30 via-cyan-400/50 to-transparent" />
+
+                    {/* Tech Stack - Modern Tags */}
                     <div className="space-y-3">
-                      <p className="text-xs uppercase tracking-widest text-gray-400 font-semibold">Stack</p>
+                      <p className="text-xs uppercase tracking-[0.15em] text-gray-400 font-bold">Tech Stack</p>
                       <div className="flex flex-wrap gap-2">
-                        {["React", "Node.js", "Three.js", "GSAP", "Tailwind"].map((tech) => (
-                          <span
+                        {["React", "Node.js", "MongoDB", "Express", "Three.js"].map((tech) => (
+                          <motion.span
                             key={tech}
-                            className="rounded-lg border border-cyan-500/30 bg-cyan-500/10 px-3 py-1.5 text-xs font-semibold text-cyan-300 backdrop-blur"
+                            whileHover={{ scale: 1.08, y: -2 }}
+                            className="rounded-lg border border-cyan-400/40 bg-cyan-500/8 px-3.5 py-2 text-xs font-semibold text-cyan-300 backdrop-blur-sm hover:bg-cyan-500/15 hover:border-cyan-300/60 transition duration-300 cursor-default"
                           >
                             {tech}
-                          </span>
+                          </motion.span>
                         ))}
                       </div>
                     </div>
 
-                    {/* Status */}
-                    <div className="pt-4 border-t border-cyan-500/15 flex items-center gap-3">
-                      <span className="h-3 w-3 rounded-full bg-emerald-400 shadow-lg shadow-emerald-500/60 animate-pulse" />
-                      <span className="text-sm font-medium text-gray-300">Open to opportunities</span>
+                    {/* Status Indicator */}
+                    <div className="flex items-center gap-3 px-5 py-3.5 rounded-xl bg-gradient-to-r from-emerald-500/12 to-emerald-500/6 border border-emerald-400/25 group hover:border-emerald-400/50 transition duration-500 relative overflow-hidden">
+                      {/* Subtle shimmer */}
+                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent opacity-0 group-hover:opacity-100 transition duration-700" />
+                      
+                      <div className="relative">
+                        <span className="h-3 w-3 rounded-full bg-emerald-400 shadow-lg shadow-emerald-500/70 animate-pulse inline-block" />
+                        <span className="absolute inset-0 h-3 w-3 rounded-full bg-emerald-300 animate-ping opacity-75" />
+                      </div>
+                      <span className="text-sm font-bold text-emerald-300 relative z-10">Open to opportunities</span>
                     </div>
 
-                    {/* Quick Links */}
-                    <div className="grid grid-cols-2 gap-2 pt-4">
-                      <a
+                    {/* Quick Action Links */}
+                    <div className="grid grid-cols-2 gap-3 pt-2">
+                      <motion.a
+                        whileHover={{ y: -4, scale: 1.02 }}
                         href="https://github.com/Meraz210"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="rounded-lg border border-cyan-500/20 bg-cyan-500/5 p-3 text-center text-xs font-semibold text-cyan-300 transition hover:bg-cyan-500/15 hover:border-cyan-500/40"
+                        className="group rounded-xl border border-cyan-400/30 bg-cyan-500/8 p-3.5 text-center text-xs font-bold text-cyan-300 transition hover:bg-cyan-500/20 hover:border-cyan-300/60 hover:shadow-lg hover:shadow-cyan-500/20 relative overflow-hidden"
                       >
-                        GitHub
-                      </a>
-                      <a
+                        <span className="relative z-10">GitHub</span>
+                        <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/20 to-transparent opacity-0 group-hover:opacity-100 transition duration-300" />
+                      </motion.a>
+                      <motion.a
+                        whileHover={{ y: -4, scale: 1.02 }}
                         href="mailto:merazahasan210@gmail.com"
-                        className="rounded-lg border border-cyan-500/20 bg-cyan-500/5 p-3 text-center text-xs font-semibold text-cyan-300 transition hover:bg-cyan-500/15 hover:border-cyan-500/40"
+                        className="group rounded-xl border border-cyan-400/30 bg-cyan-500/8 p-3.5 text-center text-xs font-bold text-cyan-300 transition hover:bg-cyan-500/20 hover:border-cyan-300/60 hover:shadow-lg hover:shadow-cyan-500/20 relative overflow-hidden"
                       >
-                        Email
-                      </a>
+                        <span className="relative z-10">Email</span>
+                        <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/20 to-transparent opacity-0 group-hover:opacity-100 transition duration-300" />
+                      </motion.a>
                     </div>
                   </div>
                 </div>
@@ -957,12 +1065,15 @@ export default function App() {
       {/* Alternative mobile hero (shown only on mobile) */}
       <section
         id="home-mobile"
-        className="relative lg:hidden min-h-screen flex flex-col items-center justify-center overflow-hidden bg-[radial-gradient(circle_at_50%_30%,rgba(34,211,238,0.12),transparent_40%),linear-gradient(180deg,#0a0e27_0%,#000000_45%,#0a0a0a_100%)] px-6 py-20"
+        className="relative lg:hidden min-h-screen flex flex-col items-center justify-center overflow-hidden px-6 py-20"
+        style={{
+          background: "linear-gradient(180deg, rgba(10,14,39,0.95) 0%, rgba(0,0,0,0.98) 40%, rgba(5,5,15,0.99) 100%), radial-gradient(circle at 50% 20%, rgba(34,211,238,0.15) 0%, transparent 35%)"
+        }}
       >
         {/* 3D SCENE FOR MOBILE */}
         <div className="absolute inset-0 pointer-events-none">
           <HeroScene />
-          <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-black/60 via-black/30 to-transparent" />
+          <div className="absolute inset-x-0 bottom-0 h-60 bg-gradient-to-t from-black/70 via-black/40 to-transparent" />
         </div>
 
         {/* MOBILE CONTENT */}
@@ -972,48 +1083,72 @@ export default function App() {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.7, delay: 0.1 }}
-            className="inline-flex items-center gap-2 rounded-full border border-cyan-400/30 bg-cyan-500/8 px-4 py-2 backdrop-blur-sm"
+            className="inline-flex items-center gap-3 rounded-full border border-emerald-400/40 bg-gradient-to-r from-emerald-500/15 to-emerald-500/8 px-5 py-2.5 backdrop-blur-lg group hover:border-emerald-400/60 transition duration-500 relative overflow-hidden"
           >
-            <div className="h-2 w-2 rounded-full bg-emerald-400 shadow-lg shadow-emerald-500/50 animate-pulse" />
-            <span className="text-xs font-semibold uppercase tracking-wider text-cyan-300">
-              Available
+            {/* Shimmer effect */}
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-0 group-hover:opacity-100 transition duration-700 transform -translate-x-full group-hover:translate-x-full" />
+            
+            {/* Animated dot */}
+            <div className="relative">
+              <div className="h-2.5 w-2.5 rounded-full bg-emerald-400 shadow-lg shadow-emerald-500/70 animate-pulse" />
+              <div className="absolute inset-0 h-2.5 w-2.5 rounded-full bg-emerald-300 animate-ping opacity-75" />
+            </div>
+            
+            <span className="text-xs font-bold uppercase tracking-[0.18em] text-emerald-300 relative z-10">
+              Open to work
             </span>
           </motion.div>
 
-          {/* Heading */}
+          {/* Mobile Heading */}
           <motion.h1
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.2 }}
-            className="text-4xl font-black leading-tight"
+            transition={{ duration: 1.1, delay: 0.2 }}
+            className="text-5xl font-black leading-[0.95] tracking-[-0.03em]"
           >
-            <span className="block text-white">Engineer</span>
-            <span className="block bg-gradient-to-r from-cyan-300 to-cyan-400 bg-clip-text text-transparent">
-              premium web
+            <span className="text-white">Building scalable</span>
+            <br />
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-300 via-cyan-400 to-cyan-300 font-black block">
+              full-stack digital
             </span>
-            <span className="block text-white">experiences</span>
+            <span className="text-white font-black block">
+              products.
+            </span>
           </motion.h1>
+
+          {/* Mobile Subheading */}
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.95, delay: 0.35 }}
+            className="text-base text-gray-300 leading-[1.7] font-light"
+          >
+            MERN stack developer crafting premium digital experiences for startups and innovative products.
+          </motion.p>
 
           {/* CTA Buttons */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, delay: 0.35 }}
+            transition={{ duration: 0.9, delay: 0.45 }}
             className="flex flex-col gap-3 pt-4"
           >
             <MagneticButton
               href="#projects"
-              className="w-full px-8 py-3.5 font-bold text-base bg-gradient-to-br from-cyan-400 to-cyan-500 text-black rounded-xl shadow-lg shadow-cyan-500/40"
+              className="group w-full px-8 py-4 font-bold text-base bg-gradient-to-br from-cyan-400 to-cyan-500 text-black rounded-xl shadow-lg shadow-cyan-500/40 hover:shadow-cyan-500/70 hover:scale-105 transition duration-300 relative overflow-hidden"
             >
-              View Work
+              <span className="relative z-10 flex items-center justify-center gap-2">
+                View Work
+                <span className="group-hover:translate-x-1 transition duration-300">→</span>
+              </span>
             </MagneticButton>
             <MagneticButton
               href="https://github.com/Meraz210"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full px-8 py-3.5 font-bold text-base border border-cyan-400/40 text-cyan-300 rounded-xl hover:bg-cyan-500/10"
+              className="group w-full px-8 py-4 font-bold text-base border border-cyan-400/60 text-cyan-300 rounded-xl hover:bg-cyan-500/15 hover:border-cyan-300/80 hover:scale-105 transition duration-300 relative overflow-hidden"
             >
-              GitHub
+              <span className="relative z-10">GitHub</span>
             </MagneticButton>
           </motion.div>
         </div>
