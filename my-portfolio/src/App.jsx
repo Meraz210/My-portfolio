@@ -778,8 +778,6 @@ export default function App() {
       >
         {/* 3D SCENE - BACKGROUND LAYER */}
         <div className="absolute inset-0 pointer-events-none">
-          <HeroScene />
-          
           {/* GRID OVERLAY - SUBTLE */}
           <div className="parallax-slow absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.008)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.008)_1px,transparent_1px)] bg-[size:120px_120px] opacity-15" />
           
@@ -948,10 +946,7 @@ export default function App() {
               transition={{ duration: 1.2, delay: 0.2, ease: "easeOut" }}
               className="hidden lg:flex lg:col-span-1 items-center justify-center h-full min-h-[500px]"
             >
-              {/* 3D Scene Container */}
-              <div className="relative w-full h-full max-w-md mx-auto">
-                <HeroScene />
-              </div>
+              {/* 3D Scene Container - Removed */}
             </motion.div>
 
             {/* RIGHT SIDE - PREMIUM PROFILE CARD */}
@@ -1089,9 +1084,8 @@ export default function App() {
           background: "linear-gradient(180deg, rgba(10,14,39,0.95) 0%, rgba(0,0,0,0.98) 40%, rgba(5,5,15,0.99) 100%), radial-gradient(circle at 50% 20%, rgba(34,211,238,0.15) 0%, transparent 35%)"
         }}
       >
-        {/* 3D SCENE FOR MOBILE */}
+        {/* 3D SCENE FOR MOBILE - Removed */}
         <div className="absolute inset-0 pointer-events-none">
-          <HeroScene />
           <div className="absolute inset-x-0 bottom-0 h-60 bg-gradient-to-t from-black/70 via-black/40 to-transparent" />
         </div>
 
