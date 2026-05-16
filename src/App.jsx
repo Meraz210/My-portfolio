@@ -19,6 +19,7 @@ import {
   ShieldCheck,
   X,
 } from "lucide-react";
+import { FaLinkedinIn } from "react-icons/fa";
 import { lazy, Suspense, useEffect, useState } from "react";
 import GitHubStats from "./components/GitHubStats";
 import PortfolioChatbot from "./components/PortfolioChatbot";
@@ -138,8 +139,7 @@ function Navbar() {
   return (
     <header className="fixed inset-x-0 top-0 z-50 px-5 pt-4">
       <nav className="mx-auto flex h-14 max-w-6xl items-center justify-between rounded-xl border border-white/5 bg-[#050b16]/70 px-4 backdrop-blur-xl">
-        <a href="#home" className="flex items-center gap-2 text-sm font-black uppercase tracking-[0.16em] text-white">
-          <Code2 className="h-5 w-5 text-cyan-300" />
+        <a href="#home" className="text-sm font-black uppercase tracking-[0.16em] text-white">
           Meraz Ahasan
         </a>
 
@@ -218,10 +218,11 @@ function ProfileCard() {
           <span key={item} className="rounded-md border border-slate-700 bg-white/[0.035] px-3 py-1.5 text-xs font-semibold text-slate-300">{item}</span>
         ))}
       </div>
-      <div className="mt-5 grid grid-cols-3 gap-2">
+      <div className="mt-5 grid grid-cols-4 gap-2">
         {[
           [Mail, "mailto:merazahasan210@gmail.com"],
           [GitBranch, "https://github.com/Meraz210"],
+          [FaLinkedinIn, "https://www.linkedin.com/in/meraz-ahasan/"],
           [Phone, "tel:+8801568088936"],
         ].map(([Icon, href]) => (
           <a key={href} href={href} target={href.startsWith("http") ? "_blank" : undefined} rel="noreferrer" className="grid h-10 place-items-center rounded-md border border-slate-700 bg-white/[0.03] text-slate-200 hover:border-cyan-300 hover:text-cyan-200">
@@ -466,7 +467,7 @@ function Footer() {
           <div className="mt-3 flex gap-3">
             {[
               [GitBranch, "https://github.com/Meraz210"],
-              [Code2, "https://linkedin.com"],
+              [FaLinkedinIn, "https://www.linkedin.com/in/meraz-ahasan/"],
               [Mail, "mailto:merazahasan210@gmail.com"],
             ].map(([Icon, href]) => (
               <a key={href} href={href} target={href.startsWith("http") ? "_blank" : undefined} rel="noreferrer" className="grid h-10 w-10 place-items-center rounded-md border border-slate-800 bg-white/[0.03] text-slate-300 hover:border-cyan-300 hover:text-cyan-200">
