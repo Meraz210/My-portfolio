@@ -25,12 +25,13 @@ import {
   X,
 } from "lucide-react";
 import { FaLinkedinIn } from "react-icons/fa";
-import { useEffect, useState } from "react";
+import { Suspense, lazy, useEffect, useState } from "react";
 import GitHubStats from "./components/GitHubStats";
 import PortfolioChatbot from "./components/PortfolioChatbot";
 import profileImage from "./assets/pf.png";
 
 const cvUrl = `${import.meta.env.BASE_URL}MD_MERAZ_AHASAN_SHAH_CV.pdf`;
+const HeroScene3D = lazy(() => import("./components/HeroScene3D"));
 
 const navItems = [
   ["Home", "#home"],
@@ -265,26 +266,31 @@ function Hero() {
         </motion.div>
       </motion.div>
 
-      <motion.aside {...fadeUp} className="saas-profile-card">
-        <div className="saas-profile-image-wrap">
-          <img src={profileImage} alt="MD Meraz Ahasan Shah" loading="eager" />
-        </div>
-        <div>
-          <p className="saas-status"><span /> Open to internship and junior roles</p>
-          <h2>Full-Stack MERN Developer</h2>
-          <p>Dhaka, Bangladesh</p>
-        </div>
-        <div className="saas-profile-grid">
-          <span>React</span>
-          <span>Node.js</span>
-          <span>MongoDB</span>
-          <span>JWT Auth</span>
-        </div>
-        <div className="saas-socials">
-          <a href="mailto:merazahasan210@gmail.com" aria-label="Email"><Mail className="h-4 w-4" /></a>
-          <a href="https://github.com/Meraz210" target="_blank" rel="noreferrer" aria-label="GitHub"><GitBranch className="h-4 w-4" /></a>
-          <a href="https://www.linkedin.com/in/merazahasan" target="_blank" rel="noreferrer" aria-label="LinkedIn"><FaLinkedinIn className="h-4 w-4" /></a>
-          <a href="tel:+8801568088936" aria-label="Phone"><Phone className="h-4 w-4" /></a>
+      <motion.aside {...fadeUp} className="saas-hero-visual" aria-label="Developer profile and product preview">
+        <Suspense fallback={<div className="saas-hero-3d-fallback" aria-hidden="true" />}>
+          <HeroScene3D />
+        </Suspense>
+        <div className="saas-profile-card">
+          <div className="saas-profile-image-wrap">
+            <img src={profileImage} alt="MD Meraz Ahasan Shah" loading="eager" />
+          </div>
+          <div>
+            <p className="saas-status"><span /> Open to internship and junior roles</p>
+            <h2>Full-Stack MERN Developer</h2>
+            <p>Dhaka, Bangladesh</p>
+          </div>
+          <div className="saas-profile-grid">
+            <span>React</span>
+            <span>Node.js</span>
+            <span>MongoDB</span>
+            <span>JWT Auth</span>
+          </div>
+          <div className="saas-socials">
+            <a href="mailto:merazahasan210@gmail.com" aria-label="Email"><Mail className="h-4 w-4" /></a>
+            <a href="https://github.com/Meraz210" target="_blank" rel="noreferrer" aria-label="GitHub"><GitBranch className="h-4 w-4" /></a>
+            <a href="https://www.linkedin.com/in/merazahasan" target="_blank" rel="noreferrer" aria-label="LinkedIn"><FaLinkedinIn className="h-4 w-4" /></a>
+            <a href="tel:+8801568088936" aria-label="Phone"><Phone className="h-4 w-4" /></a>
+          </div>
         </div>
       </motion.aside>
     </section>
@@ -478,7 +484,7 @@ function Contact() {
       <motion.div {...fadeUp} className="saas-contact">
         <div>
           <p className="saas-pill">Contact</p>
-          <h2>Let’s build something useful.</h2>
+          <h2>Let's build something useful.</h2>
           <p>Available for internships, junior developer roles, freelance projects, and collaboration. Send a short message and your email app will open with the details ready.</p>
           <div className="saas-available">
             <h3>Available For</h3>
@@ -551,8 +557,8 @@ export default function App() {
       <Navbar />
       <main>
         <Hero />
-        <FeaturedProject />
         <Projects />
+        <FeaturedProject />
         <About />
         <Skills />
         <JourneyAndGitHub />
