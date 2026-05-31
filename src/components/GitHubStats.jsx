@@ -59,9 +59,9 @@ export default function GitHubStats() {
   }, []);
 
   const statCards = [
-    { label: "Public Repos", value: stats.public_repos || 19 },
-    { label: "Followers", value: stats.followers || 2 },
-    { label: "Following", value: stats.following || 5 },
+    { label: "Public Repositories", value: stats.public_repos || 19 },
+    { label: "GitHub Followers", value: stats.followers || 2 },
+    { label: "Following Developers", value: stats.following || 5 },
   ];
 
   return (
@@ -76,7 +76,7 @@ export default function GitHubStats() {
         </div>
       )}
 
-      <div className="mb-7 grid grid-cols-3 gap-4">
+      <div className="mb-7 grid gap-4 sm:grid-cols-3">
         {statCards.map((card, index) => (
           <motion.div
             key={card.label}
@@ -94,7 +94,12 @@ export default function GitHubStats() {
         ))}
       </div>
 
-      <h3 className="mb-4 text-lg font-black text-cyan-300">Repository Showcase</h3>
+      <div className="mb-4 flex items-end justify-between gap-3">
+        <div>
+          <h3 className="text-lg font-black text-cyan-300">Repository Showcase</h3>
+          <p className="mt-1 text-xs font-semibold text-slate-500">Latest public work, with fallback data when the GitHub API is unavailable.</p>
+        </div>
+      </div>
       <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
         {repos.slice(0, 6).map((repo, index) => (
           <motion.a

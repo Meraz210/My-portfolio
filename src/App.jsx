@@ -9,6 +9,8 @@ import {
   GitBranch,
   Globe2,
   GraduationCap,
+  LayoutDashboard,
+  LockKeyhole,
   Mail,
   MapPin,
   Menu,
@@ -17,6 +19,7 @@ import {
   Send,
   Server,
   ShieldCheck,
+  Users,
   X,
 } from "lucide-react";
 import { FaLinkedinIn } from "react-icons/fa";
@@ -105,6 +108,8 @@ const developerMetrics = [
   ["UI", "Responsive UI Systems"],
 ];
 
+const heroHighlights = ["Internship-ready", "Junior MERN roles", "Remote collaboration"];
+
 const skillGroups = [
   ["Programming", ["JavaScript", "TypeScript", "C", "C++", "C#", "Python", "Java", "PHP", "Kotlin"]],
   ["Frontend", ["React.js", "Next.js", "Angular", "HTML5", "CSS3", "Tailwind CSS", "Three.js", "GSAP"]],
@@ -178,7 +183,13 @@ const careerConnectDetails = {
     "Admin management for platform oversight",
     "Responsive recruiter-friendly UI",
   ],
-  screenshots: ["Login page", "Jobs page", "Seeker dashboard", "Employer dashboard", "Admin dashboard"],
+  screenshots: [
+    { title: "Login page", meta: "JWT sign-in, validation, role routing", icon: LockKeyhole },
+    { title: "Jobs page", meta: "Searchable listings and job detail flow", icon: BriefcaseBusiness },
+    { title: "Seeker dashboard", meta: "Applications, saved jobs, profile state", icon: Users },
+    { title: "Employer dashboard", meta: "Post jobs and review applicants", icon: LayoutDashboard },
+    { title: "Admin dashboard", meta: "Users, jobs, and platform management", icon: ShieldCheck },
+  ],
   impact: ["Complete MERN hiring workflow", "Reusable protected-route architecture", "Clear internship-ready flagship project"],
 };
 
@@ -321,6 +332,11 @@ function Hero() {
         <motion.p variants={{ hidden: { opacity: 0, y: 22 }, show: { opacity: 1, y: 0 } }} className="mt-6 max-w-md text-base leading-7 text-slate-300">
           Full-stack MERN developer and CSE student at AIUB building responsive web applications, scalable REST APIs, database-driven systems, and polished interfaces with performance, SEO, and animation in mind.
         </motion.p>
+        <motion.div variants={{ hidden: { opacity: 0, y: 22 }, show: { opacity: 1, y: 0 } }} className="hero-trust-row">
+          {heroHighlights.map((item) => (
+            <span key={item}><CheckCircle2 className="h-3.5 w-3.5" /> {item}</span>
+          ))}
+        </motion.div>
         <motion.div variants={{ hidden: { opacity: 0, y: 22 }, show: { opacity: 1, y: 0 } }} className="mt-8 flex flex-col gap-3 sm:flex-row">
           <a href="#projects" className="primary-btn">Explore My Work <ArrowRight className="h-4 w-4" /></a>
           <a href="https://github.com/Meraz210" target="_blank" rel="noreferrer" className="secondary-btn">View on GitHub <GitBranch className="h-4 w-4" /></a>
@@ -380,7 +396,7 @@ function Projects() {
               </div>
               <div className="project-actions">
                 {project.live ? (
-                  <a href={project.live} target="_blank" rel="noreferrer">Live Demo <ExternalLink className="h-3 w-3" /></a>
+                  <a href={project.live} target="_blank" rel="noreferrer" className="project-action-primary">Live Demo <ExternalLink className="h-3 w-3" /></a>
                 ) : (
                   <button type="button" disabled>Coming Soon</button>
                 )}
@@ -454,13 +470,25 @@ function FeaturedProject() {
             <a href="https://github.com/Meraz210/job-portal-system" target="_blank" rel="noreferrer">View Source <GitBranch className="h-3.5 w-3.5" /></a>
           </div>
           <div className="screenshot-grid">
-            {careerConnectDetails.screenshots.map((item, index) => (
-              <div key={item} className="screenshot-placeholder">
+            {careerConnectDetails.screenshots.map((item, index) => {
+              const Icon = item.icon;
+              return (
+              <div key={item.title} className="screenshot-placeholder">
                 <span>0{index + 1}</span>
-                <h3>{item}</h3>
-                <p>Screenshot placeholder ready for project UI capture.</p>
+                <div className="screenshot-preview">
+                  <div className="screenshot-sidebar" />
+                  <div className="screenshot-content">
+                    <i />
+                    <i />
+                    <i />
+                  </div>
+                  <Icon className="screenshot-icon h-5 w-5" />
+                </div>
+                <h3>{item.title}</h3>
+                <p>{item.meta}</p>
               </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </motion.div>
@@ -601,7 +629,7 @@ function Contact() {
           </div>
         </div>
         <form
-          className="grid gap-4"
+          className="contact-form grid gap-4"
           onSubmit={(event) => {
             event.preventDefault();
             const data = new FormData(event.currentTarget);
@@ -609,11 +637,21 @@ function Contact() {
           }}
         >
           <div className="grid gap-4 sm:grid-cols-2">
-            <input required name="name" placeholder="Your Name" />
-            <input required name="email" type="email" placeholder="Your Email" />
+            <label>
+              <span>Your Name</span>
+              <input required name="name" placeholder="Meraz Ahasan" />
+            </label>
+            <label>
+              <span>Your Email</span>
+              <input required name="email" type="email" placeholder="you@example.com" />
+            </label>
           </div>
-          <textarea required name="message" rows="6" placeholder="Project Details" />
+          <label>
+            <span>Message</span>
+            <textarea required name="message" rows="6" placeholder="Tell me about the role, internship, project, or collaboration..." />
+          </label>
           <button type="submit" className="primary-btn w-full justify-center">Send Message <Send className="h-4 w-4" /></button>
+          <p className="text-center text-xs font-semibold text-slate-500">Opens your email app with a prepared message. No backend required.</p>
         </form>
       </motion.div>
     </section>
@@ -623,10 +661,13 @@ function Contact() {
 function Footer() {
   return (
     <footer className="section-shell pb-8 pt-8">
-      <div className="grid gap-10 border-t border-slate-900 pt-8 md:grid-cols-3">
+      <div className="footer-panel grid gap-10 md:grid-cols-[1.2fr_0.8fr_0.8fr]">
         <div>
           <h3 className="font-black text-cyan-300">MD Meraz Ahasan Shah</h3>
           <p className="mt-3 max-w-xs text-sm leading-6 text-slate-500">Full-stack MERN developer crafting modern web applications with responsive UI, reliable APIs, database-driven features, and thoughtful user flows.</p>
+          <a href={cvUrl} target="_blank" rel="noreferrer" download className="mt-5 inline-flex items-center gap-2 rounded-md border border-cyan-300/30 px-4 py-2 text-xs font-black text-slate-100 hover:bg-cyan-400 hover:text-slate-950">
+            <Download className="h-3.5 w-3.5" /> Download CV
+          </a>
         </div>
         <div>
           <h3 className="font-black text-cyan-300">Navigation</h3>
@@ -650,7 +691,7 @@ function Footer() {
         </div>
       </div>
       <p className="mt-8 text-center text-xs text-slate-600">&copy; 2026 MD Meraz Ahasan Shah. All rights reserved.</p>
-      <a href="#home" className="fixed bottom-6 right-6 grid h-10 w-10 place-items-center rounded-full bg-cyan-400 text-slate-950 shadow-[0_0_26px_rgba(34,211,238,0.45)]">
+      <a href="#home" className="back-to-top fixed bottom-6 right-24 grid h-10 w-10 place-items-center rounded-full bg-cyan-400 text-slate-950 shadow-[0_0_26px_rgba(34,211,238,0.45)]">
         <ArrowRight className="h-4 w-4 -rotate-90" />
       </a>
     </footer>
