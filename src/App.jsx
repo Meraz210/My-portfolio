@@ -101,7 +101,7 @@ const developerMetrics = [
   ["15+", "REST APIs Built"],
   ["3", "User Roles Implemented"],
   ["JWT", "Authentication"],
-  ["DB", "MongoDB/PostgreSQL Experience"],
+  ["DB", "MongoDB & SQL Experience"],
   ["UI", "Responsive UI Systems"],
 ];
 
