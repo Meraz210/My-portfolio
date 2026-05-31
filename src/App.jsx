@@ -26,6 +26,7 @@ import PortfolioChatbot from "./components/PortfolioChatbot";
 import profileImage from "./assets/pf.png";
 
 const HeroScene3D = lazy(() => import("./components/HeroScene3D"));
+const cvUrl = `${import.meta.env.BASE_URL}MD_MERAZ_AHASAN_SHAH_CV.pdf`;
 
 const navItems = [
   ["Home", "#home"],
@@ -40,10 +41,12 @@ const projects = [
   {
     title: "CareerConnect",
     type: "Job Portal System",
-    text: "End-to-end hiring platform concept with job discovery, applicant workflows, role-aware experiences, and dashboard-ready architecture.",
+    text: "Role-based job portal with seeker, employer, and admin workflows, JWT authentication, application tracking, and dashboard-ready architecture.",
     icon: BriefcaseBusiness,
-    tech: ["MERN", "REST APIs", "Auth"],
-    link: "https://github.com/Meraz210",
+    tech: ["MERN", "JWT", "Role Access"],
+    live: "https://job-portal-system-neon.vercel.app",
+    source: "https://github.com/Meraz210/job-portal-system",
+    caseStudy: "#careerconnect",
     hot: true,
   },
   {
@@ -52,7 +55,8 @@ const projects = [
     text: "Collaborative education platform for study goals, course resources, progress tracking, and responsive student workflows.",
     icon: Globe2,
     tech: ["React", "API", "Tailwind"],
-    link: "https://github.com/Meraz210",
+    source: "https://github.com/Meraz210/StudyHub",
+    caseStudy: "#projects",
   },
   {
     title: "Attendance System",
@@ -60,7 +64,8 @@ const projects = [
     text: "Role-based attendance platform for student records, daily status tracking, report-ready data, and admin workflows.",
     icon: GraduationCap,
     tech: ["React", "Node.js", "MongoDB"],
-    link: "https://github.com/Meraz210",
+    source: "https://github.com/Meraz210/Attendance-system",
+    caseStudy: "#projects",
   },
   {
     title: "YBTDigital",
@@ -68,7 +73,8 @@ const projects = [
     text: "Digital service presentation website focused on clear brand messaging, service discovery, responsive UI, and conversion flow.",
     icon: Rocket,
     tech: ["React", "UI/UX", "SEO"],
-    link: "https://github.com/Meraz210",
+    source: "https://github.com/Meraz210/YBTDigital",
+    caseStudy: "#projects",
   },
   {
     title: "Tea-Shop",
@@ -76,7 +82,8 @@ const projects = [
     text: "Product browsing and commerce-focused interface with clean catalog presentation, responsive layouts, and checkout-ready flows.",
     icon: ShieldCheck,
     tech: ["React", "Commerce", "CSS3"],
-    link: "https://github.com/Meraz210",
+    source: "https://github.com/Meraz210/Tea-Shop",
+    caseStudy: "#projects",
   },
   {
     title: "MediCare Hospital",
@@ -84,8 +91,18 @@ const projects = [
     text: "Hospital service interface for appointment handling, doctor context, patient workflows, and organized admin views.",
     icon: Server,
     tech: ["React", "Node.js", "UI"],
-    link: "https://github.com/Meraz210",
+    source: "https://github.com/Meraz210/MediCare-Hospital",
+    caseStudy: "#projects",
   },
+];
+
+const developerMetrics = [
+  ["6+", "Projects Completed"],
+  ["15+", "REST APIs Built"],
+  ["3", "User Roles Implemented"],
+  ["JWT", "Authentication"],
+  ["DB", "MongoDB/PostgreSQL Experience"],
+  ["UI", "Responsive UI Systems"],
 ];
 
 const skillGroups = [
@@ -117,28 +134,56 @@ const aboutPoints = [
   "Motion Design & Animations",
 ];
 
-const deliverySignals = ["MERN Architecture", "Responsive UI/UX", "REST API Design", "Performance & SEO"];
+const deliverySignals = ["JWT Authentication", "Role-Based Access", "REST API Design", "Responsive UI Systems"];
 
 const journey = [
   {
-    year: "2022-Present",
-    title: "BSc in Computer Science & Engineering",
-    text: "American International University-Bangladesh (AIUB). Building a strong foundation in software engineering, full-stack development, databases, and practical systems.",
+    year: "2022",
+    title: "Started CSE at AIUB",
+    text: "Began formal computer science study and built fundamentals in programming, software engineering, databases, and systems thinking.",
   },
   {
-    year: "HSC",
-    title: "Cantonment Public School and College, Saidpur",
-    text: "Higher Secondary Certificate with GPA 4.67, focused on science and analytical problem solving.",
+    year: "2023",
+    title: "Built first full-stack projects",
+    text: "Moved from frontend practice into practical full-stack workflows with CRUD features, authentication basics, and database-backed interfaces.",
   },
   {
-    year: "SSC",
-    title: "Lions School and College, Saidpur",
-    text: "Secondary School Certificate with GPA 5.00, developing the academic discipline behind engineering study.",
+    year: "2024",
+    title: "Focused on MERN stack and backend APIs",
+    text: "Strengthened React, Node.js, Express, MongoDB, REST API design, dashboard layouts, and deployment preparation.",
+  },
+  {
+    year: "2025",
+    title: "Built CareerConnect Job Portal System",
+    text: "Created a role-based hiring platform with seeker, employer, and admin flows, JWT authentication, application tracking, and admin management.",
+  },
+  {
+    year: "2026",
+    title: "Built premium portfolio and production-ready apps",
+    text: "Upgraded project presentation, refined UI systems, improved recruiter-facing storytelling, and prepared apps for internship and junior developer opportunities.",
   },
 ];
 
+const availableFor = ["Internship Opportunities", "Junior Developer Roles", "Freelance Projects", "Collaboration"];
+
+const careerConnectDetails = {
+  problem: "Job seekers, employers, and admins need separate workflows, but many beginner job portal builds stop at simple listings without real role control or application tracking.",
+  solution: "CareerConnect organizes the hiring flow into seeker, employer, and admin dashboards with protected routes, JWT authentication, role-based access, job management, and application status tracking.",
+  tech: ["React", "Node.js", "Express.js", "MongoDB", "JWT", "REST APIs", "Tailwind CSS"],
+  features: [
+    "Seeker, employer, and admin dashboards",
+    "JWT authentication with role-based access",
+    "Job posting and job discovery workflows",
+    "Application tracking for submitted jobs",
+    "Admin management for platform oversight",
+    "Responsive recruiter-friendly UI",
+  ],
+  screenshots: ["Login page", "Jobs page", "Seeker dashboard", "Employer dashboard", "Admin dashboard"],
+  impact: ["Complete MERN hiring workflow", "Reusable protected-route architecture", "Clear internship-ready flagship project"],
+};
+
 const fadeUp = {
-  initial: { opacity: 0, y: 28 },
+  initial: false,
   whileInView: { opacity: 1, y: 0 },
   viewport: { once: true, margin: "-70px" },
   transition: { duration: 0.55, ease: "easeOut" },
@@ -258,7 +303,7 @@ function ProfileCard() {
           </a>
         ))}
       </div>
-      <a href="/MD_MERAZ_AHASAN_SHAH_CV.pdf" download className="mt-3 flex items-center justify-center gap-2 rounded-md border border-cyan-300/30 px-4 py-2.5 text-xs font-bold text-white hover:bg-cyan-400 hover:text-slate-950">
+      <a href={cvUrl} target="_blank" rel="noreferrer" download className="mt-3 flex items-center justify-center gap-2 rounded-md border border-cyan-300/30 px-4 py-2.5 text-xs font-bold text-white hover:bg-cyan-400 hover:text-slate-950">
         <Download className="h-3.5 w-3.5" /> Download CV
       </a>
     </motion.aside>
@@ -280,8 +325,8 @@ function Hero() {
           <a href="#projects" className="primary-btn">Explore My Work <ArrowRight className="h-4 w-4" /></a>
           <a href="https://github.com/Meraz210" target="_blank" rel="noreferrer" className="secondary-btn">View on GitHub <GitBranch className="h-4 w-4" /></a>
         </motion.div>
-        <motion.div variants={{ hidden: { opacity: 0, y: 22 }, show: { opacity: 1, y: 0 } }} className="mt-9 grid max-w-sm grid-cols-3 gap-3">
-          {[["6+", "Projects"], ["MERN", "Stack"], ["AIUB", "CSE"]].map(([value, label]) => (
+        <motion.div variants={{ hidden: { opacity: 0, y: 22 }, show: { opacity: 1, y: 0 } }} className="mt-9 grid max-w-xl grid-cols-2 gap-3 sm:grid-cols-3">
+          {developerMetrics.slice(0, 6).map(([value, label]) => (
             <div key={label} className="stat-card">
               <p>{value}</p>
               <span>{label}</span>
@@ -307,7 +352,7 @@ function Hero() {
 
 function Projects() {
   return (
-    <section id="projects" className="section-shell border-t border-slate-900/90 py-14">
+    <section id="projects" className="section-shell border-t border-slate-900/90 py-12">
       <SectionTitle
         eyebrow="Featured Work"
         title="Selected Projects"
@@ -319,11 +364,8 @@ function Projects() {
         {projects.map((project, index) => {
           const Icon = project.icon;
           return (
-            <motion.a
+            <motion.article
               key={project.title}
-              href={project.link}
-              target="_blank"
-              rel="noreferrer"
               {...fadeUp}
               transition={{ duration: 0.55, delay: index * 0.07 }}
               whileHover={{ y: -8, rotateX: 2, rotateY: -2 }}
@@ -336,11 +378,92 @@ function Projects() {
               <div className="mt-4 flex flex-wrap gap-2">
                 {project.tech.map((tech) => <span key={tech}>{tech}</span>)}
               </div>
-              <div className="mt-5 border-t border-slate-800 pt-4 text-xs font-bold text-cyan-300">View Case Study <ExternalLink className="ml-1 inline h-3 w-3" /></div>
-            </motion.a>
+              <div className="project-actions">
+                {project.live ? (
+                  <a href={project.live} target="_blank" rel="noreferrer">Live Demo <ExternalLink className="h-3 w-3" /></a>
+                ) : (
+                  <button type="button" disabled>Coming Soon</button>
+                )}
+                <a href={project.source} target="_blank" rel="noreferrer">Source Code <GitBranch className="h-3 w-3" /></a>
+                <a href={project.caseStudy}>Case Study <ArrowRight className="h-3 w-3" /></a>
+              </div>
+            </motion.article>
           );
         })}
       </div>
+    </section>
+  );
+}
+
+function FeaturedProject() {
+  return (
+    <section id="careerconnect" className="section-shell py-12">
+      <SectionTitle eyebrow="Flagship Case Study" title="CareerConnect - Job Portal System">
+        A recruiter-ready MERN project showing authentication, role-based workflows, dashboards, and practical hiring platform logic.
+      </SectionTitle>
+      <motion.div {...fadeUp} className="featured-project">
+        <div className="featured-copy">
+          <div className="case-grid">
+            <article>
+              <p>Problem</p>
+              <h3>Multi-role hiring flows need more than job cards</h3>
+              <span>{careerConnectDetails.problem}</span>
+            </article>
+            <article>
+              <p>Solution</p>
+              <h3>Role-aware MERN platform architecture</h3>
+              <span>{careerConnectDetails.solution}</span>
+            </article>
+          </div>
+
+          <div className="mt-6 grid gap-5 lg:grid-cols-2">
+            <div className="case-panel">
+              <h3>Tech Stack</h3>
+              <div className="case-tags">
+                {careerConnectDetails.tech.map((item) => <span key={item}>{item}</span>)}
+              </div>
+            </div>
+            <div className="case-panel">
+              <h3>User Roles</h3>
+              <div className="case-tags">
+                {["Seeker", "Employer", "Admin"].map((item) => <span key={item}>{item}</span>)}
+              </div>
+            </div>
+          </div>
+
+          <div className="case-panel mt-6">
+            <h3>Key Features</h3>
+            <div className="feature-list">
+              {careerConnectDetails.features.map((item) => (
+                <p key={item}><CheckCircle2 className="h-4 w-4" /> {item}</p>
+              ))}
+            </div>
+          </div>
+
+          <div className="case-panel mt-6">
+            <h3>Results / Impact</h3>
+            <div className="impact-grid">
+              {careerConnectDetails.impact.map((item) => <span key={item}>{item}</span>)}
+            </div>
+          </div>
+        </div>
+
+        <div className="screenshot-panel">
+          <div className="screenshot-head">
+            <p className="eyebrow">Screenshots</p>
+            <a href="https://github.com/Meraz210/job-portal-system" target="_blank" rel="noreferrer">View Source <GitBranch className="h-3.5 w-3.5" /></a>
+          </div>
+          <div className="screenshot-grid">
+            {careerConnectDetails.screenshots.map((item, index) => (
+              <div key={item} className="screenshot-placeholder">
+                <span>0{index + 1}</span>
+                <h3>{item}</h3>
+                <p>Screenshot placeholder ready for project UI capture.</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </motion.div>
     </section>
   );
 }
@@ -453,7 +576,7 @@ function GitHubAndJourney() {
 
 function Contact() {
   return (
-    <section id="contact" className="section-shell relative py-10">
+    <section id="contact" className="section-shell relative py-12">
       <motion.div {...fadeUp} className="contact-card">
         <div>
           <p className="eyebrow">Let's Work Together</p>
@@ -461,6 +584,14 @@ function Contact() {
           <p className="mt-4 max-w-sm text-sm leading-6 text-slate-400">
             Have a project, role, or collaboration in mind? Send a short brief and I will follow up with the best next step.
           </p>
+          <div className="available-card mt-6">
+            <h3>Available For</h3>
+            <div>
+              {availableFor.map((item) => (
+                <span key={item}><CheckCircle2 className="h-3.5 w-3.5" /> {item}</span>
+              ))}
+            </div>
+          </div>
           <div className="mt-8 space-y-4 text-sm font-semibold text-slate-300">
             <a href="mailto:merazahasan210@gmail.com" className="flex items-center gap-3"><Mail className="h-4 w-4 text-cyan-300" /> merazahasan210@gmail.com</a>
             <a href="tel:+8801568088936" className="flex items-center gap-3"><Phone className="h-4 w-4 text-cyan-300" /> +8801568088936</a>
@@ -550,6 +681,7 @@ export default function App() {
       <main>
         <Hero />
         <Projects />
+        <FeaturedProject />
         <About />
         <Skills />
         <GitHubAndJourney />

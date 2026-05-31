@@ -1,6 +1,6 @@
 import axios from "axios";
 import { motion } from "framer-motion";
-import { GitBranch, Star } from "lucide-react";
+import { AlertCircle, GitBranch, Star } from "lucide-react";
 import { useEffect, useState } from "react";
 
 const fallbackRepos = [
@@ -35,6 +35,7 @@ function AnimatedNumber({ value }) {
 export default function GitHubStats() {
   const [repos, setRepos] = useState(fallbackRepos);
   const [stats, setStats] = useState({ public_repos: 19, followers: 2, following: 5 });
+  const [usingFallback, setUsingFallback] = useState(false);
 
   useEffect(() => {
     const fetchGitHubData = async () => {
@@ -48,6 +49,9 @@ export default function GitHubStats() {
         setRepos(reposRes.data.length ? reposRes.data : fallbackRepos);
       } catch (error) {
         console.error("Error fetching GitHub data:", error);
+        setUsingFallback(true);
+        setRepos(fallbackRepos);
+        setStats({ public_repos: 19, followers: 2, following: 5 });
       }
     };
 
@@ -62,11 +66,21 @@ export default function GitHubStats() {
 
   return (
     <div>
+      {usingFallback && (
+        <div className="github-fallback mb-5">
+          <AlertCircle className="h-5 w-5 text-cyan-300" />
+          <div>
+            <h3>GitHub activity fallback</h3>
+            <p>Live GitHub data is temporarily unavailable, so this section is showing curated repository highlights.</p>
+          </div>
+        </div>
+      )}
+
       <div className="mb-7 grid grid-cols-3 gap-4">
         {statCards.map((card, index) => (
           <motion.div
             key={card.label}
-            initial={{ opacity: 0, y: 18 }}
+            initial={false}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.45, delay: index * 0.07 }}
             viewport={{ once: true }}
@@ -88,7 +102,7 @@ export default function GitHubStats() {
             href={repo.html_url}
             target="_blank"
             rel="noopener noreferrer"
-            initial={{ opacity: 0, y: 18 }}
+            initial={false}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.45, delay: index * 0.05 }}
             viewport={{ once: true }}

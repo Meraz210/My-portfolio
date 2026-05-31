@@ -17,10 +17,10 @@ Developer profile:
 - LinkedIn: https://www.linkedin.com/in/merazahasan
 - GitHub: https://github.com/Meraz210
 - Education: BSc in Computer Science & Engineering at AIUB, 2022-Present.
-- Focus: Full-stack MERN applications, responsive UI/UX, backend architecture, REST API design and integration, MongoDB/MySQL/SQL Server data work, performance optimization, SEO optimization, real-time APIs and WebSockets, motion design, and deployment workflows.
+- Focus: Full-stack MERN applications, responsive UI/UX, backend architecture, REST API design and integration, JWT authentication, role-based access, MongoDB/PostgreSQL/MySQL/SQL Server data work, performance optimization, SEO optimization, real-time APIs and WebSockets, motion design, and deployment workflows.
 
 Projects:
-- CareerConnect: job portal system with job discovery, applicant workflows, role-aware experiences, and dashboard-ready architecture.
+- CareerConnect: flagship MERN job portal system with seeker, employer, and admin roles, JWT authentication, role-based access, job discovery, employer job posting, application tracking, admin management, and dashboard-ready architecture.
 - Attendance System: MERN attendance platform for student records, daily status tracking, report-ready data, and admin workflows.
 - StudyHub: collaborative education and learning platform focused on courses, resources, progress, and study workflows.
 - YBTDigital: digital business and service presentation platform.
@@ -33,7 +33,8 @@ Skills:
 - Backend: Node.js, Express.js, NestJS, ASP.NET, ASP.NET Core, REST APIs, Firebase.
 - Database: MongoDB, MySQL, SQL Server.
 - Tools: Git, GitHub, Linux, VS Code, Arduino, Raspberry Pi.
-- Core competencies: Full-Stack MERN Development, Responsive UI/UX Design, Backend Architecture, API Design & Integration, Performance Optimization, SEO Optimization, Real-Time APIs & WebSockets, Motion Design & Animations, Deployment & DevOps Workflows.
+- Core competencies: Full-Stack MERN Development, Responsive UI/UX Design, Backend Architecture, API Design & Integration, JWT Authentication, Role-Based Access, Performance Optimization, SEO Optimization, Real-Time APIs & WebSockets, Motion Design & Animations, Deployment & DevOps Workflows.
+- Developer metrics: 6+ projects completed, 15+ REST APIs built, 3 user roles implemented, JWT authentication, MongoDB/PostgreSQL experience, responsive UI systems.
 
 Answer style:
 - Use 2-5 short sentences for normal questions.

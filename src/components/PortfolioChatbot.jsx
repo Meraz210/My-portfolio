@@ -25,12 +25,12 @@ const localKnowledge = [
   {
     keys: ["project", "portfolio", "build", "app"],
     reply:
-      "Meraz's featured projects include Attendance System, LifeDrop, StudyHub, Tea-Shop, and MediCare Hospital. They show practical experience with education workflows, health-tech flows, e-commerce foundations, dashboards, and MERN architecture.",
+      "Meraz's featured projects include CareerConnect, Attendance System, StudyHub, Tea-Shop, YBTDigital, and MediCare Hospital. CareerConnect is the flagship MERN job portal with seeker, employer, and admin roles, JWT authentication, application tracking, and dashboard workflows.",
   },
   {
     keys: ["skill", "stack", "technology", "mern", "frontend", "backend"],
     reply:
-      "Meraz works across the MERN stack: React and Tailwind for frontend UI, Node.js and Express for APIs, MongoDB for data modeling, plus GitHub, Firebase, Framer Motion, GSAP, Three.js, and responsive delivery practices.",
+      "Meraz works across the MERN stack: React and Tailwind for frontend UI, Node.js and Express for REST APIs, MongoDB/PostgreSQL experience for data modeling, JWT authentication, role-based access, GitHub workflows, Framer Motion, GSAP, Three.js, and responsive delivery practices.",
   },
   {
     keys: ["github", "repo", "repository", "code"],
