@@ -30,7 +30,7 @@ import { FaLinkedinIn } from "react-icons/fa";
 import { Suspense, lazy, useEffect, useState } from "react";
 import GitHubStats from "./components/GitHubStats";
 import PortfolioChatbot from "./components/PortfolioChatbot";
-import profileImage from "./assets/profile-premium.png";
+import profileImage from "./assets/profile-premium.webp";
 
 const cvUrl = `${import.meta.env.BASE_URL}MD_MERAZ_AHASAN_SHAH_CV.pdf`;
 const HeroScene3D = lazy(() => import("./components/HeroScene3D"));
@@ -354,7 +354,7 @@ function Hero() {
         </Suspense>
         <div className="saas-profile-card">
           <div className="saas-profile-image-wrap">
-            <img src={profileImage} alt="MD Meraz Ahasan Shah" loading="eager" />
+            <img src={profileImage} alt="MD Meraz Ahasan Shah" width="920" height="1149" loading="eager" decoding="async" fetchPriority="high" />
           </div>
           <div>
             <p className="saas-status"><span /> Open to internship and junior roles</p>
@@ -546,7 +546,7 @@ function About() {
         </div>
       </motion.div>
       <motion.div {...fadeUp} className="saas-about-image">
-        <img src={profileImage} alt="Meraz Ahasan" loading="lazy" />
+        <img src={profileImage} alt="Meraz Ahasan" width="920" height="1149" loading="lazy" decoding="async" />
       </motion.div>
       <motion.aside {...fadeUp} className="saas-about-stats-card">
         <div className="saas-about-stat-grid">
