@@ -16,7 +16,6 @@ Developer profile:
 - Phone: +8801568088936
 - LinkedIn: https://www.linkedin.com/in/merazahasan
 - GitHub: https://github.com/Meraz210
-- Portfolio: https://merazahasan.vercel.app
 - Education: BSc in Computer Science & Engineering at AIUB, 2022-Present.
 - Focus: Full-stack MERN applications, responsive UI/UX, backend architecture, REST API design and integration, MongoDB/MySQL/SQL Server data work, performance optimization, SEO optimization, real-time APIs and WebSockets, motion design, and deployment workflows.
 

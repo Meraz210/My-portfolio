@@ -467,7 +467,6 @@ function Contact() {
             <p className="flex items-center gap-3"><MapPin className="h-4 w-4 text-cyan-300" /> Nikunjo-02, Dhaka, Bangladesh</p>
             <a href="https://www.linkedin.com/in/merazahasan" target="_blank" rel="noreferrer" className="flex items-center gap-3"><FaLinkedinIn className="h-4 w-4 text-cyan-300" /> linkedin.com/in/merazahasan</a>
             <a href="https://github.com/Meraz210" target="_blank" rel="noreferrer" className="flex items-center gap-3"><GitBranch className="h-4 w-4 text-cyan-300" /> github.com/Meraz210</a>
-            <a href="https://merazahasan.vercel.app" target="_blank" rel="noreferrer" className="flex items-center gap-3"><Globe2 className="h-4 w-4 text-cyan-300" /> merazahasan.vercel.app</a>
           </div>
         </div>
         <form
