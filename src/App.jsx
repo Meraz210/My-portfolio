@@ -38,29 +38,45 @@ const navItems = [
 
 const projects = [
   {
-    title: "Attendance System",
-    type: "Education Operations",
-    text: "Role-based attendance platform for student records, daily status tracking, report-ready data, and admin workflows.",
-    icon: GraduationCap,
-    tech: ["React", "Node.js", "MongoDB"],
-    link: "https://github.com/Meraz210/Attendance-system",
-  },
-  {
-    title: "LifeDrop",
-    type: "HealthTech Platform",
-    text: "Donor and recipient matching experience with searchable requests, secure account flows, and clear contact actions.",
-    icon: ShieldCheck,
-    tech: ["MERN", "Auth", "Search"],
-    link: "https://github.com/Meraz210/LifeDrop",
+    title: "CareerConnect",
+    type: "Job Portal System",
+    text: "End-to-end hiring platform concept with job discovery, applicant workflows, role-aware experiences, and dashboard-ready architecture.",
+    icon: BriefcaseBusiness,
+    tech: ["MERN", "REST APIs", "Auth"],
+    link: "https://github.com/Meraz210",
     hot: true,
   },
   {
     title: "StudyHub",
     type: "Learning Product",
-    text: "Collaborative learning interface for study goals, course resources, progress visibility, and responsive student flows.",
+    text: "Collaborative education platform for study goals, course resources, progress tracking, and responsive student workflows.",
     icon: Globe2,
     tech: ["React", "API", "Tailwind"],
-    link: "https://github.com/Meraz210/StudyHub",
+    link: "https://github.com/Meraz210",
+  },
+  {
+    title: "Attendance System",
+    type: "Education Operations",
+    text: "Role-based attendance platform for student records, daily status tracking, report-ready data, and admin workflows.",
+    icon: GraduationCap,
+    tech: ["React", "Node.js", "MongoDB"],
+    link: "https://github.com/Meraz210",
+  },
+  {
+    title: "YBTDigital",
+    type: "Business Platform",
+    text: "Digital service presentation website focused on clear brand messaging, service discovery, responsive UI, and conversion flow.",
+    icon: Rocket,
+    tech: ["React", "UI/UX", "SEO"],
+    link: "https://github.com/Meraz210",
+  },
+  {
+    title: "Tea-Shop",
+    type: "E-Commerce Experience",
+    text: "Product browsing and commerce-focused interface with clean catalog presentation, responsive layouts, and checkout-ready flows.",
+    icon: ShieldCheck,
+    tech: ["React", "Commerce", "CSS3"],
+    link: "https://github.com/Meraz210",
   },
   {
     title: "MediCare Hospital",
@@ -72,40 +88,52 @@ const projects = [
   },
 ];
 
-const skills = [
-  ["Frontend Engineering", "Responsive React interfaces with reusable components, clean states, and polished interaction details.", 92],
-  ["Backend APIs", "REST endpoints, Express services, validation, auth-ready patterns, and maintainable server structure.", 88],
-  ["Database Modeling", "MongoDB schemas, practical relationships, query structure, and dashboard-friendly data flows.", 86],
-  ["Authentication", "JWT-based access, protected routes, role-aware UI, and secure user workflow foundations.", 84],
-  ["Deployment", "Production builds, environment setup, GitHub workflow, and cloud-ready delivery practices.", 80],
+const skillGroups = [
+  ["Programming", ["JavaScript", "TypeScript", "C", "C++", "C#", "Python", "Java", "PHP", "Kotlin"]],
+  ["Frontend", ["React.js", "Next.js", "Angular", "HTML5", "CSS3", "Tailwind CSS", "Three.js", "GSAP"]],
+  ["Backend", ["Node.js", "Express.js", "NestJS", "ASP.NET", "ASP.NET Core", "REST APIs", "Firebase"]],
+  ["Database", ["MongoDB", "MySQL", "SQL Server"]],
+  ["Tools", ["Git", "GitHub", "Linux", "VS Code", "Arduino", "Raspberry Pi"]],
+];
+
+const coreCompetencies = [
+  "Full-Stack MERN Development",
+  "Responsive UI/UX Design",
+  "Backend Architecture",
+  "API Design & Integration",
+  "Performance Optimization",
+  "SEO Optimization",
+  "Real-Time APIs & WebSockets",
+  "Motion Design & Animations",
+  "Deployment & DevOps Workflows",
 ];
 
 const aboutPoints = [
   "Full-Stack MERN Developer",
-  "Clean & Maintainable Code",
-  "Problem Solver",
-  "RESTful API & Integrations",
-  "Responsive & Modern UI",
-  "Performance Focused",
+  "BSc CSE Student at AIUB",
+  "REST API & Backend Architecture",
+  "Responsive UI/UX Implementation",
+  "Performance & SEO Optimization",
+  "Motion Design & Animations",
 ];
 
-const deliverySignals = ["API Architecture", "Dashboard UI", "MongoDB Modeling", "Responsive Delivery"];
+const deliverySignals = ["MERN Architecture", "Responsive UI/UX", "REST API Design", "Performance & SEO"];
 
 const journey = [
   {
-    year: "2026",
-    title: "Client-ready portfolio and product polish",
-    text: "Refined visual systems, project storytelling, contact flows, and deployment structure for professional review.",
+    year: "2022-Present",
+    title: "BSc in Computer Science & Engineering",
+    text: "American International University-Bangladesh (AIUB). Building a strong foundation in software engineering, full-stack development, databases, and practical systems.",
   },
   {
-    year: "2025",
-    title: "Full-stack MERN project delivery",
-    text: "Built practical apps across education, healthcare, commerce, productivity, and admin dashboard workflows.",
+    year: "HSC",
+    title: "Cantonment Public School and College, Saidpur",
+    text: "Higher Secondary Certificate with GPA 4.67, focused on science and analytical problem solving.",
   },
   {
-    year: "2024",
-    title: "Frontend engineering foundation",
-    text: "Focused on React, responsive layouts, animation, reusable UI patterns, and clean implementation habits.",
+    year: "SSC",
+    title: "Lions School and College, Saidpur",
+    text: "Secondary School Certificate with GPA 5.00, developing the academic discipline behind engineering study.",
   },
 ];
 
@@ -140,7 +168,7 @@ function Navbar() {
     <header className="fixed inset-x-0 top-0 z-50 px-5 pt-4">
       <nav className="mx-auto flex h-14 max-w-6xl items-center justify-between rounded-xl border border-white/5 bg-[#050b16]/70 px-4 backdrop-blur-xl">
         <a href="#home" className="text-sm font-black uppercase tracking-[0.16em] text-white">
-          Meraz Ahasan
+          MD Meraz Ahasan Shah
         </a>
 
         <div className="hidden items-center gap-7 md:flex">
@@ -193,8 +221,8 @@ function SectionTitle({ eyebrow, title, children, right }) {
 function ProfileCard() {
   return (
     <motion.aside {...fadeUp} transition={{ duration: 0.7, delay: 0.2 }} className="profile-card">
-      <img src={profileImage} alt="Meraz Ahasan" className="h-44 w-full rounded-lg object-cover" />
-      <h3 className="mt-5 text-xl font-black uppercase text-white">Meraz Ahasan</h3>
+      <img src={profileImage} alt="MD Meraz Ahasan Shah" className="h-44 w-full rounded-lg object-cover" />
+      <h3 className="mt-5 text-xl font-black uppercase text-white">MD Meraz Ahasan Shah</h3>
       <p className="mt-1 text-sm text-slate-400">Full-Stack MERN Developer</p>
       <p className="mt-4 inline-flex items-center gap-2 text-xs font-bold text-emerald-300">
         <span className="h-2 w-2 rounded-full bg-emerald-300 shadow-[0_0_12px_rgba(110,231,183,0.9)]" />
@@ -203,7 +231,7 @@ function ProfileCard() {
       <div className="mt-4 grid grid-cols-2 gap-2">
         {[
           ["Focus", "MERN Apps"],
-          ["Delivery", "UI to API"],
+          ["Study", "CSE at AIUB"],
         ].map(([label, value]) => (
           <div key={label} className="rounded-md border border-slate-800 bg-black/20 px-3 py-2">
             <p className="text-[0.65rem] font-bold uppercase tracking-[0.14em] text-slate-500">{label}</p>
@@ -214,7 +242,7 @@ function ProfileCard() {
       <div className="my-5 h-px bg-slate-800" />
       <p className="mb-3 text-xs font-bold uppercase tracking-[0.16em] text-slate-500">Tech Stack</p>
       <div className="flex flex-wrap gap-2">
-        {["React", "Node.js", "MongoDB", "Express", "Tailwind CSS"].map((item) => (
+        {["React.js", "Node.js", "MongoDB", "Express.js", "Next.js"].map((item) => (
           <span key={item} className="rounded-md border border-slate-700 bg-white/[0.035] px-3 py-1.5 text-xs font-semibold text-slate-300">{item}</span>
         ))}
       </div>
@@ -222,7 +250,7 @@ function ProfileCard() {
         {[
           [Mail, "mailto:merazahasan210@gmail.com"],
           [GitBranch, "https://github.com/Meraz210"],
-          [FaLinkedinIn, "https://www.linkedin.com/in/meraz-ahasan/"],
+          [FaLinkedinIn, "https://www.linkedin.com/in/merazahasan"],
           [Phone, "tel:+8801568088936"],
         ].map(([Icon, href]) => (
           <a key={href} href={href} target={href.startsWith("http") ? "_blank" : undefined} rel="noreferrer" className="grid h-10 place-items-center rounded-md border border-slate-700 bg-white/[0.03] text-slate-200 hover:border-cyan-300 hover:text-cyan-200">
@@ -230,7 +258,7 @@ function ProfileCard() {
           </a>
         ))}
       </div>
-      <a href="/resume.pdf" download className="mt-3 flex items-center justify-center gap-2 rounded-md border border-cyan-300/30 px-4 py-2.5 text-xs font-bold text-white hover:bg-cyan-400 hover:text-slate-950">
+      <a href="/MD_MERAZ_AHASAN_SHAH_CV.pdf" download className="mt-3 flex items-center justify-center gap-2 rounded-md border border-cyan-300/30 px-4 py-2.5 text-xs font-bold text-white hover:bg-cyan-400 hover:text-slate-950">
         <Download className="h-3.5 w-3.5" /> Download CV
       </a>
     </motion.aside>
@@ -243,17 +271,17 @@ function Hero() {
       <motion.div initial="hidden" animate="show" variants={{ hidden: {}, show: { transition: { staggerChildren: 0.1 } } }} className="hero-copy">
         <motion.p variants={{ hidden: { opacity: 0, y: 18 }, show: { opacity: 1, y: 0 } }} className="hero-badge">Full-Stack MERN Developer</motion.p>
         <motion.h1 variants={{ hidden: { opacity: 0, y: 22 }, show: { opacity: 1, y: 0 } }} className="mt-5 text-5xl font-black leading-[1.05] tracking-tight text-white md:text-6xl">
-          Building scalable <span className="text-cyan-300">full-stack</span> digital products.
+          MD Meraz Ahasan <span className="text-cyan-300">Shah</span>
         </motion.h1>
         <motion.p variants={{ hidden: { opacity: 0, y: 22 }, show: { opacity: 1, y: 0 } }} className="mt-6 max-w-md text-base leading-7 text-slate-300">
-          I design and build production-ready MERN applications with clean interfaces, reliable APIs, and business-focused user flows.
+          Full-stack MERN developer and CSE student at AIUB building responsive web applications, scalable REST APIs, database-driven systems, and polished interfaces with performance, SEO, and animation in mind.
         </motion.p>
         <motion.div variants={{ hidden: { opacity: 0, y: 22 }, show: { opacity: 1, y: 0 } }} className="mt-8 flex flex-col gap-3 sm:flex-row">
           <a href="#projects" className="primary-btn">Explore My Work <ArrowRight className="h-4 w-4" /></a>
           <a href="https://github.com/Meraz210" target="_blank" rel="noreferrer" className="secondary-btn">View on GitHub <GitBranch className="h-4 w-4" /></a>
         </motion.div>
         <motion.div variants={{ hidden: { opacity: 0, y: 22 }, show: { opacity: 1, y: 0 } }} className="mt-9 grid max-w-sm grid-cols-3 gap-3">
-          {[["6+", "Projects"], ["Full", "Stack"], ["2+", "Years Exp."]].map(([value, label]) => (
+          {[["6+", "Projects"], ["MERN", "Stack"], ["AIUB", "CSE"]].map(([value, label]) => (
             <div key={label} className="stat-card">
               <p>{value}</p>
               <span>{label}</span>
@@ -282,12 +310,12 @@ function Projects() {
     <section id="projects" className="section-shell border-t border-slate-900/90 py-14">
       <SectionTitle
         eyebrow="Featured Work"
-        title="Premium Projects"
+        title="Selected Projects"
         right={<a href="https://github.com/Meraz210" target="_blank" rel="noreferrer" className="hidden rounded-md border border-slate-700 px-5 py-3 text-xs font-bold text-slate-100 hover:border-cyan-300 md:inline-flex">View All Projects <ArrowRight className="ml-2 h-3.5 w-3.5" /></a>}
       >
-        Selected product-style builds focused on practical workflows, clean dashboards, responsive UI, and maintainable MERN architecture.
+        Product-style builds across job portals, education, attendance, business platforms, commerce, and healthcare workflows.
       </SectionTitle>
-      <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+      <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
         {projects.map((project, index) => {
           const Icon = project.icon;
           return (
@@ -325,9 +353,12 @@ function About() {
       </motion.div>
       <motion.div {...fadeUp}>
         <p className="eyebrow">About Me</p>
-        <h2 className="mt-2 text-3xl font-black text-white md:text-4xl">Developer & Designer</h2>
+        <h2 className="mt-2 text-3xl font-black text-white md:text-4xl">Developer, CSE Student & Product Builder</h2>
         <p className="mt-4 max-w-xl text-sm leading-6 text-slate-400">
-          I am Meraz Ahasan, a full-stack developer focused on building clean, scalable, and useful web applications. My work combines responsive frontend systems, API-driven backends, and careful attention to usability.
+          I am MD Meraz Ahasan Shah, a Full-Stack MERN Developer pursuing BSc in CSE at AIUB. I build modern web applications that combine responsive UI/UX, structured backend architecture, REST API integration, database modeling, and performance-focused delivery.
+        </p>
+        <p className="mt-4 max-w-xl text-sm leading-6 text-slate-400">
+          My work spans education platforms, attendance systems, job portals, e-commerce experiences, business websites, and healthcare interfaces, with a focus on clean implementation and recruiter-ready project presentation.
         </p>
         <div className="mt-7 grid gap-4 sm:grid-cols-2">
           {aboutPoints.map((point) => (
@@ -346,17 +377,17 @@ function About() {
 function Skills() {
   return (
     <section id="skills" className="section-shell border-t border-slate-900/90 py-14">
-      <SectionTitle eyebrow="My Expertise" title="Skills & Capabilities" />
+      <SectionTitle eyebrow="Technical Stack" title="Skills & Capabilities">
+        A broad engineering toolkit across programming, frontend, backend, databases, and developer tools.
+      </SectionTitle>
       <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-5">
-        {skills.map(([title, text, value], index) => (
+        {skillGroups.map(([title, items], index) => (
           <motion.article key={title} {...fadeUp} transition={{ duration: 0.5, delay: index * 0.06 }} className="skill-card">
             <h3>{title}</h3>
-            <p>{text}</p>
-            <div className="mt-7 flex items-center gap-3">
-              <div className="h-1.5 flex-1 overflow-hidden rounded-full bg-slate-800">
-                <motion.div initial={{ width: 0 }} whileInView={{ width: `${value}%` }} viewport={{ once: true }} transition={{ duration: 1 }} className="h-full rounded-full bg-cyan-300 shadow-[0_0_16px_rgba(34,211,238,0.8)]" />
-              </div>
-              <span>{value}%</span>
+            <div className="skill-tags mt-5">
+              {items.map((item) => (
+                <span key={item}>{item}</span>
+              ))}
             </div>
           </motion.article>
         ))}
@@ -366,24 +397,32 @@ function Skills() {
           <div className="big-icon"><Code2 className="h-8 w-8" /></div>
           <div>
             <h3>Full-Stack MERN Specialist</h3>
-            <p>End-to-end development using MongoDB, Express, React, and Node.js, with delivery focused on useful features and maintainable code.</p>
+            <p>End-to-end application development using MongoDB, Express.js, React.js, and Node.js, with clean API contracts and user-focused interfaces.</p>
           </div>
         </motion.div>
         <motion.div {...fadeUp} className="wide-card">
           <div className="big-icon violet"><Rocket className="h-8 w-8" /></div>
           <div>
             <h3>Production-Ready Output</h3>
-            <p>Structured implementation, readable components, clean API contracts, and responsive layouts prepared for real users.</p>
+            <p>Responsive layouts, performance optimization, SEO-aware implementation, animation details, and maintainable delivery workflows.</p>
           </div>
         </motion.div>
         <motion.div {...fadeUp} className="wide-card lg:col-span-2">
           <div className="big-icon emerald"><BriefcaseBusiness className="h-8 w-8" /></div>
           <div>
             <h3>Professional Workflow</h3>
-            <p>Clear communication, organized implementation, Git-based delivery, and portfolio-ready presentation for hiring managers and clients.</p>
+            <p>Git-based development, deployment preparation, database-aware implementation, and practical project presentation for recruiters and clients.</p>
           </div>
         </motion.div>
       </div>
+      <motion.div {...fadeUp} className="competency-panel mt-6">
+        <h3>Core Competencies</h3>
+        <div>
+          {coreCompetencies.map((item) => (
+            <span key={item}>{item}</span>
+          ))}
+        </div>
+      </motion.div>
     </section>
   );
 }
@@ -396,7 +435,7 @@ function GitHubAndJourney() {
         <GitHubStats />
       </div>
       <div id="experience">
-        <SectionTitle eyebrow="Experience & Learning" title="My Journey" />
+        <SectionTitle eyebrow="Education" title="Academic Journey" />
         <div className="timeline">
           {journey.map((item, index) => (
             <motion.article key={item.year} {...fadeUp} transition={{ duration: 0.5, delay: index * 0.08 }} className="timeline-item">
@@ -420,12 +459,15 @@ function Contact() {
           <p className="eyebrow">Let's Work Together</p>
           <h2 className="mt-2 text-3xl font-black text-white md:text-4xl">Let's collaborate</h2>
           <p className="mt-4 max-w-sm text-sm leading-6 text-slate-400">
-            Have a project in mind or want to work together? Send a short brief and I will follow up with the best next step.
+            Have a project, role, or collaboration in mind? Send a short brief and I will follow up with the best next step.
           </p>
           <div className="mt-8 space-y-4 text-sm font-semibold text-slate-300">
             <a href="mailto:merazahasan210@gmail.com" className="flex items-center gap-3"><Mail className="h-4 w-4 text-cyan-300" /> merazahasan210@gmail.com</a>
-            <a href="tel:+8801568088936" className="flex items-center gap-3"><Phone className="h-4 w-4 text-cyan-300" /> +880 1568-088936</a>
-            <p className="flex items-center gap-3"><MapPin className="h-4 w-4 text-cyan-300" /> Dhaka, Bangladesh</p>
+            <a href="tel:+8801568088936" className="flex items-center gap-3"><Phone className="h-4 w-4 text-cyan-300" /> +8801568088936</a>
+            <p className="flex items-center gap-3"><MapPin className="h-4 w-4 text-cyan-300" /> Nikunjo-02, Dhaka, Bangladesh</p>
+            <a href="https://www.linkedin.com/in/merazahasan" target="_blank" rel="noreferrer" className="flex items-center gap-3"><FaLinkedinIn className="h-4 w-4 text-cyan-300" /> linkedin.com/in/merazahasan</a>
+            <a href="https://github.com/Meraz210" target="_blank" rel="noreferrer" className="flex items-center gap-3"><GitBranch className="h-4 w-4 text-cyan-300" /> github.com/Meraz210</a>
+            <a href="https://merazahasan.vercel.app" target="_blank" rel="noreferrer" className="flex items-center gap-3"><Globe2 className="h-4 w-4 text-cyan-300" /> merazahasan.vercel.app</a>
           </div>
         </div>
         <form
@@ -453,8 +495,8 @@ function Footer() {
     <footer className="section-shell pb-8 pt-8">
       <div className="grid gap-10 border-t border-slate-900 pt-8 md:grid-cols-3">
         <div>
-          <h3 className="font-black text-cyan-300">Meraz Ahasan</h3>
-          <p className="mt-3 max-w-xs text-sm leading-6 text-slate-500">Full-stack developer crafting modern MERN applications with clean interfaces, reliable APIs, and thoughtful user flows.</p>
+          <h3 className="font-black text-cyan-300">MD Meraz Ahasan Shah</h3>
+          <p className="mt-3 max-w-xs text-sm leading-6 text-slate-500">Full-stack MERN developer crafting modern web applications with responsive UI, reliable APIs, database-driven features, and thoughtful user flows.</p>
         </div>
         <div>
           <h3 className="font-black text-cyan-300">Navigation</h3>
@@ -467,7 +509,7 @@ function Footer() {
           <div className="mt-3 flex gap-3">
             {[
               [GitBranch, "https://github.com/Meraz210"],
-              [FaLinkedinIn, "https://www.linkedin.com/in/meraz-ahasan/"],
+              [FaLinkedinIn, "https://www.linkedin.com/in/merazahasan"],
               [Mail, "mailto:merazahasan210@gmail.com"],
             ].map(([Icon, href]) => (
               <a key={href} href={href} target={href.startsWith("http") ? "_blank" : undefined} rel="noreferrer" className="grid h-10 w-10 place-items-center rounded-md border border-slate-800 bg-white/[0.03] text-slate-300 hover:border-cyan-300 hover:text-cyan-200">
@@ -477,7 +519,7 @@ function Footer() {
           </div>
         </div>
       </div>
-      <p className="mt-8 text-center text-xs text-slate-600">&copy; 2026 Meraz Ahasan. All rights reserved.</p>
+      <p className="mt-8 text-center text-xs text-slate-600">&copy; 2026 MD Meraz Ahasan Shah. All rights reserved.</p>
       <a href="#home" className="fixed bottom-6 right-6 grid h-10 w-10 place-items-center rounded-full bg-cyan-400 text-slate-950 shadow-[0_0_26px_rgba(34,211,238,0.45)]">
         <ArrowRight className="h-4 w-4 -rotate-90" />
       </a>
