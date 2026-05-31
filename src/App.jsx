@@ -15,12 +15,14 @@ import {
   Mail,
   MapPin,
   Menu,
+  Moon,
   Phone,
   Rocket,
   Send,
   Server,
   ShieldCheck,
   Sparkles,
+  Sun,
   Users,
   X,
 } from "lucide-react";
@@ -28,10 +30,11 @@ import { FaLinkedinIn } from "react-icons/fa";
 import { Suspense, lazy, useEffect, useState } from "react";
 import GitHubStats from "./components/GitHubStats";
 import PortfolioChatbot from "./components/PortfolioChatbot";
-import profileImage from "./assets/pf.png";
+import profileImage from "./assets/profile-premium.png";
 
 const cvUrl = `${import.meta.env.BASE_URL}MD_MERAZ_AHASAN_SHAH_CV.pdf`;
 const HeroScene3D = lazy(() => import("./components/HeroScene3D"));
+const PremiumBackground3D = lazy(() => import("./components/PremiumBackground3D"));
 const projectAsset = (path) => `${import.meta.env.BASE_URL}projects/${path}`;
 
 const navItems = [
@@ -39,8 +42,8 @@ const navItems = [
   ["About", "#about"],
   ["Projects", "#projects"],
   ["Skills", "#skills"],
-  ["Journey", "#experience"],
-  ["Blog", "#github"],
+  ["Education", "#education"],
+  ["Experience", "#experience"],
   ["Contact", "#contact"],
 ];
 
@@ -185,6 +188,36 @@ const journey = [
   ["2026", "Built premium portfolio and production-ready apps", "Refined project storytelling, UI quality, recruiter presentation, and production-readiness."],
 ];
 
+const educationItems = [
+  {
+    period: "2022 - Present",
+    title: "BSc in Computer Science and Engineering",
+    place: "American International University-Bangladesh (AIUB)",
+    details: "Focused on programming, databases, software engineering, web technologies, and practical full-stack project development.",
+  },
+  {
+    period: "Ongoing",
+    title: "MERN Stack Specialization",
+    place: "Self-directed product engineering practice",
+    details: "Building React, Node.js, Express, MongoDB, JWT auth, REST API, dashboard, and deployment-ready portfolio projects.",
+  },
+];
+
+const experienceItems = [
+  {
+    period: "2025 - Present",
+    title: "Full-Stack MERN Developer",
+    place: "Project-based development",
+    details: "Designed and built CareerConnect, a role-based job portal with seeker, employer, and admin dashboards, authentication, and application tracking.",
+  },
+  {
+    period: "2024 - Present",
+    title: "Frontend & Backend Project Builder",
+    place: "Academic and personal projects",
+    details: "Created responsive interfaces, CRUD workflows, REST APIs, database-backed features, and recruiter-ready SaaS-style UI presentations.",
+  },
+];
+
 const careerConnect = {
   tech: ["React", "Node.js", "Express.js", "MongoDB", "JWT", "REST APIs", "Tailwind CSS"],
   features: [
@@ -220,9 +253,10 @@ const fadeUp = {
   transition: { duration: 0.45, ease: "easeOut" },
 };
 
-function Navbar() {
+function Navbar({ theme, onThemeToggle }) {
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState("#home");
+  const isDay = theme === "day";
 
   useEffect(() => {
     const onScroll = () => {
@@ -249,13 +283,28 @@ function Navbar() {
             <a key={href} href={href} className={active === href ? "is-active" : ""}>{label}</a>
           ))}
         </div>
-        <a href={cvUrl} target="_blank" rel="noreferrer" download className="saas-nav-cta"><Download className="h-4 w-4" /> Download CV</a>
+        <div className="saas-nav-actions">
+          <button
+            type="button"
+            className="saas-theme-toggle"
+            onClick={onThemeToggle}
+            aria-label={isDay ? "Switch to night mode" : "Switch to day mode"}
+            title={isDay ? "Night mode" : "Day mode"}
+          >
+            {isDay ? <Moon className="h-4 w-4" /> : <Sun className="h-4 w-4" />}
+          </button>
+          <a href={cvUrl} target="_blank" rel="noreferrer" download className="saas-nav-cta"><Download className="h-4 w-4" /> Download CV</a>
+        </div>
         <button type="button" className="saas-menu-btn" onClick={() => setOpen((value) => !value)} aria-label="Toggle navigation">
           {open ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
         </button>
       </nav>
       {open && (
         <div className="saas-mobile-menu">
+          <button type="button" className="saas-theme-toggle saas-theme-toggle-mobile" onClick={onThemeToggle}>
+            {isDay ? <Moon className="h-4 w-4" /> : <Sun className="h-4 w-4" />}
+            <span>{isDay ? "Switch to night mode" : "Switch to day mode"}</span>
+          </button>
           {navItems.map(([label, href]) => (
             <a key={href} href={href} onClick={() => setOpen(false)}>{label}</a>
           ))}
@@ -367,6 +416,13 @@ function FeaturedProject() {
             <i /><i /><i />
             <span>careerconnect.app/roles</span>
           </div>
+          <div className="saas-preview-status">
+            <div>
+              <strong>Role-based platform</strong>
+              <span>Seeker / Employer / Admin</span>
+            </div>
+            <p>JWT secured</p>
+          </div>
           <div className="saas-dashboard-stack" aria-label="CareerConnect layered dashboard preview">
             {careerConnectPanels.map(([title, text, label, image], index) => (
               <article key={title} className="saas-dashboard-layer" style={{ "--layer": index }}>
@@ -384,6 +440,10 @@ function FeaturedProject() {
           </div>
         </div>
         <div className="saas-case-content">
+          <div className="saas-case-kicker">
+            <span>Production-style MERN case study</span>
+            <b>5 role-focused screens</b>
+          </div>
           <div className="saas-case-grid">
             <article>
               <p>Problem</p>
@@ -586,7 +646,38 @@ function AboutAndSkills() {
 function JourneyAndGitHub() {
   return (
     <section className="saas-section saas-two-col">
-      <div id="experience">
+      <div id="education">
+        <SectionHeader eyebrow="Education & Experience" title="Academic foundation and practical full-stack work" />
+        <div className="saas-edu-exp-grid">
+          <motion.div {...fadeUp} className="saas-edu-exp-panel">
+            <div className="saas-edu-exp-head">
+              <GraduationCap className="h-5 w-5" />
+              <h3>Education</h3>
+            </div>
+            {educationItems.map((item) => (
+              <article key={item.title}>
+                <time>{item.period}</time>
+                <h4>{item.title}</h4>
+                <strong>{item.place}</strong>
+                <p>{item.details}</p>
+              </article>
+            ))}
+          </motion.div>
+          <motion.div id="experience" {...fadeUp} className="saas-edu-exp-panel">
+            <div className="saas-edu-exp-head">
+              <BriefcaseBusiness className="h-5 w-5" />
+              <h3>Experience</h3>
+            </div>
+            {experienceItems.map((item) => (
+              <article key={item.title}>
+                <time>{item.period}</time>
+                <h4>{item.title}</h4>
+                <strong>{item.place}</strong>
+                <p>{item.details}</p>
+              </article>
+            ))}
+          </motion.div>
+        </div>
         <SectionHeader eyebrow="Journey" title="Consistent full-stack growth" />
         <div className="saas-timeline">
           {journey.map(([year, title, text]) => (
@@ -703,10 +794,29 @@ function Footer() {
   );
 }
 
+function getInitialTheme() {
+  if (typeof window === "undefined") return "night";
+  const stored = window.localStorage.getItem("portfolio-theme");
+  if (stored === "day" || stored === "night") return stored;
+  return "night";
+}
+
 export default function App() {
+  const [theme, setTheme] = useState(getInitialTheme);
+
+  useEffect(() => {
+    document.documentElement.dataset.theme = theme;
+    window.localStorage.setItem("portfolio-theme", theme);
+  }, [theme]);
+
+  const toggleTheme = () => setTheme((value) => (value === "night" ? "day" : "night"));
+
   return (
-    <div className="saas-page">
-      <Navbar />
+    <div className="saas-page" data-theme={theme}>
+      <Suspense fallback={<div className="premium-bg-fallback" aria-hidden="true" />}>
+        <PremiumBackground3D />
+      </Suspense>
+      <Navbar theme={theme} onThemeToggle={toggleTheme} />
       <main>
         <Hero />
         <FeaturedProject />

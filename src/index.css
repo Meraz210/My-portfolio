@@ -1728,6 +1728,38 @@ body {
   background: var(--saas-bg);
 }
 
+html[data-theme="day"] body {
+  background: #f7fbff;
+}
+
+.premium-bg-3d,
+.premium-bg-fallback {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.premium-bg-3d {
+  opacity: 0.42;
+  mix-blend-mode: screen;
+  filter: saturate(1.08) contrast(1.04);
+}
+
+.premium-bg-3d canvas {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.premium-bg-fallback {
+  background:
+    radial-gradient(circle at 50% 20%, rgba(34, 211, 238, 0.08), transparent 26rem),
+    linear-gradient(rgba(148, 163, 184, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(148, 163, 184, 0.04) 1px, transparent 1px);
+  background-size: auto, 84px 84px, 84px 84px;
+  opacity: 0.24;
+}
+
 .saas-page {
   position: relative;
   min-height: 100vh;
@@ -1740,6 +1772,32 @@ body {
   font-family: "Inter", system-ui, sans-serif;
 }
 
+.saas-page[data-theme="day"] {
+  --saas-bg: #f7fbff;
+  --saas-card: rgba(255, 255, 255, 0.82);
+  --saas-primary: #0891b2;
+  --saas-secondary: #0284c7;
+  --saas-text: #06111f;
+  --saas-muted: #526174;
+  --saas-border: rgba(8, 47, 73, 0.14);
+  --saas-soft: rgba(8, 145, 178, 0.08);
+  background:
+    radial-gradient(circle at 50% -13rem, rgba(34, 211, 238, 0.2), transparent 34rem),
+    radial-gradient(circle at 82% 10rem, rgba(56, 189, 248, 0.14), transparent 27rem),
+    linear-gradient(180deg, #f7fbff 0%, #eef7ff 46%, #f8fbff 100%);
+  color: var(--saas-text);
+}
+
+.saas-page[data-theme="day"] .premium-bg-3d {
+  opacity: 0.26;
+  mix-blend-mode: multiply;
+  filter: saturate(1.04) contrast(0.96);
+}
+
+.saas-page[data-theme="day"] .premium-bg-fallback {
+  opacity: 0.18;
+}
+
 .saas-page::before,
 .saas-page::after {
   content: "";
@@ -1750,7 +1808,7 @@ body {
 
 .saas-page::before {
   z-index: 0;
-  opacity: 0.18;
+  opacity: 0.12;
   background-image:
     linear-gradient(rgba(148, 163, 184, 0.08) 1px, transparent 1px),
     linear-gradient(90deg, rgba(148, 163, 184, 0.06) 1px, transparent 1px);
@@ -1760,12 +1818,28 @@ body {
   transform-origin: top;
 }
 
+.saas-page[data-theme="day"]::before {
+  opacity: 0.18;
+  background-image:
+    linear-gradient(rgba(8, 47, 73, 0.075) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(8, 47, 73, 0.06) 1px, transparent 1px);
+}
+
 .saas-page::after {
   z-index: 1;
   background:
+    radial-gradient(circle at 50% 9%, rgba(34, 211, 238, 0.045), transparent 27rem),
     radial-gradient(circle at 18% 18%, rgba(34, 211, 238, 0.055), transparent 20rem),
-    radial-gradient(circle at 82% 8%, rgba(56, 189, 248, 0.07), transparent 24rem),
-    linear-gradient(90deg, rgba(5, 8, 22, 0.92), transparent 16%, transparent 84%, rgba(5, 8, 22, 0.94));
+    radial-gradient(circle at 82% 8%, rgba(56, 189, 248, 0.065), transparent 24rem),
+    linear-gradient(90deg, rgba(5, 8, 22, 0.95), rgba(5, 8, 22, 0.68) 18%, rgba(5, 8, 22, 0.58) 50%, rgba(5, 8, 22, 0.94));
+}
+
+.saas-page[data-theme="day"]::after {
+  background:
+    radial-gradient(circle at 50% 8%, rgba(8, 145, 178, 0.06), transparent 27rem),
+    radial-gradient(circle at 18% 16%, rgba(14, 165, 233, 0.08), transparent 20rem),
+    radial-gradient(circle at 82% 8%, rgba(56, 189, 248, 0.08), transparent 24rem),
+    linear-gradient(90deg, rgba(247, 251, 255, 0.96), rgba(247, 251, 255, 0.74) 18%, rgba(247, 251, 255, 0.66) 50%, rgba(247, 251, 255, 0.95));
 }
 
 .saas-page *,
@@ -1853,6 +1927,48 @@ body {
   font-weight: 700;
 }
 
+.saas-nav-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.saas-theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.5rem;
+  width: 2.5rem;
+  gap: 0.45rem;
+  border: 1px solid rgba(148, 163, 184, 0.16);
+  border-radius: 999px;
+  background: rgba(248, 250, 252, 0.055);
+  padding: 0;
+  color: var(--saas-muted);
+  font-size: 0.78rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition:
+    color 0.2s ease,
+    border-color 0.2s ease,
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.saas-theme-toggle:hover {
+  border-color: rgba(34, 211, 238, 0.34);
+  background: rgba(34, 211, 238, 0.1);
+  color: var(--saas-text);
+  transform: translateY(-1px);
+}
+
+.saas-theme-toggle-mobile {
+  width: 100%;
+  justify-content: flex-start;
+  border-radius: 0.75rem;
+  padding: 0.75rem;
+}
+
 .saas-menu-btn {
   display: none;
   width: 2.5rem;
@@ -1882,6 +1998,116 @@ body {
 .saas-mobile-menu a:hover {
   background: rgba(34, 211, 238, 0.1);
   color: var(--saas-text);
+}
+
+.saas-page[data-theme="day"] .saas-nav,
+.saas-page[data-theme="day"] .saas-mobile-menu {
+  background: rgba(255, 255, 255, 0.78);
+  box-shadow:
+    0 20px 70px rgba(8, 47, 73, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.76);
+}
+
+.saas-page[data-theme="day"] .saas-brand span {
+  background: rgba(8, 145, 178, 0.08);
+}
+
+.saas-page[data-theme="day"] .saas-nav-cta,
+.saas-page[data-theme="day"] .saas-menu-btn {
+  background: linear-gradient(135deg, rgba(8, 145, 178, 0.14), rgba(14, 165, 233, 0.08));
+  color: #075985;
+}
+
+.saas-page[data-theme="day"] .saas-theme-toggle {
+  border-color: rgba(8, 47, 73, 0.12);
+  background: rgba(255, 255, 255, 0.74);
+  color: #475569;
+}
+
+.saas-page[data-theme="day"] .saas-theme-toggle:hover {
+  border-color: rgba(8, 145, 178, 0.28);
+  background: rgba(8, 145, 178, 0.09);
+  color: #075985;
+}
+
+.saas-page[data-theme="day"] :is(
+  .saas-profile-card,
+  .saas-project-card,
+  .saas-skill-card,
+  .saas-featured,
+  .saas-case-card,
+  .saas-case-grid article,
+  .saas-architecture,
+  .saas-feature-list,
+  .saas-screenshot-card,
+  .saas-about-card,
+  .saas-about-stats,
+  .saas-toolkit,
+  .saas-toolkit-core,
+  .saas-toolkit-panel,
+  .saas-edu-exp-panel,
+  .saas-timeline,
+  .saas-github-panel,
+  .saas-contact,
+  .saas-contact-form,
+  .saas-footer,
+  .saas-hero-stats div
+) {
+  border-color: rgba(8, 47, 73, 0.14);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(248, 251, 255, 0.74)),
+    radial-gradient(circle at 16% 0%, rgba(8, 145, 178, 0.08), transparent 34%);
+  box-shadow:
+    0 24px 80px rgba(8, 47, 73, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.86);
+}
+
+.saas-page[data-theme="day"] :is(
+  .saas-project-card,
+  .saas-screenshot-card,
+  .saas-edu-exp-panel,
+  .saas-profile-card,
+  .saas-contact-form
+):hover {
+  border-color: rgba(8, 145, 178, 0.28);
+  box-shadow:
+    0 28px 90px rgba(8, 47, 73, 0.14),
+    0 0 34px rgba(8, 145, 178, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+.saas-page[data-theme="day"] :is(
+  .saas-hero-subtitle,
+  .saas-section-header span,
+  .saas-project-card p,
+  .saas-screenshot-card p,
+  .saas-edu-exp-panel p,
+  .saas-profile-card p,
+  .saas-contact p,
+  .saas-footer p
+) {
+  color: var(--saas-muted);
+}
+
+.saas-page[data-theme="day"] :is(
+  .saas-architecture div,
+  .saas-feature-list p,
+  .saas-edu-exp-panel strong,
+  .saas-profile-card h3,
+  .saas-project-card h3,
+  .saas-section-header h2
+) {
+  color: var(--saas-text);
+}
+
+.saas-page[data-theme="day"] :is(input, textarea) {
+  border-color: rgba(8, 47, 73, 0.14);
+  background: rgba(255, 255, 255, 0.78);
+  color: var(--saas-text);
+}
+
+.saas-page[data-theme="day"] :is(input, textarea)::placeholder {
+  color: #64748b;
 }
 
 .saas-hero {
@@ -2070,6 +2296,7 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: 50% 18%;
   filter: saturate(1.02) contrast(1.02);
 }
 
@@ -3393,6 +3620,101 @@ body {
   gap: 0.85rem;
 }
 
+.saas-edu-exp-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.9rem;
+  margin-bottom: 1.4rem;
+}
+
+.saas-edu-exp-panel {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--saas-border);
+  border-radius: 1rem;
+  background:
+    linear-gradient(180deg, rgba(248, 250, 252, 0.04), transparent 34%),
+    radial-gradient(circle at 18% 0%, rgba(34, 211, 238, 0.09), transparent 34%),
+    rgba(11, 17, 32, 0.76);
+  padding: 1rem;
+  box-shadow:
+    0 22px 70px rgba(0, 0, 0, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.saas-edu-exp-panel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(rgba(148, 163, 184, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(148, 163, 184, 0.035) 1px, transparent 1px);
+  background-size: 28px 28px;
+  opacity: 0.26;
+  mask-image: radial-gradient(circle at 50% 0%, black 0%, transparent 72%);
+}
+
+.saas-edu-exp-panel > * {
+  position: relative;
+  z-index: 1;
+}
+
+.saas-edu-exp-head {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  margin-bottom: 0.9rem;
+}
+
+.saas-edu-exp-head svg {
+  color: var(--saas-primary);
+}
+
+.saas-edu-exp-head h3 {
+  margin: 0;
+  font-family: "Sora", system-ui, sans-serif;
+  font-size: 1rem;
+}
+
+.saas-edu-exp-panel article {
+  border-top: 1px solid rgba(148, 163, 184, 0.12);
+  padding-block: 0.85rem;
+}
+
+.saas-edu-exp-panel article:first-of-type {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.saas-edu-exp-panel time {
+  color: var(--saas-primary);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.saas-edu-exp-panel h4 {
+  margin: 0.4rem 0 0;
+  color: var(--saas-text);
+  font-family: "Sora", system-ui, sans-serif;
+  font-size: 0.92rem;
+}
+
+.saas-edu-exp-panel strong {
+  display: block;
+  margin-top: 0.25rem;
+  color: #cbd5e1;
+  font-size: 0.78rem;
+}
+
+.saas-edu-exp-panel p {
+  margin: 0.45rem 0 0;
+  color: var(--saas-muted);
+  font-size: 0.8rem;
+  line-height: 1.55;
+}
+
 .saas-timeline article {
   display: grid;
   grid-template-columns: 4.2rem 1fr;
@@ -3713,7 +4035,7 @@ body {
 
 @media (max-width: 760px) {
   .saas-nav-links,
-  .saas-nav-cta {
+  .saas-nav-actions {
     display: none;
   }
 
@@ -3870,6 +4192,516 @@ body {
   .saas-back-top {
     right: 5.3rem;
     bottom: 1rem;
+  }
+}
+
+/* AI laptop hero visual reference */
+.saas-hero-scene-3d {
+  min-height: 500px;
+  overflow: visible;
+  isolation: isolate;
+}
+
+.saas-hero-scene-3d::after {
+  content: "";
+  position: absolute;
+  inset: auto -5% 0;
+  height: 42%;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, transparent 0 8%, rgba(34, 211, 238, 0.22) 8.2% 8.5%, transparent 8.7% 100%),
+    linear-gradient(0deg, transparent 0 18%, rgba(34, 211, 238, 0.16) 18.2% 18.5%, transparent 18.7% 100%),
+    radial-gradient(circle at 50% 55%, rgba(34, 211, 238, 0.22), transparent 34%);
+  background-size: 78px 78px, 78px 78px, auto;
+  opacity: 0.42;
+  mask-image: radial-gradient(ellipse at center, black 0%, transparent 72%);
+  transform: perspective(820px) rotateX(66deg);
+  transform-origin: bottom;
+}
+
+.saas-terminal-object.saas-laptop-object {
+  top: 9.6rem;
+  width: min(72%, 380px);
+  border-color: rgba(56, 189, 248, 0.34);
+  border-radius: 0.78rem;
+  background:
+    linear-gradient(145deg, rgba(15, 23, 42, 0.98), rgba(2, 6, 23, 0.98)),
+    #020617;
+  box-shadow:
+    0 34px 95px rgba(0, 0, 0, 0.58),
+    0 0 42px rgba(34, 211, 238, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transform: translateX(-50%) rotateX(12deg) rotateY(-13deg) rotateZ(4deg);
+}
+
+.saas-terminal-body {
+  gap: 0.44rem;
+  padding: 1rem 1.15rem 1.35rem;
+}
+
+.saas-terminal-body p {
+  font-size: clamp(0.58rem, 1vw, 0.75rem);
+}
+
+.saas-laptop-keyboard {
+  bottom: -5rem;
+  width: 132%;
+  height: 5.8rem;
+  background:
+    linear-gradient(160deg, rgba(186, 230, 253, 0.78), rgba(71, 85, 105, 0.78) 32%, rgba(15, 23, 42, 0.96) 72%),
+    #0f172a;
+  box-shadow:
+    0 34px 80px rgba(0, 0, 0, 0.62),
+    0 0 20px rgba(34, 211, 238, 0.18);
+}
+
+.saas-scene-base {
+  bottom: 2.4rem;
+  width: 74%;
+  height: 8.2rem;
+  background:
+    radial-gradient(ellipse at center, rgba(34, 211, 238, 0.24), rgba(2, 6, 23, 0.82) 62%, transparent 72%);
+  box-shadow:
+    0 0 36px rgba(34, 211, 238, 0.75),
+    0 0 80px rgba(14, 165, 233, 0.22),
+    inset 0 0 30px rgba(34, 211, 238, 0.28);
+}
+
+.saas-floating-chip {
+  min-width: 7.8rem;
+  border-color: rgba(56, 189, 248, 0.35);
+  border-radius: 0.82rem;
+  background:
+    linear-gradient(145deg, rgba(15, 23, 42, 0.82), rgba(2, 6, 23, 0.84)),
+    rgba(11, 17, 32, 0.8);
+  padding: 0.95rem;
+  box-shadow:
+    0 26px 70px rgba(0, 0, 0, 0.42),
+    0 0 30px rgba(34, 211, 238, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.saas-floating-chip span {
+  color: var(--saas-primary);
+  font-size: 1.3rem;
+  font-weight: 800;
+}
+
+.saas-floating-chip b {
+  color: #f8fafc;
+  font-family: "Sora", system-ui, sans-serif;
+  font-size: 1rem;
+}
+
+.saas-floating-chip small {
+  display: block;
+  margin-top: 0.36rem;
+  color: #cbd5e1;
+  font-size: 0.72rem;
+  line-height: 1.35;
+}
+
+.saas-floating-chip i {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.6rem;
+  margin-top: 0.48rem;
+  border-radius: 0.35rem;
+  background: rgba(2, 6, 23, 0.56);
+  padding: 0.34rem 0.45rem;
+  color: var(--saas-primary);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.68rem;
+  font-style: normal;
+}
+
+.saas-floating-chip em {
+  color: #dbeafe;
+  font-style: normal;
+}
+
+.chip-code {
+  left: -1%;
+  top: 5%;
+  min-width: 9.5rem;
+  text-align: center;
+}
+
+.chip-api {
+  left: -6%;
+  top: 34%;
+  min-width: 10.8rem;
+}
+
+.chip-db {
+  right: -4%;
+  top: 6%;
+  min-width: 12.8rem;
+}
+
+.chip-react {
+  right: -5%;
+  top: 36%;
+  min-width: 11rem;
+}
+
+.chip-assistant {
+  left: -4%;
+  bottom: 2%;
+  min-width: 9.8rem;
+  border-color: rgba(168, 85, 247, 0.36);
+}
+
+.chip-assistant span,
+.chip-vector span {
+  color: #c084fc;
+}
+
+.chip-openai {
+  left: 6%;
+  bottom: -12%;
+  min-width: 8.5rem;
+  text-align: center;
+}
+
+.chip-vector {
+  right: 2%;
+  bottom: -9%;
+  min-width: 10rem;
+  border-color: rgba(168, 85, 247, 0.36);
+}
+
+.saas-ai-cube {
+  position: absolute;
+  left: 50%;
+  top: -0.5rem;
+  z-index: 8;
+  display: grid;
+  width: 6.4rem;
+  height: 6.4rem;
+  place-items: center;
+  border: 1px solid rgba(34, 211, 238, 0.58);
+  border-radius: 1rem;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(34, 211, 238, 0.32), transparent 58%),
+    rgba(8, 47, 73, 0.58);
+  color: #a5f3fc;
+  font-family: "Sora", system-ui, sans-serif;
+  font-size: 2rem;
+  font-weight: 800;
+  box-shadow:
+    0 0 34px rgba(34, 211, 238, 0.58),
+    inset 0 0 28px rgba(34, 211, 238, 0.2);
+  transform: translateX(-50%) rotateX(16deg) rotateY(-16deg);
+  animation: saas-card-float 7s ease-in-out infinite;
+}
+
+.saas-ai-cube::before,
+.saas-ai-cube::after {
+  content: "";
+  position: absolute;
+  inset: -0.75rem;
+  border: 1px solid rgba(34, 211, 238, 0.2);
+  border-radius: inherit;
+}
+
+.saas-ai-cube::after {
+  inset: auto 50% -5.5rem;
+  width: 1px;
+  height: 5rem;
+  border: 0;
+  background: linear-gradient(rgba(34, 211, 238, 0.8), transparent);
+}
+
+.cube-one {
+  right: -4%;
+  bottom: 26%;
+}
+
+.cube-two {
+  left: 20%;
+  top: 9%;
+}
+
+@media (max-width: 1080px) {
+  .chip-code,
+  .chip-api {
+    left: 1%;
+  }
+
+  .chip-db,
+  .chip-react {
+    right: 1%;
+  }
+
+  .chip-openai,
+  .chip-vector,
+  .chip-assistant {
+    display: none;
+  }
+}
+
+@media (max-width: 760px) {
+  .saas-hero-scene-3d {
+    min-height: 310px;
+    overflow: hidden;
+  }
+
+  .saas-ai-cube,
+  .saas-floating-chip {
+    display: none;
+  }
+
+  .saas-terminal-object.saas-laptop-object {
+    top: 4rem;
+    width: min(82%, 320px);
+  }
+
+  .saas-scene-base {
+    bottom: 2.2rem;
+    width: 82%;
+    height: 5.6rem;
+  }
+
+  .premium-bg-3d {
+    opacity: 0.2;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .premium-bg-3d {
+    opacity: 0.28;
+  }
+}
+
+/* CareerConnect professional showcase polish */
+#careerconnect .saas-section-header {
+  max-width: 840px;
+  margin-bottom: 1.15rem;
+}
+
+#careerconnect .saas-section-header h2 {
+  letter-spacing: -0.035em;
+}
+
+#careerconnect .saas-featured-project {
+  grid-template-columns: minmax(0, 1.08fr) minmax(24rem, 0.92fr);
+  gap: 1.35rem;
+  border-color: rgba(34, 211, 238, 0.18);
+  background:
+    radial-gradient(circle at 24% 36%, rgba(34, 211, 238, 0.12), transparent 28%),
+    linear-gradient(145deg, rgba(11, 17, 32, 0.84), rgba(5, 8, 22, 0.94));
+  box-shadow:
+    0 34px 100px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  align-items: stretch;
+}
+
+#careerconnect .saas-featured-project::after {
+  content: "";
+  position: absolute;
+  inset: 1rem;
+  pointer-events: none;
+  border: 1px solid rgba(34, 211, 238, 0.08);
+  border-radius: 0.8rem;
+}
+
+#careerconnect .saas-product-preview {
+  min-height: 0;
+  border: 1px solid rgba(34, 211, 238, 0.1);
+  background:
+    radial-gradient(circle at 50% 78%, rgba(34, 211, 238, 0.22), transparent 30%),
+    linear-gradient(180deg, rgba(15, 23, 42, 0.52), rgba(2, 6, 23, 0.22));
+}
+
+.saas-preview-status {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: 1rem;
+  border: 1px solid rgba(148, 163, 184, 0.12);
+  border-radius: 0.85rem;
+  background: rgba(2, 6, 23, 0.38);
+  padding: 0.8rem 0.9rem;
+}
+
+.saas-preview-status strong {
+  display: block;
+  color: var(--saas-text);
+  font-family: "Sora", system-ui, sans-serif;
+  font-size: 0.9rem;
+}
+
+.saas-preview-status span,
+.saas-preview-status p {
+  margin: 0.25rem 0 0;
+  color: var(--saas-muted);
+  font-size: 0.76rem;
+}
+
+.saas-preview-status p {
+  margin: 0;
+  border: 1px solid rgba(34, 211, 238, 0.22);
+  border-radius: 999px;
+  background: rgba(34, 211, 238, 0.08);
+  padding: 0.42rem 0.65rem;
+  color: var(--saas-primary);
+  font-family: "JetBrains Mono", monospace;
+  white-space: nowrap;
+}
+
+#careerconnect .saas-dashboard-stack {
+  min-height: 390px;
+}
+
+#careerconnect .saas-dashboard-layer {
+  left: calc(8% + (var(--layer) * 5.8%));
+  top: calc(2.5rem + (var(--layer) * 2.35rem));
+  width: min(78%, 26rem);
+  min-height: 7.8rem;
+  border-color: rgba(34, 211, 238, 0.24);
+  box-shadow:
+    0 26px 72px rgba(0, 0, 0, 0.38),
+    0 0 32px rgba(34, 211, 238, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  transform: translateZ(calc(var(--layer) * 22px)) rotateX(9deg) rotateY(-17deg) rotateZ(-2.6deg);
+}
+
+#careerconnect .saas-dashboard-layer::after {
+  background:
+    linear-gradient(180deg, rgba(2, 6, 23, 0.04), rgba(2, 6, 23, 0.78) 58%, rgba(2, 6, 23, 0.98)),
+    linear-gradient(90deg, rgba(2, 6, 23, 0.12), transparent 45%);
+}
+
+#careerconnect .saas-dashboard-layer h3 {
+  font-size: 1.05rem;
+}
+
+#careerconnect .saas-case-content {
+  gap: 0.9rem;
+  border-left: 1px solid rgba(148, 163, 184, 0.12);
+  padding: 0.5rem 0.35rem 0.5rem 1.25rem;
+}
+
+.saas-case-kicker {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem;
+  border: 1px solid rgba(34, 211, 238, 0.14);
+  border-radius: 0.85rem;
+  background: rgba(34, 211, 238, 0.055);
+  padding: 0.75rem 0.85rem;
+}
+
+.saas-case-kicker span {
+  color: var(--saas-primary);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.saas-case-kicker b {
+  color: #dbeafe;
+  font-size: 0.78rem;
+}
+
+#careerconnect .saas-case-grid article,
+#careerconnect .saas-architecture,
+#careerconnect .saas-feature-list {
+  border-color: rgba(148, 163, 184, 0.14);
+  background:
+    linear-gradient(180deg, rgba(248, 250, 252, 0.045), transparent 40%),
+    rgba(2, 6, 23, 0.3);
+}
+
+#careerconnect .saas-architecture {
+  gap: 0.55rem;
+}
+
+#careerconnect .saas-architecture div {
+  min-height: 3.1rem;
+  align-items: center;
+  border: 1px solid rgba(34, 211, 238, 0.12);
+  border-radius: 0.75rem;
+  background: rgba(34, 211, 238, 0.045);
+  padding: 0.65rem;
+}
+
+#careerconnect .saas-feature-list {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.55rem;
+}
+
+#careerconnect .saas-feature-list p {
+  font-size: 0.8rem;
+  line-height: 1.45;
+}
+
+#careerconnect .saas-project-actions {
+  margin-top: 0.35rem;
+}
+
+#careerconnect .saas-project-actions a {
+  min-height: 2.65rem;
+}
+
+#careerconnect .saas-screenshot-grid {
+  margin-top: 0.85rem;
+}
+
+#careerconnect .saas-screenshot-card {
+  background:
+    linear-gradient(180deg, rgba(248, 250, 252, 0.04), transparent 42%),
+    rgba(11, 17, 32, 0.68);
+  transition:
+    transform 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+#careerconnect .saas-screenshot-card:hover {
+  border-color: rgba(34, 211, 238, 0.34);
+  box-shadow: 0 18px 55px rgba(0, 0, 0, 0.28);
+  transform: translateY(-4px);
+}
+
+@media (max-width: 1080px) {
+  #careerconnect .saas-featured-project {
+    grid-template-columns: 1fr;
+  }
+
+  #careerconnect .saas-case-content {
+    border-left: 0;
+    padding: 0.35rem;
+  }
+}
+
+@media (max-width: 760px) {
+  .saas-preview-status,
+  .saas-case-kicker {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  #careerconnect .saas-product-preview {
+    min-height: auto;
+  }
+
+  #careerconnect .saas-dashboard-stack {
+    min-height: 570px;
+  }
+
+  #careerconnect .saas-dashboard-layer {
+    width: auto;
+    transform: none;
+  }
+
+  #careerconnect .saas-feature-list {
+    grid-template-columns: 1fr;
   }
 }
 
@@ -4568,6 +5400,10 @@ body {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
+  .saas-edu-exp-grid {
+    grid-template-columns: 1fr;
+  }
+
   .saas-skills-command {
     grid-template-columns: 1fr;
   }
@@ -4583,4 +5419,176 @@ body {
   .saas-skills-matrix {
     min-height: auto;
   }
+}
+
+/* Final premium polish: cleaner hero depth, tighter first fold, refined theme contrast */
+@media (min-width: 1081px) {
+  .saas-hero {
+    min-height: 670px;
+    padding-top: 7.15rem;
+    padding-bottom: 1.25rem;
+  }
+
+  .saas-hero h1 {
+    font-size: clamp(3.35rem, 5.55vw, 5.25rem);
+  }
+
+  .saas-hero-subtitle {
+    max-width: 560px;
+  }
+
+  .saas-hero-actions {
+    margin-top: 1.65rem;
+  }
+
+  .saas-hero-stats {
+    margin-top: 1.4rem;
+  }
+
+  .saas-hero-visual {
+    grid-template-columns: minmax(0, 1fr) 15.6rem;
+    gap: 1.15rem;
+  }
+
+  .saas-hero-scene-3d {
+    min-height: 430px;
+    filter: drop-shadow(0 26px 54px rgba(0, 0, 0, 0.24));
+  }
+
+  .saas-terminal-object.saas-laptop-object {
+    top: 7.55rem;
+    width: min(72%, 315px);
+  }
+
+  .saas-ai-cube {
+    top: 0.35rem;
+    width: 5.55rem;
+    height: 5.55rem;
+    font-size: 1.78rem;
+    opacity: 0.9;
+  }
+
+  .saas-floating-chip {
+    opacity: 0.88;
+    transform: translateZ(28px) scale(0.94);
+  }
+
+  .chip-code {
+    left: 17%;
+    top: 14%;
+  }
+
+  .chip-api {
+    left: 6%;
+    top: 38%;
+  }
+
+  .chip-db {
+    right: 12%;
+    top: 13%;
+  }
+
+  .chip-react {
+    right: 6%;
+    top: 46%;
+  }
+
+  .chip-assistant,
+  .chip-openai,
+  .chip-vector {
+    display: none;
+  }
+
+  .saas-scene-base {
+    bottom: 3.25rem;
+    width: 76%;
+    height: 5.9rem;
+    opacity: 0.86;
+  }
+
+  .cube-one {
+    right: 13%;
+    bottom: 17%;
+  }
+
+  .cube-two {
+    left: 45%;
+    top: 8%;
+  }
+
+  #careerconnect {
+    padding-top: 2.25rem;
+  }
+}
+
+.saas-profile-card {
+  border-color: rgba(34, 211, 238, 0.18);
+}
+
+.saas-profile-image-wrap {
+  position: relative;
+  border: 1px solid rgba(34, 211, 238, 0.16);
+  box-shadow:
+    0 20px 54px rgba(0, 0, 0, 0.24),
+    0 0 26px rgba(34, 211, 238, 0.09);
+}
+
+.saas-profile-image-wrap::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, transparent 58%, rgba(2, 6, 23, 0.2)),
+    radial-gradient(circle at 14% 10%, rgba(34, 211, 238, 0.1), transparent 30%);
+}
+
+.saas-profile-image-wrap img,
+.saas-about-image img {
+  filter: saturate(0.98) contrast(1.04) brightness(0.96);
+}
+
+.saas-page[data-theme="day"] .saas-profile-image-wrap {
+  border-color: rgba(8, 145, 178, 0.18);
+  box-shadow:
+    0 22px 60px rgba(8, 47, 73, 0.14),
+    0 0 26px rgba(8, 145, 178, 0.08);
+}
+
+.saas-page[data-theme="day"] .saas-profile-image-wrap::after {
+  background:
+    linear-gradient(180deg, transparent 60%, rgba(255, 255, 255, 0.16)),
+    radial-gradient(circle at 12% 12%, rgba(8, 145, 178, 0.08), transparent 30%);
+}
+
+.saas-page[data-theme="day"] .saas-floating-chip,
+.saas-page[data-theme="day"] .saas-terminal-object.saas-laptop-object {
+  background:
+    linear-gradient(145deg, rgba(15, 23, 42, 0.92), rgba(2, 6, 23, 0.96)),
+    #020617;
+}
+
+.saas-page[data-theme="day"] .saas-profile-card .saas-socials a,
+.saas-page[data-theme="day"] .saas-profile-grid span,
+.saas-page[data-theme="day"] .saas-btn-secondary,
+.saas-page[data-theme="day"] .saas-btn-ghost {
+  border-color: rgba(8, 47, 73, 0.13);
+  background: rgba(255, 255, 255, 0.68);
+  color: #0f172a;
+}
+
+.saas-page[data-theme="day"] .saas-btn-primary {
+  color: #ecfeff;
+  box-shadow: 0 18px 48px rgba(8, 145, 178, 0.2);
+}
+
+.saas-page[data-theme="day"] .saas-pill {
+  border-color: rgba(8, 145, 178, 0.22);
+  background: rgba(8, 145, 178, 0.08);
+}
+
+.saas-page[data-theme="day"] .saas-about-stats-card pre,
+.saas-page[data-theme="day"] .saas-preview-status {
+  background: rgba(255, 255, 255, 0.56);
+  color: #075985;
 }
