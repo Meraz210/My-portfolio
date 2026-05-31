@@ -1696,6 +1696,17 @@ textarea:focus {
     scroll-behavior: auto !important;
     transition-duration: 0.01ms !important;
   }
+
+  .saas-terminal-object,
+  .saas-layer-card,
+  .saas-code-cube,
+  .saas-scene-orbit {
+    animation: none !important;
+  }
+
+  .saas-project-card:hover {
+    transform: translateY(-2px) !important;
+  }
 }
 
 /* Premium SaaS redesign */
@@ -2487,6 +2498,7 @@ body {
 }
 
 .saas-product-preview {
+  position: relative;
   overflow: hidden;
   border: 1px solid var(--saas-border);
   border-radius: 1rem;
@@ -2499,6 +2511,37 @@ body {
   box-shadow:
     0 22px 70px rgba(0, 0, 0, 0.26),
     0 0 30px rgba(34, 211, 238, 0.08);
+}
+
+.saas-product-preview::before,
+.saas-product-preview::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+}
+
+.saas-product-preview::before {
+  inset: 4.2rem 1rem 1rem;
+  background-image:
+    linear-gradient(rgba(148, 163, 184, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(148, 163, 184, 0.055) 1px, transparent 1px);
+  background-size: 30px 30px;
+  opacity: 0.28;
+  mask-image: radial-gradient(circle at 50% 50%, black 0%, transparent 72%);
+  transform: perspective(760px) rotateX(64deg) translateY(2.4rem);
+  transform-origin: bottom;
+}
+
+.saas-product-preview::after {
+  left: 50%;
+  bottom: 1.4rem;
+  width: 72%;
+  height: 5.4rem;
+  border: 1px solid rgba(34, 211, 238, 0.2);
+  border-radius: 50%;
+  background: radial-gradient(ellipse at center, rgba(34, 211, 238, 0.16), transparent 68%);
+  box-shadow: 0 0 36px rgba(34, 211, 238, 0.13);
+  transform: translateX(-50%) rotateX(68deg);
 }
 
 .saas-browser-bar {
@@ -2521,6 +2564,134 @@ body {
   color: var(--saas-muted);
   font-family: "JetBrains Mono", monospace;
   font-size: 0.78rem;
+}
+
+.saas-dashboard-stack {
+  position: relative;
+  z-index: 1;
+  min-height: 410px;
+  perspective: 1100px;
+  transform-style: preserve-3d;
+}
+
+.saas-dashboard-layer {
+  --depth: calc(var(--layer) * 18px);
+  position: absolute;
+  left: calc(8% + (var(--layer) * 4.5%));
+  top: calc(2.4rem + (var(--layer) * 3rem));
+  width: min(72%, 22rem);
+  min-height: 8.9rem;
+  overflow: hidden;
+  border: 1px solid rgba(34, 211, 238, 0.16);
+  border-radius: 0.9rem;
+  background:
+    linear-gradient(135deg, rgba(34, 211, 238, 0.11), transparent 42%),
+    linear-gradient(180deg, rgba(248, 250, 252, 0.045), transparent 44%),
+    rgba(11, 17, 32, 0.9);
+  padding: 0.85rem;
+  box-shadow:
+    0 22px 58px rgba(0, 0, 0, 0.32),
+    0 0 24px rgba(34, 211, 238, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  transform: translateZ(var(--depth)) rotateX(8deg) rotateY(-14deg) rotateZ(-1deg);
+  transform-origin: center;
+}
+
+.saas-dashboard-layer::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(2, 6, 23, 0.05), rgba(2, 6, 23, 0.9) 58%, rgba(2, 6, 23, 0.98)),
+    linear-gradient(90deg, rgba(2, 6, 23, 0.18), transparent 42%);
+}
+
+.saas-dashboard-layer img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  opacity: 0.58;
+  filter: saturate(0.92) contrast(1.04);
+}
+
+.saas-dashboard-layer:nth-child(1) {
+  z-index: 5;
+}
+
+.saas-dashboard-layer:nth-child(2) {
+  z-index: 4;
+}
+
+.saas-dashboard-layer:nth-child(3) {
+  z-index: 3;
+}
+
+.saas-dashboard-layer:nth-child(4) {
+  z-index: 2;
+}
+
+.saas-dashboard-layer:nth-child(5) {
+  z-index: 1;
+}
+
+.saas-dashboard-layer div {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.7rem;
+}
+
+.saas-dashboard-layer span,
+.saas-dashboard-layer b {
+  color: var(--saas-primary);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.saas-dashboard-layer b {
+  color: #7dd3fc;
+}
+
+.saas-dashboard-layer h3 {
+  position: relative;
+  z-index: 1;
+  margin: 0.6rem 0 0;
+  color: var(--saas-text);
+  font-family: "Sora", system-ui, sans-serif;
+  font-size: 1rem;
+}
+
+.saas-dashboard-layer p {
+  position: relative;
+  z-index: 1;
+  margin: 0.35rem 0 0;
+  color: var(--saas-muted);
+  font-size: 0.78rem;
+  line-height: 1.45;
+}
+
+.saas-dashboard-layer i {
+  position: relative;
+  z-index: 1;
+  display: block;
+  height: 0.42rem;
+  margin-top: 0.7rem;
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(34, 211, 238, 0.56), rgba(148, 163, 184, 0.08));
+}
+
+.saas-dashboard-layer i:last-child {
+  width: 58%;
+  margin-top: 0.45rem;
 }
 
 .saas-preview-body {
@@ -2715,6 +2886,10 @@ body {
 }
 
 .saas-project-card {
+  --glow-x: 50%;
+  --glow-y: 0%;
+  --tilt-x: 0deg;
+  --tilt-y: 0deg;
   overflow: hidden;
   transform-style: preserve-3d;
   will-change: transform;
@@ -2730,6 +2905,7 @@ body {
   inset: 0;
   pointer-events: none;
   background:
+    radial-gradient(circle at var(--glow-x) var(--glow-y), rgba(34, 211, 238, 0.18), transparent 32%),
     linear-gradient(135deg, rgba(34, 211, 238, 0.1), transparent 44%),
     radial-gradient(circle at 82% 6%, rgba(56, 189, 248, 0.14), transparent 30%);
   opacity: 0;
@@ -2755,7 +2931,7 @@ body {
   box-shadow:
     0 24px 80px rgba(0, 0, 0, 0.34),
     0 0 34px rgba(34, 211, 238, 0.13);
-  transform: perspective(900px) rotateX(2deg) rotateY(-3deg) translateY(-5px);
+  transform: perspective(900px) rotateX(var(--tilt-x)) rotateY(var(--tilt-y)) translateY(-5px);
 }
 
 .saas-project-card:hover::before,
@@ -2766,6 +2942,7 @@ body {
 .saas-project-card > * {
   position: relative;
   z-index: 1;
+  transform: translateZ(18px);
 }
 
 .saas-project-card > svg {
@@ -2867,6 +3044,341 @@ body {
   color: #cbd5e1;
   font-size: 0.82rem;
   font-weight: 700;
+}
+
+.saas-skills-command {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: 1.4rem;
+  align-items: stretch;
+}
+
+.saas-skills-intro,
+.saas-skills-matrix {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--saas-border);
+  border-radius: var(--saas-radius);
+  background:
+    linear-gradient(180deg, rgba(248, 250, 252, 0.035), transparent 34%),
+    radial-gradient(circle at 18% 0%, rgba(34, 211, 238, 0.09), transparent 32%),
+    var(--saas-card);
+  box-shadow:
+    0 22px 80px rgba(0, 0, 0, 0.26),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+.saas-skills-intro {
+  display: grid;
+  align-content: start;
+  gap: 1.1rem;
+  padding: 1.35rem;
+}
+
+.saas-skills-intro::before,
+.saas-skills-matrix::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(rgba(148, 163, 184, 0.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(148, 163, 184, 0.04) 1px, transparent 1px);
+  background-size: 34px 34px;
+  opacity: 0.24;
+  mask-image: radial-gradient(circle at 50% 20%, black 0%, transparent 68%);
+}
+
+.saas-skills-intro > *,
+.saas-skills-matrix > * {
+  position: relative;
+  z-index: 1;
+}
+
+.saas-skills-intro h2 {
+  margin: 0;
+  color: var(--saas-text);
+  font-family: "Sora", system-ui, sans-serif;
+  font-size: clamp(1.95rem, 3.3vw, 2.75rem);
+  line-height: 1.08;
+}
+
+.saas-skills-intro > p:not(.saas-pill) {
+  margin: 0;
+  color: var(--saas-muted);
+  font-size: 1rem;
+  line-height: 1.75;
+}
+
+.saas-capability-grid {
+  display: grid;
+  gap: 0.65rem;
+  margin-top: 0.25rem;
+}
+
+.saas-capability-grid article {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 0.75rem;
+  border: 1px solid rgba(148, 163, 184, 0.12);
+  border-radius: 0.95rem;
+  background: rgba(248, 250, 252, 0.035);
+  padding: 0.82rem;
+}
+
+.saas-capability-grid svg {
+  margin-top: 0.2rem;
+  color: var(--saas-primary);
+}
+
+.saas-capability-grid h3 {
+  margin: 0;
+  font-family: "Sora", system-ui, sans-serif;
+  font-size: 0.92rem;
+}
+
+.saas-capability-grid p {
+  margin: 0.25rem 0 0;
+  color: var(--saas-muted);
+  font-size: 0.82rem;
+  line-height: 1.55;
+}
+
+.saas-core-stack-panel {
+  border: 1px solid rgba(34, 211, 238, 0.18);
+  border-radius: 1rem;
+  background:
+    radial-gradient(circle at 10% 0%, rgba(34, 211, 238, 0.14), transparent 34%),
+    rgba(2, 6, 23, 0.36);
+  padding: 0.9rem;
+}
+
+.saas-core-stack-panel > span {
+  color: var(--saas-primary);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.74rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.saas-core-stack-panel div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.8rem;
+}
+
+.saas-core-stack-panel b {
+  border: 1px solid rgba(34, 211, 238, 0.16);
+  border-radius: 999px;
+  background: rgba(34, 211, 238, 0.075);
+  padding: 0.48rem 0.65rem;
+  color: #dffbff;
+  font-size: 0.78rem;
+}
+
+.saas-skills-matrix {
+  min-height: 560px;
+  padding: 1rem;
+  perspective: 1100px;
+}
+
+.saas-matrix-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid rgba(148, 163, 184, 0.12);
+  border-radius: 0.9rem;
+  background: rgba(2, 6, 23, 0.42);
+  padding: 0.75rem 0.85rem;
+}
+
+.saas-matrix-topbar span {
+  color: #cbd5e1;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.76rem;
+}
+
+.saas-matrix-topbar i {
+  width: 5.5rem;
+  height: 0.45rem;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--saas-primary), transparent);
+  box-shadow: 0 0 18px rgba(34, 211, 238, 0.38);
+}
+
+.saas-matrix-grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 0.9rem;
+  margin-top: 1rem;
+  transform-style: preserve-3d;
+}
+
+.saas-matrix-grid::before {
+  content: "";
+  position: absolute;
+  inset: 12% 8%;
+  z-index: -1;
+  border: 1px solid rgba(34, 211, 238, 0.12);
+  border-radius: 50%;
+  box-shadow: 0 0 40px rgba(34, 211, 238, 0.06);
+  transform: rotateX(68deg);
+}
+
+.saas-skills-command .saas-skill-card {
+  min-height: 218px;
+  overflow: hidden;
+  border-color: rgba(148, 163, 184, 0.14);
+  background:
+    linear-gradient(180deg, rgba(248, 250, 252, 0.045), transparent 34%),
+    radial-gradient(circle at 22% 0%, rgba(34, 211, 238, 0.1), transparent 34%),
+    rgba(11, 17, 32, 0.9);
+  transform: perspective(900px) translateZ(calc(var(--skill-index) * 5px)) rotateX(0deg) rotateY(0deg);
+  transition:
+    transform 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.saas-skills-command .saas-skill-card:nth-child(1),
+.saas-skills-command .saas-skill-card:nth-child(2) {
+  grid-column: span 3;
+}
+
+.saas-skills-command .saas-skill-card:nth-child(n + 3) {
+  grid-column: span 2;
+}
+
+.saas-skills-command .saas-skill-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 72% 0%, rgba(34, 211, 238, 0.16), transparent 30%),
+    linear-gradient(135deg, rgba(34, 211, 238, 0.08), transparent 46%);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.saas-skills-command .saas-skill-card:hover {
+  border-color: rgba(34, 211, 238, 0.42);
+  box-shadow:
+    0 26px 80px rgba(0, 0, 0, 0.34),
+    0 0 34px rgba(34, 211, 238, 0.12);
+  transform: perspective(900px) translateY(-6px) rotateX(2deg) rotateY(-3deg);
+}
+
+.saas-skills-command .saas-skill-card:hover::before {
+  opacity: 1;
+}
+
+.saas-skills-command .saas-skill-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.saas-skills-command .saas-skill-head {
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.saas-skills-command .saas-skill-head > span {
+  display: grid;
+  width: 2.55rem;
+  height: 2.55rem;
+  place-items: center;
+  border: 1px solid rgba(34, 211, 238, 0.2);
+  border-radius: 0.8rem;
+  background: rgba(34, 211, 238, 0.09);
+  color: var(--saas-primary);
+  box-shadow: 0 0 22px rgba(34, 211, 238, 0.08);
+}
+
+.saas-skills-command .saas-skill-head p {
+  margin: 0;
+  color: var(--saas-primary);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.saas-skills-command .saas-skill-head h3 {
+  margin: 0.3rem 0 0;
+  font-size: 1.1rem;
+}
+
+.saas-skills-command .saas-skill-card > p {
+  margin: 0.85rem 0 0;
+  min-height: 2.55rem;
+}
+
+.saas-skill-meter {
+  height: 0.42rem;
+  margin-top: 1rem;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(148, 163, 184, 0.12);
+}
+
+.saas-skill-meter i {
+  display: block;
+  width: var(--skill-level);
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--saas-primary), var(--saas-secondary));
+  box-shadow: 0 0 18px rgba(34, 211, 238, 0.38);
+}
+
+.saas-skills-command .saas-skill-tags {
+  display: flex !important;
+  flex-wrap: wrap;
+  gap: 0.45rem !important;
+  margin-top: 1rem !important;
+}
+
+.saas-skills-command .saas-skill-tags span {
+  border: 1px solid rgba(148, 163, 184, 0.14) !important;
+  border-radius: 999px;
+  background: rgba(248, 250, 252, 0.045);
+  padding: 0.42rem 0.55rem !important;
+  color: #cbd5e1;
+  font-size: 0.76rem;
+  font-weight: 700;
+}
+
+.saas-skills-command .saas-skill-tags span.is-core {
+  border-color: rgba(34, 211, 238, 0.26) !important;
+  background: rgba(34, 211, 238, 0.09);
+  color: #cffafe;
+}
+
+.saas-skill-orbit {
+  position: absolute;
+  inset: auto 1.2rem 1rem auto;
+  width: 10rem;
+  height: 10rem;
+  pointer-events: none;
+  opacity: 0.46;
+}
+
+.saas-skill-orbit span {
+  position: absolute;
+  inset: calc(var(--ring, 0) * 1.15rem);
+  border: 1px solid rgba(34, 211, 238, 0.14);
+  border-radius: 50%;
+  transform: rotateX(68deg) rotateZ(-18deg);
+}
+
+.saas-skill-orbit span:nth-child(2) {
+  --ring: 1;
+}
+
+.saas-skill-orbit span:nth-child(3) {
+  --ring: 2;
 }
 
 .saas-two-col {
@@ -3149,6 +3661,7 @@ body {
   .saas-hero,
   .saas-featured-project,
   .saas-about,
+  .saas-skills-command,
   .saas-two-col,
   .saas-contact {
     grid-template-columns: 1fr;
@@ -3174,6 +3687,18 @@ body {
 
   .saas-product-preview {
     transform: none;
+  }
+
+  .saas-dashboard-layer {
+    transform: translateZ(var(--depth)) rotateX(5deg) rotateY(-8deg);
+  }
+
+  .saas-skills-matrix {
+    min-height: auto;
+  }
+
+  .saas-skills-command .saas-skill-card:nth-child(n) {
+    grid-column: span 3;
   }
 
   .saas-skills-grid,
@@ -3268,6 +3793,33 @@ body {
     grid-template-columns: 1fr;
   }
 
+  .saas-skills-intro,
+  .saas-skills-matrix {
+    padding: 1rem;
+  }
+
+  .saas-skills-intro h2 {
+    font-size: 2.05rem;
+  }
+
+  .saas-matrix-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .saas-skills-command .saas-skill-card:nth-child(n) {
+    grid-column: auto;
+    min-height: auto;
+  }
+
+  .saas-skills-command .saas-skill-card:hover {
+    transform: translateY(-3px);
+  }
+
+  .saas-skill-orbit,
+  .saas-matrix-grid::before {
+    display: none;
+  }
+
   .saas-preview-body {
     grid-template-columns: 1fr;
   }
@@ -3278,6 +3830,21 @@ body {
 
   .saas-product-preview {
     min-height: auto;
+  }
+
+  .saas-dashboard-stack {
+    min-height: 520px;
+    perspective: none;
+  }
+
+  .saas-dashboard-layer {
+    position: relative;
+    left: auto;
+    top: auto;
+    width: auto;
+    min-height: auto;
+    margin: 0.75rem;
+    transform: none;
   }
 
   .saas-architecture,
@@ -3303,5 +3870,717 @@ body {
   .saas-back-top {
     right: 5.3rem;
     bottom: 1rem;
+  }
+}
+
+/* 95% reference alignment pass */
+.saas-about-toolkit {
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+  gap: 1rem;
+  align-items: stretch;
+}
+
+.saas-about-toolkit .saas-about,
+.saas-about-toolkit .saas-skills-command {
+  width: auto;
+  padding: 0;
+}
+
+.saas-about-toolkit .saas-about {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 11rem;
+  gap: 1rem;
+}
+
+.saas-about-toolkit .saas-about-copy {
+  grid-row: span 2;
+}
+
+.saas-about-toolkit .saas-about-image {
+  min-height: 18rem;
+  padding: 0.75rem;
+  box-shadow:
+    0 0 0 1px rgba(34, 211, 238, 0.22),
+    0 0 34px rgba(34, 211, 238, 0.16);
+}
+
+.saas-about-toolkit .saas-about-image img {
+  object-position: center;
+}
+
+.saas-about-toolkit .saas-about-stats-card {
+  grid-column: 2;
+  padding: 0.8rem;
+}
+
+.saas-about-toolkit .saas-about-stat-grid {
+  grid-template-columns: 1fr;
+}
+
+.saas-about-toolkit .saas-about-stats-card pre {
+  display: none;
+}
+
+.saas-about-toolkit .saas-about-stats-card > b {
+  font-size: 1.2rem;
+}
+
+.saas-about-toolkit .saas-skills-command {
+  grid-template-columns: 0.78fr 1.22fr;
+  gap: 0.75rem;
+}
+
+.saas-about-toolkit .saas-skills-intro,
+.saas-about-toolkit .saas-skills-matrix {
+  padding: 1rem;
+}
+
+.saas-about-toolkit .saas-skills-intro h2 {
+  font-size: 1.25rem;
+}
+
+.saas-about-toolkit .saas-skills-intro > p:not(.saas-pill),
+.saas-about-toolkit .saas-capability-grid article p {
+  display: none;
+}
+
+.saas-about-toolkit .saas-capability-grid article {
+  grid-template-columns: auto 1fr;
+  padding: 0.7rem;
+}
+
+.saas-about-toolkit .saas-core-stack-panel {
+  padding: 0.75rem;
+}
+
+.saas-about-toolkit .saas-core-stack-panel b {
+  width: 100%;
+}
+
+.saas-about-toolkit .saas-matrix-grid {
+  grid-template-columns: 1fr;
+  gap: 0.6rem;
+}
+
+.saas-about-toolkit .saas-skills-command .saas-skill-card:nth-child(n) {
+  grid-column: auto;
+}
+
+.saas-about-toolkit .saas-skills-command .saas-skill-card {
+  min-height: auto;
+  padding: 0.75rem;
+}
+
+.saas-about-toolkit .saas-skills-command .saas-skill-card > p {
+  display: none;
+}
+
+.saas-about-toolkit .saas-skill-meter {
+  margin-top: 0.6rem;
+}
+
+.saas-about-toolkit .saas-skill-tags {
+  margin-top: 0.65rem !important;
+}
+
+.saas-contact {
+  grid-template-columns: minmax(0, 0.82fr) minmax(0, 1fr) minmax(18rem, 0.78fr);
+}
+
+.saas-contact-info-card {
+  display: grid;
+  gap: 1rem;
+  border: 1px solid rgba(148, 163, 184, 0.12);
+  border-radius: 1rem;
+  background:
+    radial-gradient(circle at 35% 10%, rgba(34, 211, 238, 0.16), transparent 30%),
+    rgba(2, 6, 23, 0.32);
+  padding: 1rem;
+}
+
+.saas-contact-visual {
+  display: grid;
+  min-height: 9rem;
+  place-items: center;
+  border: 1px solid rgba(34, 211, 238, 0.18);
+  border-radius: 1rem;
+  background:
+    radial-gradient(circle, rgba(34, 211, 238, 0.18), transparent 54%),
+    rgba(5, 8, 22, 0.42);
+  color: var(--saas-primary);
+  box-shadow: inset 0 0 34px rgba(34, 211, 238, 0.08);
+}
+
+.saas-contact-info-card span {
+  display: block;
+  color: var(--saas-primary);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.74rem;
+  font-weight: 700;
+}
+
+.saas-contact-info-card a,
+.saas-contact-info-card p {
+  margin: 0.3rem 0 0;
+  color: #dbeafe;
+  font-size: 0.9rem;
+  text-decoration: none;
+}
+
+.saas-footer {
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+}
+
+.saas-footer > div:nth-child(2) {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.saas-footer > div:nth-child(2) h3,
+.saas-footer > div:first-child p,
+.saas-footer > div:first-child > a {
+  display: none;
+}
+
+@media (max-width: 1180px) {
+  .saas-about-toolkit {
+    grid-template-columns: 1fr;
+  }
+
+  .saas-contact {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 760px) {
+  .saas-about-toolkit .saas-about,
+  .saas-about-toolkit .saas-skills-command {
+    grid-template-columns: 1fr;
+  }
+
+  .saas-about-toolkit .saas-about-copy,
+  .saas-about-toolkit .saas-about-stats-card {
+    grid-column: auto;
+    grid-row: auto;
+  }
+
+  .saas-about-toolkit .saas-about-stat-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .saas-about-toolkit .saas-skills-intro > p:not(.saas-pill),
+  .saas-about-toolkit .saas-capability-grid article p,
+  .saas-about-toolkit .saas-skills-command .saas-skill-card > p {
+    display: block;
+  }
+
+  .saas-footer,
+  .saas-footer > div:nth-child(2) {
+    grid-template-columns: 1fr;
+    display: grid;
+    justify-content: start;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .saas-skills-command .saas-skill-card:hover {
+    transform: translateY(-2px) !important;
+  }
+}
+
+/* Reference-inspired premium portfolio pass */
+.saas-page {
+  background:
+    radial-gradient(circle at 50% 0%, rgba(34, 211, 238, 0.1), transparent 30rem),
+    radial-gradient(circle at 0% 24%, rgba(14, 165, 233, 0.08), transparent 24rem),
+    radial-gradient(circle at 100% 22%, rgba(56, 189, 248, 0.07), transparent 24rem),
+    #050816;
+}
+
+.saas-page::before {
+  opacity: 0.2;
+  background-size: 72px 72px;
+  transform: perspective(900px) rotateX(62deg) translateY(-7rem);
+}
+
+.saas-section {
+  width: min(100% - 2rem, 1240px);
+  padding-block: 2.9rem;
+}
+
+.saas-nav-wrap {
+  padding-top: 0.65rem;
+}
+
+.saas-nav {
+  height: 3.8rem;
+  border-radius: 0.7rem;
+  background: rgba(5, 8, 22, 0.72);
+  box-shadow:
+    0 20px 80px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.saas-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.saas-brand span {
+  display: grid;
+  width: 2.3rem;
+  height: 2.3rem;
+  place-items: center;
+  border: 1px solid rgba(34, 211, 238, 0.24);
+  border-radius: 0.38rem;
+  color: var(--saas-primary);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 1rem;
+}
+
+.saas-nav-links {
+  gap: 0.8rem;
+}
+
+.saas-nav-links a {
+  position: relative;
+  padding: 0.7rem 0.25rem;
+  background: transparent !important;
+}
+
+.saas-nav-links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  border-radius: 999px;
+  background: var(--saas-primary);
+  opacity: 0;
+  transform: scaleX(0.35);
+  transition: 0.22s ease;
+}
+
+.saas-nav-links a:hover::after,
+.saas-nav-links a.is-active::after {
+  opacity: 1;
+  transform: scaleX(1);
+}
+
+.saas-nav-cta {
+  gap: 0.55rem;
+  border-color: rgba(34, 211, 238, 0.35);
+  background: linear-gradient(135deg, rgba(34, 211, 238, 0.22), rgba(56, 189, 248, 0.08));
+  color: #dffbff;
+}
+
+.saas-hero {
+  grid-template-columns: minmax(0, 0.72fr) minmax(0, 1fr);
+  gap: 2rem;
+  min-height: 710px;
+  padding-top: 7.8rem;
+  padding-bottom: 2.2rem;
+}
+
+.saas-hero h1 {
+  max-width: 620px;
+  font-size: clamp(3.4rem, 5.7vw, 5.6rem);
+  letter-spacing: -0.04em;
+}
+
+.saas-hero h1::first-line {
+  color: var(--saas-text);
+}
+
+.saas-hero h1 {
+  background: linear-gradient(90deg, var(--saas-text) 0 63%, var(--saas-primary) 64% 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.saas-hero-subtitle {
+  max-width: 520px;
+}
+
+.saas-hero-actions {
+  align-items: center;
+  margin-top: 1.6rem;
+}
+
+.saas-btn {
+  min-height: 3.1rem;
+}
+
+.saas-btn-primary {
+  box-shadow: 0 0 34px rgba(34, 211, 238, 0.34);
+}
+
+.saas-hero-stats {
+  max-width: 520px;
+  margin-top: 1.75rem;
+}
+
+.saas-hero-stats div,
+.saas-profile-card,
+.saas-featured-project,
+.saas-project-card,
+.saas-about-image,
+.saas-skill-card,
+.saas-contact,
+.saas-footer,
+.saas-github-panel,
+.saas-skills-intro,
+.saas-skills-matrix,
+.saas-about-stats-card {
+  border-color: rgba(148, 163, 184, 0.18);
+  background:
+    linear-gradient(180deg, rgba(248, 250, 252, 0.04), transparent 34%),
+    linear-gradient(145deg, rgba(11, 17, 32, 0.88), rgba(5, 8, 22, 0.92));
+}
+
+.saas-hero-visual {
+  grid-template-columns: minmax(0, 1fr) 15rem;
+}
+
+.saas-hero-scene-3d {
+  min-height: 460px;
+  border-color: transparent;
+  background:
+    radial-gradient(circle at 50% 64%, rgba(34, 211, 238, 0.18), transparent 26%),
+    radial-gradient(circle at 48% 42%, rgba(56, 189, 248, 0.1), transparent 28%);
+  box-shadow: none;
+}
+
+.saas-terminal-object.saas-laptop-object {
+  top: 8.4rem;
+  width: min(78%, 330px);
+  border-radius: 0.6rem;
+  transform: translateX(-50%) rotateX(12deg) rotateY(-16deg) rotateZ(5deg);
+}
+
+.saas-laptop-keyboard {
+  position: absolute;
+  left: 50%;
+  bottom: -4.2rem;
+  width: 120%;
+  height: 4.8rem;
+  border-radius: 0.7rem 0.7rem 2.2rem 2.2rem;
+  background: linear-gradient(145deg, rgba(148, 163, 184, 0.55), rgba(15, 23, 42, 0.95) 64%);
+  box-shadow: 0 28px 70px rgba(0, 0, 0, 0.52);
+  transform: translateX(-50%) rotateX(64deg);
+}
+
+.saas-scene-base {
+  bottom: 3.6rem;
+  width: 82%;
+  height: 7rem;
+  border-width: 2px;
+  box-shadow:
+    0 0 34px rgba(34, 211, 238, 0.6),
+    inset 0 0 26px rgba(34, 211, 238, 0.24);
+}
+
+.saas-floating-chip {
+  position: absolute;
+  z-index: 7;
+  display: grid;
+  gap: 0.2rem;
+  min-width: 5.1rem;
+  border: 1px solid rgba(34, 211, 238, 0.28);
+  border-radius: 0.65rem;
+  background: rgba(11, 17, 32, 0.7);
+  padding: 0.75rem;
+  color: #dffbff;
+  box-shadow:
+    0 20px 50px rgba(0, 0, 0, 0.3),
+    0 0 26px rgba(34, 211, 238, 0.12);
+  backdrop-filter: blur(12px);
+  animation: saas-card-float 9s ease-in-out infinite;
+}
+
+.saas-floating-chip span {
+  color: var(--saas-primary);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 1.05rem;
+}
+
+.saas-floating-chip b {
+  color: var(--saas-muted);
+  font-size: 0.72rem;
+}
+
+.chip-code { left: 15%; top: 12%; }
+.chip-api { left: 5%; top: 34%; animation-delay: -2s; }
+.chip-db { right: 10%; top: 8%; animation-delay: -3.5s; }
+.chip-react { right: 4%; top: 44%; animation-delay: -4.5s; }
+
+.saas-mini-cube {
+  position: absolute;
+  width: 1.45rem;
+  height: 1.45rem;
+  border-radius: 0.24rem;
+  background: linear-gradient(135deg, #67e8f9, #0e7490);
+  box-shadow: 0 0 18px rgba(34, 211, 238, 0.45);
+  transform: rotate(45deg);
+}
+
+.cube-one { right: 9%; bottom: 12%; }
+.cube-two { left: 42%; top: 6%; width: 0.8rem; height: 0.8rem; opacity: 0.55; }
+
+.saas-profile-card {
+  align-self: start;
+  border-radius: 0.9rem;
+}
+
+.saas-hero-visual .saas-profile-card {
+  margin-top: 1rem;
+}
+
+.saas-profile-image-wrap {
+  border-radius: 0.65rem;
+}
+
+.saas-featured-project {
+  grid-template-columns: minmax(0, 1fr) minmax(22rem, 0.95fr);
+  padding: 1.25rem;
+  border-radius: 0.9rem;
+}
+
+.saas-product-preview {
+  min-height: 500px;
+  border-color: transparent;
+  background:
+    radial-gradient(circle at 50% 78%, rgba(34, 211, 238, 0.2), transparent 28%),
+    transparent;
+  box-shadow: none;
+}
+
+.saas-dashboard-stack {
+  min-height: 452px;
+}
+
+.saas-dashboard-layer {
+  left: calc(9% + (var(--layer) * 5.5%));
+  top: calc(5.2rem + (var(--layer) * 2.55rem));
+  width: min(76%, 25rem);
+  min-height: 8rem;
+  transform: translateZ(var(--depth)) rotateX(9deg) rotateY(-18deg) rotateZ(-3deg);
+}
+
+.saas-project-grid {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+.saas-project-card {
+  min-height: 285px;
+  border-radius: 0.65rem;
+  padding: 1rem;
+}
+
+.saas-project-card > svg {
+  width: 3rem;
+  height: 3rem;
+  padding: 0.65rem;
+  border-radius: 0.85rem;
+  background: linear-gradient(135deg, rgba(34, 211, 238, 0.18), rgba(56, 189, 248, 0.05));
+}
+
+.saas-project-card h3 {
+  font-size: 1.05rem;
+}
+
+.saas-project-card p {
+  font-size: 0.84rem;
+}
+
+.saas-project-card .saas-project-actions {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.saas-project-card .saas-project-actions a,
+.saas-project-card .saas-project-actions button {
+  min-height: 2.35rem;
+  padding-inline: 0.35rem;
+  font-size: 0;
+}
+
+.saas-project-card .saas-project-actions a::after,
+.saas-project-card .saas-project-actions button::after {
+  font-size: 0.82rem;
+}
+
+.saas-project-card .saas-project-actions a:nth-child(1)::after,
+.saas-project-card .saas-project-actions button:nth-child(1)::after {
+  content: "view";
+}
+
+.saas-project-card .saas-project-actions a:nth-child(2)::after {
+  content: "git";
+}
+
+.saas-project-card .saas-project-actions a:nth-child(3)::after {
+  content: "open";
+}
+
+.saas-about {
+  grid-template-columns: minmax(0, 1fr) minmax(18rem, 0.72fr) minmax(18rem, 0.86fr);
+  gap: 1.3rem;
+  align-items: stretch;
+}
+
+.saas-about-copy,
+.saas-about-image,
+.saas-about-stats-card {
+  border: 1px solid var(--saas-border);
+  border-radius: var(--saas-radius);
+  background:
+    linear-gradient(180deg, rgba(248, 250, 252, 0.035), transparent 32%),
+    var(--saas-card);
+  padding: 1.2rem;
+}
+
+.saas-about-image {
+  aspect-ratio: auto;
+}
+
+.saas-about-image img {
+  border-radius: 0.8rem;
+}
+
+.saas-about-stats-card {
+  display: grid;
+  align-content: start;
+  gap: 1rem;
+}
+
+.saas-about-stat-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.7rem;
+}
+
+.saas-about-stat-grid strong {
+  display: block;
+  color: var(--saas-primary);
+  font-family: "Sora", system-ui, sans-serif;
+  font-size: 1.45rem;
+}
+
+.saas-about-stat-grid span {
+  color: var(--saas-muted);
+  font-size: 0.78rem;
+}
+
+.saas-about-stats-card pre {
+  overflow: hidden;
+  border: 1px solid rgba(148, 163, 184, 0.12);
+  border-radius: 0.75rem;
+  background: rgba(2, 6, 23, 0.4);
+  padding: 0.9rem;
+  color: #8be9ff;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.72rem;
+  line-height: 1.7;
+  white-space: pre-wrap;
+}
+
+.saas-about-stats-card > b {
+  color: var(--saas-primary);
+  font-family: "Sora", system-ui, sans-serif;
+  font-size: 1.6rem;
+  font-style: italic;
+}
+
+.saas-skills-command {
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+}
+
+.saas-two-col {
+  align-items: stretch;
+}
+
+.saas-contact {
+  border-radius: 0.9rem;
+}
+
+.saas-footer {
+  border-radius: 0.9rem;
+}
+
+@media (max-width: 1180px) {
+  .saas-project-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .saas-about {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 1080px) {
+  .saas-hero {
+    grid-template-columns: 1fr;
+  }
+
+  .saas-featured-project {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 760px) {
+  .saas-section {
+    width: min(100% - 1rem, 1240px);
+  }
+
+  .saas-brand {
+    font-size: 0;
+  }
+
+  .saas-brand span {
+    font-size: 1rem;
+  }
+
+  .saas-hero h1 {
+    font-size: 2.65rem;
+  }
+
+  .saas-hero-visual {
+    grid-template-columns: 1fr;
+  }
+
+  .saas-floating-chip,
+  .saas-layer-card,
+  .saas-code-cube,
+  .saas-mini-cube {
+    display: none;
+  }
+
+  .saas-project-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .saas-about-stat-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .saas-skills-command {
+    grid-template-columns: 1fr;
+  }
+
+  .saas-matrix-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .saas-skills-command .saas-skill-card:nth-child(n) {
+    grid-column: auto;
+  }
+
+  .saas-skills-matrix {
+    min-height: auto;
   }
 }

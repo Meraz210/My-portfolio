@@ -32,13 +32,15 @@ import profileImage from "./assets/pf.png";
 
 const cvUrl = `${import.meta.env.BASE_URL}MD_MERAZ_AHASAN_SHAH_CV.pdf`;
 const HeroScene3D = lazy(() => import("./components/HeroScene3D"));
+const projectAsset = (path) => `${import.meta.env.BASE_URL}projects/${path}`;
 
 const navItems = [
   ["Home", "#home"],
+  ["About", "#about"],
   ["Projects", "#projects"],
   ["Skills", "#skills"],
-  ["Experience", "#experience"],
-  ["GitHub", "#github"],
+  ["Journey", "#experience"],
+  ["Blog", "#github"],
   ["Contact", "#contact"],
 ];
 
@@ -152,6 +154,29 @@ const skillGroups = [
   },
 ];
 
+const skillMeta = {
+  Frontend: { label: "Core", level: 92 },
+  Backend: { label: "Core", level: 88 },
+  Database: { label: "Production", level: 82 },
+  Tools: { label: "Workflow", level: 86 },
+  Programming: { label: "Familiar", level: 78 },
+};
+
+const capabilityHighlights = [
+  ["Frontend Systems", "Responsive product UI, dashboards, and interaction patterns."],
+  ["Backend Architecture", "REST APIs, auth flows, route protection, and business logic."],
+  ["Database Design", "MongoDB and SQL-backed models for practical app workflows."],
+  ["Deployment Workflow", "Git, GitHub, Vercel, environment setup, and release readiness."],
+];
+
+const coreStack = [
+  "MERN Stack",
+  "React + Node + MongoDB",
+  "JWT Authentication",
+  "REST API Development",
+  "Responsive UI Systems",
+];
+
 const journey = [
   ["2022", "Started CSE at AIUB", "Built core foundations in programming, software engineering, databases, and systems thinking."],
   ["2023", "Built first full-stack projects", "Moved from UI practice into database-backed web applications and CRUD workflows."],
@@ -179,6 +204,14 @@ const careerConnect = {
     ["Admin", "Manage users, jobs, and platform data", ShieldCheck],
   ],
 };
+
+const careerConnectPanels = [
+  ["Admin Dashboard", "Users, jobs, applications, and platform control.", "Admin", projectAsset("careerconnect/careerconnect-admin.jpg")],
+  ["Seeker Dashboard", "Job discovery, applications, and profile workflow.", "Seeker", projectAsset("careerconnect/careerconnect-seeker.jpg")],
+  ["Employer Dashboard", "Post jobs, review applicants, and hiring controls.", "Employer", projectAsset("careerconnect/careerconnect-employer.jpg")],
+  ["Jobs Page", "Search, filter, and apply to open roles.", "Jobs", projectAsset("careerconnect/careerconnect-seeker.jpg")],
+  ["Login", "JWT sign-in and role-aware routing.", "Auth", projectAsset("careerconnect/careerconnect-admin.jpg")],
+];
 
 const fadeUp = {
   initial: false,
@@ -210,13 +243,13 @@ function Navbar() {
   return (
     <header className="saas-nav-wrap">
       <nav className="saas-nav">
-        <a href="#home" className="saas-brand">MD Meraz</a>
+        <a href="#home" className="saas-brand"><span>MS</span> MD Meraz Ahasan Shah</a>
         <div className="saas-nav-links">
           {navItems.map(([label, href]) => (
             <a key={href} href={href} className={active === href ? "is-active" : ""}>{label}</a>
           ))}
         </div>
-        <a href="#contact" className="saas-nav-cta">Contact Me</a>
+        <a href={cvUrl} target="_blank" rel="noreferrer" download className="saas-nav-cta"><Download className="h-4 w-4" /> Download CV</a>
         <button type="button" className="saas-menu-btn" onClick={() => setOpen((value) => !value)} aria-label="Toggle navigation">
           {open ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
         </button>
@@ -253,8 +286,8 @@ function Hero() {
         </motion.p>
         <motion.div variants={{ hidden: { opacity: 0, y: 14 }, show: { opacity: 1, y: 0 } }} className="saas-hero-actions">
           <a href="#projects" className="saas-btn saas-btn-primary">View Projects <ArrowRight className="h-4 w-4" /></a>
-          <a href={cvUrl} target="_blank" rel="noreferrer" download className="saas-btn saas-btn-secondary">Download CV <Download className="h-4 w-4" /></a>
-          <a href="#contact" className="saas-btn saas-btn-ghost">Contact Me</a>
+          <a href="#contact" className="saas-btn saas-btn-secondary">Contact Me</a>
+          <a href={cvUrl} target="_blank" rel="noreferrer" download className="saas-btn saas-btn-ghost" aria-label="Download CV"><Download className="h-4 w-4" /></a>
         </motion.div>
         <motion.div variants={{ hidden: { opacity: 0, y: 14 }, show: { opacity: 1, y: 0 } }} className="saas-hero-stats">
           {heroStats.map(([value, label]) => (
@@ -277,6 +310,7 @@ function Hero() {
           <div>
             <p className="saas-status"><span /> Open to internship and junior roles</p>
             <h2>Full-Stack MERN Developer</h2>
+            <p>CSE Student</p>
             <p>Dhaka, Bangladesh</p>
           </div>
           <div className="saas-profile-grid">
@@ -297,6 +331,30 @@ function Hero() {
   );
 }
 
+function handleProjectTilt(event) {
+  if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
+
+  const card = event.currentTarget;
+  const rect = card.getBoundingClientRect();
+  const x = event.clientX - rect.left;
+  const y = event.clientY - rect.top;
+  const rotateX = ((rect.height / 2 - y) / rect.height) * 7;
+  const rotateY = ((x - rect.width / 2) / rect.width) * 8;
+
+  card.style.setProperty("--tilt-x", `${rotateX.toFixed(2)}deg`);
+  card.style.setProperty("--tilt-y", `${rotateY.toFixed(2)}deg`);
+  card.style.setProperty("--glow-x", `${((x / rect.width) * 100).toFixed(2)}%`);
+  card.style.setProperty("--glow-y", `${((y / rect.height) * 100).toFixed(2)}%`);
+}
+
+function resetProjectTilt(event) {
+  const card = event.currentTarget;
+  card.style.setProperty("--tilt-x", "0deg");
+  card.style.setProperty("--tilt-y", "0deg");
+  card.style.setProperty("--glow-x", "50%");
+  card.style.setProperty("--glow-y", "0%");
+}
+
 function FeaturedProject() {
   return (
     <section id="careerconnect" className="saas-section">
@@ -307,24 +365,22 @@ function FeaturedProject() {
         <div className="saas-product-preview">
           <div className="saas-browser-bar">
             <i /><i /><i />
-            <span>careerconnect.app/dashboard</span>
+            <span>careerconnect.app/roles</span>
           </div>
-          <div className="saas-preview-body">
-            <aside>
-              <b>CareerConnect</b>
-              <span />
-              <span />
-              <span />
-            </aside>
-            <main>
-              <div className="saas-preview-header" />
-              <div className="saas-preview-grid">
-                <span /><span /><span />
-              </div>
-              <div className="saas-preview-table">
-                <i /><i /><i /><i />
-              </div>
-            </main>
+          <div className="saas-dashboard-stack" aria-label="CareerConnect layered dashboard preview">
+            {careerConnectPanels.map(([title, text, label, image], index) => (
+              <article key={title} className="saas-dashboard-layer" style={{ "--layer": index }}>
+                <img src={image} alt="" loading="lazy" />
+                <div>
+                  <span>0{index + 1}</span>
+                  <b>{label}</b>
+                </div>
+                <h3>{title}</h3>
+                <p>{text}</p>
+                <i />
+                <i />
+              </article>
+            ))}
           </div>
         </div>
         <div className="saas-case-content">
@@ -378,14 +434,21 @@ function Projects() {
   const otherProjects = projects.filter((project) => !project.featured);
   return (
     <section id="projects" className="saas-section">
-      <SectionHeader eyebrow="Selected Work" title="Projects built for real product workflows">
+      <SectionHeader eyebrow="All Projects" title="Projects built for real product workflows">
         CareerConnect leads the portfolio, with supporting projects across education, business, commerce, and healthcare interfaces.
       </SectionHeader>
       <div className="saas-project-grid">
         {otherProjects.map((project, index) => {
           const Icon = project.icon;
           return (
-            <motion.article key={project.title} {...fadeUp} transition={{ duration: 0.45, delay: index * 0.04 }} className="saas-project-card">
+            <motion.article
+              key={project.title}
+              {...fadeUp}
+              transition={{ duration: 0.45, delay: index * 0.04 }}
+              className="saas-project-card"
+              onPointerMove={handleProjectTilt}
+              onPointerLeave={resetProjectTilt}
+            >
               <Icon className="h-5 w-5" />
               <h3>{project.title}</h3>
               <p className="saas-project-type">{project.type}</p>
@@ -408,10 +471,7 @@ function Projects() {
 
 function About() {
   return (
-    <section id="about" className="saas-section saas-about">
-      <motion.div {...fadeUp} className="saas-about-image">
-        <img src={profileImage} alt="Meraz Ahasan" loading="lazy" />
-      </motion.div>
+    <div id="about" className="saas-about">
       <motion.div {...fadeUp} className="saas-about-copy">
         <p className="saas-pill">About Me</p>
         <h2>Developer focused on clean full-stack execution.</h2>
@@ -425,30 +485,100 @@ function About() {
           {aboutHighlights.map((item) => <span key={item}><CheckCircle2 className="h-4 w-4" /> {item}</span>)}
         </div>
       </motion.div>
-    </section>
+      <motion.div {...fadeUp} className="saas-about-image">
+        <img src={profileImage} alt="Meraz Ahasan" loading="lazy" />
+      </motion.div>
+      <motion.aside {...fadeUp} className="saas-about-stats-card">
+        <div className="saas-about-stat-grid">
+          {heroStats.slice(0, 3).map(([value, label]) => (
+            <div key={label}>
+              <strong>{value}</strong>
+              <span>{label}</span>
+            </div>
+          ))}
+        </div>
+        <pre>{`const passion = "Building products that solve real problems";
+const focus = ["Clean Code", "Performance", "Scalability"];
+let available = true;`}</pre>
+        <b>Meraz</b>
+      </motion.aside>
+    </div>
   );
 }
 
 function Skills() {
   return (
-    <section id="skills" className="saas-section">
-      <SectionHeader eyebrow="Technical Stack" title="Skills organized around product delivery">
-        A focused toolkit for building responsive frontends, backend APIs, authentication, databases, and production-ready workflows.
-      </SectionHeader>
-      <div className="saas-skills-grid">
-        {skillGroups.map(({ title, icon: Icon, focus, skills }) => (
-          <motion.article key={title} {...fadeUp} className="saas-skill-card">
-            <div className="saas-skill-head">
-              <Icon className="h-5 w-5" />
-              <h3>{title}</h3>
-            </div>
-            <p>{focus}</p>
-            <div>
-              {skills.map((skill) => <span key={skill}>{skill}</span>)}
-            </div>
-          </motion.article>
-        ))}
-      </div>
+    <div id="skills" className="saas-skills-command">
+      <motion.div {...fadeUp} className="saas-skills-intro">
+        <p className="saas-pill">Engineering Toolkit</p>
+        <h2>Full-stack command center for building product workflows.</h2>
+        <p>
+          A focused toolkit for shipping scalable MERN applications, protected APIs, responsive dashboards, and production-ready user flows.
+        </p>
+        <div className="saas-capability-grid">
+          {capabilityHighlights.map(([title, text]) => (
+            <article key={title}>
+              <CheckCircle2 className="h-4 w-4" />
+              <div>
+                <h3>{title}</h3>
+                <p>{text}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+        <div className="saas-core-stack-panel">
+          <span>Core Stack</span>
+          <div>
+            {coreStack.map((item) => <b key={item}>{item}</b>)}
+          </div>
+        </div>
+      </motion.div>
+
+      <motion.div {...fadeUp} className="saas-skills-matrix" aria-label="Full-stack skills matrix">
+        <div className="saas-matrix-topbar">
+          <span>stack.map(delivery)</span>
+          <i />
+        </div>
+        <div className="saas-matrix-grid">
+          {skillGroups.map(({ title, icon: Icon, focus, skills }, index) => {
+            const meta = skillMeta[title];
+            return (
+              <article key={title} className="saas-skill-card" style={{ "--skill-index": index, "--skill-level": `${meta.level}%` }}>
+                <div className="saas-skill-head">
+                  <span><Icon className="h-5 w-5" /></span>
+                  <div>
+                    <p>{meta.label}</p>
+                    <h3>{title}</h3>
+                  </div>
+                </div>
+                <p>{focus}</p>
+                <div className="saas-skill-meter" aria-hidden="true">
+                  <i />
+                </div>
+                <div className="saas-skill-tags">
+                  {skills.map((skill, skillIndex) => (
+                    <span key={skill} className={skillIndex < 3 ? "is-core" : ""}>{skill}</span>
+                  ))}
+                </div>
+              </article>
+            );
+          })}
+        </div>
+        <div className="saas-skill-orbit" aria-hidden="true">
+          <span />
+          <span />
+          <span />
+        </div>
+      </motion.div>
+    </div>
+  );
+}
+
+function AboutAndSkills() {
+  return (
+    <section className="saas-section saas-about-toolkit">
+      <About />
+      <Skills />
     </section>
   );
 }
@@ -520,6 +650,28 @@ function Contact() {
           </label>
           <button type="submit" className="saas-btn saas-btn-primary">Send Message <Send className="h-4 w-4" /></button>
         </form>
+        <aside className="saas-contact-info-card" aria-label="Contact details">
+          <div className="saas-contact-visual">
+            <Mail className="h-10 w-10" />
+          </div>
+          <div>
+            <span>Email</span>
+            <a href="mailto:merazahasan210@gmail.com">merazahasan210@gmail.com</a>
+          </div>
+          <div>
+            <span>Phone</span>
+            <a href="tel:+8801568088936">+8801568088936</a>
+          </div>
+          <div>
+            <span>Location</span>
+            <p>Dhaka, Bangladesh</p>
+          </div>
+          <div className="saas-socials">
+            <a href="https://github.com/Meraz210" target="_blank" rel="noreferrer" aria-label="GitHub"><GitBranch className="h-4 w-4" /></a>
+            <a href="https://www.linkedin.com/in/merazahasan" target="_blank" rel="noreferrer" aria-label="LinkedIn"><FaLinkedinIn className="h-4 w-4" /></a>
+            <a href="mailto:merazahasan210@gmail.com" aria-label="Email"><Mail className="h-4 w-4" /></a>
+          </div>
+        </aside>
       </motion.div>
     </section>
   );
@@ -557,10 +709,9 @@ export default function App() {
       <Navbar />
       <main>
         <Hero />
-        <Projects />
         <FeaturedProject />
-        <About />
-        <Skills />
+        <Projects />
+        <AboutAndSkills />
         <JourneyAndGitHub />
         <Contact />
       </main>

@@ -4,21 +4,27 @@ export default function HeroScene3D() {
       <div className="saas-scene-orbit saas-scene-orbit-one" />
       <div className="saas-scene-orbit saas-scene-orbit-two" />
 
-      <div className="saas-terminal-object">
+      <div className="saas-floating-chip chip-code"><span>{"</>"}</span><b>Code</b></div>
+      <div className="saas-floating-chip chip-api"><span>API</span><b>RESTful</b></div>
+      <div className="saas-floating-chip chip-db"><span>MongoDB</span><b>Database</b></div>
+      <div className="saas-floating-chip chip-react"><span>React</span><b>Frontend</b></div>
+
+      <div className="saas-terminal-object saas-laptop-object">
         <div className="saas-terminal-top">
           <span />
           <span />
           <span />
-          <b>meraz.dev</b>
+          <b>portfolio.jsx</b>
         </div>
         <div className="saas-terminal-body">
-          <p><span>const</span> stack = ["React", "Node", "MongoDB"];</p>
-          <p><span>api</span>.secure("/careerconnect");</p>
-          <p>ship(<span>"production-ready"</span>);</p>
+          <p><span>const</span> developer = "MERN";</p>
+          <p><span>build</span>.api("secure-routes");</p>
+          <p>deploy(<span>"scalable-products"</span>);</p>
           <i />
           <i />
           <i />
         </div>
+        <div className="saas-laptop-keyboard" />
       </div>
 
       <div className="saas-layer-card saas-layer-card-one">
@@ -34,6 +40,8 @@ export default function HeroScene3D() {
       <div className="saas-code-cube">
         <span>{"</>"}</span>
       </div>
+      <div className="saas-mini-cube cube-one" />
+      <div className="saas-mini-cube cube-two" />
       <div className="saas-scene-base" />
     </div>
   );
