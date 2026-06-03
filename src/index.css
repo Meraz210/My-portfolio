@@ -5833,3 +5833,48 @@ html[data-theme="day"] body {
   background: rgba(255, 255, 255, 0.56);
   color: #075985;
 }
+
+/* Mobile/reduced 3D mode: keep the visual identity while cutting DOM complexity and motion cost. */
+.premium-bg-reduced .premium-bg-stage,
+.saas-hero-scene-reduced {
+  transform-style: flat;
+}
+
+.premium-bg-reduced .premium-data-core,
+.premium-bg-reduced .premium-core-ring,
+.premium-bg-reduced .premium-rails span,
+.premium-bg-reduced .premium-particles span,
+.saas-hero-scene-reduced .saas-ai-cube,
+.saas-hero-scene-reduced .saas-terminal-object,
+.saas-hero-scene-reduced .saas-scene-base {
+  animation-duration: 18s;
+}
+
+.premium-bg-reduced .premium-grid-floor {
+  opacity: 0.42;
+}
+
+.premium-bg-reduced .premium-data-core {
+  opacity: 0.62;
+}
+
+.saas-hero-scene-reduced {
+  min-height: 330px;
+  filter: none;
+}
+
+.saas-hero-scene-reduced .saas-ai-cube {
+  opacity: 0.72;
+  transform: translateX(-50%) scale(0.76);
+}
+
+.saas-hero-scene-reduced .saas-terminal-object.saas-laptop-object {
+  top: 6.4rem;
+  width: min(86%, 300px);
+}
+
+.saas-hero-scene-reduced .saas-scene-base {
+  bottom: 2rem;
+  width: 72%;
+  opacity: 0.58;
+}

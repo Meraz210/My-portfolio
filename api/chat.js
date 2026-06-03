@@ -52,6 +52,11 @@ Safety and accuracy:
 const fallbackReply =
   "I can help with Meraz's projects, MERN skills, GitHub work, resume, and contact details. For hiring or collaboration, email Meraz at merazahasan210@gmail.com.";
 
+const RATE_LIMIT_WINDOW_MS = 60 * 1000;
+const RATE_LIMIT_MAX_REQUESTS = 12;
+const RATE_LIMIT_STORE = globalThis.__portfolioChatRateLimitStore || new Map();
+globalThis.__portfolioChatRateLimitStore = RATE_LIMIT_STORE;
+
 const intentHints = {
   project:
     "The visitor is asking about projects. Highlight 2-4 strongest projects, what each solves, and relevant MERN skills.",
@@ -104,6 +109,44 @@ const extractResponseText = (data) => {
   return text || "";
 };
 
+const getClientIp = (req) => {
+  const forwardedFor = req.headers["x-forwarded-for"];
+  if (typeof forwardedFor === "string" && forwardedFor.trim()) {
+    return forwardedFor.split(",")[0].trim();
+  }
+
+  return req.headers["x-real-ip"] || req.socket?.remoteAddress || "unknown";
+};
+
+const checkRateLimit = (req) => {
+  const now = Date.now();
+  const ip = getClientIp(req);
+  const current = RATE_LIMIT_STORE.get(ip);
+
+  if (!current || current.resetAt <= now) {
+    RATE_LIMIT_STORE.set(ip, {
+      count: 1,
+      resetAt: now + RATE_LIMIT_WINDOW_MS,
+    });
+    return { allowed: true, remaining: RATE_LIMIT_MAX_REQUESTS - 1, resetAt: now + RATE_LIMIT_WINDOW_MS };
+  }
+
+  if (current.count >= RATE_LIMIT_MAX_REQUESTS) {
+    return { allowed: false, remaining: 0, resetAt: current.resetAt };
+  }
+
+  current.count += 1;
+  return { allowed: true, remaining: RATE_LIMIT_MAX_REQUESTS - current.count, resetAt: current.resetAt };
+};
+
+const cleanupRateLimitStore = () => {
+  const now = Date.now();
+
+  for (const [ip, entry] of RATE_LIMIT_STORE.entries()) {
+    if (entry.resetAt <= now) RATE_LIMIT_STORE.delete(ip);
+  }
+};
+
 async function createResponse({ model, input, instructions, signal }) {
   const response = await fetch("https://api.openai.com/v1/responses", {
     method: "POST",
@@ -139,6 +182,22 @@ export default async function handler(req, res) {
   }
 
   res.setHeader("Cache-Control", "no-store");
+
+  cleanupRateLimitStore();
+  const limit = checkRateLimit(req);
+  const retryAfter = Math.max(1, Math.ceil((limit.resetAt - Date.now()) / 1000));
+
+  res.setHeader("X-RateLimit-Limit", String(RATE_LIMIT_MAX_REQUESTS));
+  res.setHeader("X-RateLimit-Remaining", String(limit.remaining));
+  res.setHeader("X-RateLimit-Reset", String(Math.ceil(limit.resetAt / 1000)));
+
+  if (!limit.allowed) {
+    res.setHeader("Retry-After", String(retryAfter));
+    return res.status(429).json({
+      error: "Too many chat requests. Please wait a moment before trying again.",
+      retryAfter,
+    });
+  }
 
   if (!process.env.OPENAI_API_KEY) {
     return res.status(500).json({ error: "OPENAI_API_KEY is not configured" });

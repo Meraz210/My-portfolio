@@ -19,30 +19,41 @@ const quickPrompts = [
 const localKnowledge = [
   {
     keys: ["hire", "client", "work", "available", "job", "recruit"],
+    followUp: "You can ask: Which project best proves hiring readiness?",
     reply:
       "Meraz is a strong fit for MERN product work because he can handle responsive React interfaces, Node/Express APIs, MongoDB data flows, and polished dashboard-style UI. For hiring or collaboration, email him at merazahasan210@gmail.com.",
   },
   {
     keys: ["project", "portfolio", "build", "app"],
+    followUp: "You can ask: What makes CareerConnect the strongest case study?",
     reply:
       "Meraz's featured projects include CareerConnect, Attendance System, StudyHub, Tea-Shop, YBTDigital, and MediCare Hospital. CareerConnect is the flagship MERN job portal with seeker, employer, and admin roles, JWT authentication, application tracking, and dashboard workflows.",
   },
   {
     keys: ["skill", "stack", "technology", "mern", "frontend", "backend"],
+    followUp: "You can ask: How does his frontend and backend experience compare?",
     reply:
       "Meraz works across the MERN stack: React and Tailwind for frontend UI, Node.js and Express for REST APIs, MongoDB/PostgreSQL experience for data modeling, JWT authentication, role-based access, GitHub workflows, Framer Motion, GSAP, Three.js, and responsive delivery practices.",
   },
   {
     keys: ["github", "repo", "repository", "code"],
+    followUp: "You can ask: Which repositories should a recruiter review first?",
     reply:
       "Meraz's GitHub profile is https://github.com/Meraz210. The portfolio highlights repository activity and public project work without inventing private or unavailable details.",
   },
   {
     keys: ["contact", "email", "phone", "location", "dhaka"],
+    followUp: "You can ask: Draft a short hiring email for Meraz.",
     reply:
       "You can contact Meraz at merazahasan210@gmail.com or +880 1568-088936. He is based in Dhaka, Bangladesh, and his GitHub is https://github.com/Meraz210.",
   },
 ];
+
+const defaultLocalReply = {
+  reply:
+    "Meraz Ahasan is a Full-Stack MERN Developer based in Dhaka, Bangladesh. Ask about his projects, MERN skills, GitHub work, or contact details for a more specific answer.",
+  followUp: "You can ask: Why should I hire Meraz?",
+};
 
 export default function PortfolioChatbot() {
   const [open, setOpen] = useState(false);
@@ -64,11 +75,9 @@ export default function PortfolioChatbot() {
   const getLocalReply = (question) => {
     const lower = question.toLowerCase();
     const match = localKnowledge.find((item) => item.keys.some((key) => lower.includes(key)));
+    const localReply = match || defaultLocalReply;
 
-    return (
-      match?.reply ||
-      "Meraz Ahasan is a Full-Stack MERN Developer based in Dhaka, Bangladesh. Ask about his projects, MERN skills, GitHub work, or contact details for a more specific answer."
-    );
+    return `${localReply.reply}\n\n${localReply.followUp}`;
   };
 
   const askAssistant = async (question) => {
@@ -85,13 +94,20 @@ export default function PortfolioChatbot() {
         }),
       });
 
-      if (!response.ok) throw new Error("Chat endpoint unavailable");
+      if (!response.ok) {
+        if (response.status === 429) {
+          setStatus("Limit reached");
+          return `${getLocalReply(question)}\n\nLive AI is rate-limited for a moment, so I am using the local portfolio guide.`;
+        }
+
+        throw new Error("Chat endpoint unavailable");
+      }
       const data = await response.json();
       setStatus(data.intent ? `Intent: ${data.intent}` : "Ready");
       return data.reply || getLocalReply(question);
     } catch {
       setStatus("Offline fallback");
-      return getLocalReply(question);
+      return `${getLocalReply(question)}\n\nLive AI is unavailable right now, so I am using the local portfolio guide.`;
     }
   };
 
@@ -192,7 +208,11 @@ export default function PortfolioChatbot() {
                         : "border border-cyan-300/25 bg-cyan-400/12 font-semibold text-cyan-50 shadow-[0_0_18px_rgba(34,211,238,0.12)]"
                     }`}
                   >
-                    {message.text}
+                    {message.text.split("\n").map((line, lineIndex) => (
+                      <p key={`${line}-${lineIndex}`} className={lineIndex > 0 ? "mt-2" : ""}>
+                        {line}
+                      </p>
+                    ))}
                   </div>
                 </motion.div>
               ))}
