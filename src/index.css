@@ -6922,8 +6922,7 @@ body {
   display: flex;
   width: max-content;
   gap: 0.8rem;
-  padding-left: 100%;
-  animation: capability-chip-run 18s linear infinite;
+  animation: capability-chip-run 12s linear infinite;
   animation-play-state: running;
   will-change: transform;
 }
@@ -6990,7 +6989,7 @@ body {
     transform: translate3d(0, 0, 0);
   }
   to {
-    transform: translate3d(calc(-50% - 50vw), 0, 0);
+    transform: translate3d(calc(-50% - 0.4rem), 0, 0);
   }
 }
 
