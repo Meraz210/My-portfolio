@@ -37,13 +37,10 @@ export default function PremiumBackground3D() {
   return (
     <div className={`premium-bg-3d premium-bg-lite ${reduced ? "premium-bg-reduced" : ""}`} aria-hidden="true">
       <div className="premium-bg-stage">
+        <div className="premium-depth-beam premium-depth-beam-left" />
+        <div className="premium-depth-beam premium-depth-beam-right" />
         <div className="premium-grid-floor" />
-        <div className="premium-data-core">
-          <span className="premium-core-face premium-core-front">AI</span>
-          <span className="premium-core-face premium-core-back" />
-          <span className="premium-core-ring premium-core-ring-one" />
-          <span className="premium-core-ring premium-core-ring-two" />
-        </div>
+        <div className="premium-horizon-grid" />
         {!reduced && (
           <>
             <div className="premium-panel premium-panel-left">
@@ -63,6 +60,35 @@ export default function PremiumBackground3D() {
               <span />
               <span />
             </div>
+            <div className="premium-tower premium-tower-left">
+              <span />
+              <span />
+              <span />
+            </div>
+            <div className="premium-tower premium-tower-right">
+              <span />
+              <span />
+              <span />
+            </div>
+            <div className="premium-orbit premium-orbit-one" />
+            <div className="premium-orbit premium-orbit-two" />
+            <div className="premium-wire-cube">
+              <span />
+              <span />
+              <span />
+            </div>
+            <div className="premium-stack premium-stack-one">
+              <span />
+              <span />
+              <span />
+            </div>
+            <div className="premium-stack premium-stack-two">
+              <span />
+              <span />
+              <span />
+            </div>
+            <div className="premium-depth-ring premium-depth-ring-one" />
+            <div className="premium-depth-ring premium-depth-ring-two" />
             <div className="premium-prism premium-prism-left" />
             <div className="premium-prism premium-prism-right" />
             <div className="premium-prism premium-prism-top" />

@@ -137,7 +137,7 @@ export default function PortfolioChatbot() {
   };
 
   return (
-    <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3 sm:bottom-8 sm:right-8">
+    <div className="portfolio-assistant-shell fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3 sm:bottom-8 sm:right-8">
       <AnimatePresence>
         {open && (
           <motion.div

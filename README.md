@@ -1,14 +1,33 @@
-# Meraz Ahasan Portfolio
+# MD Meraz Ahasan Shah Portfolio
 
-React and Vite portfolio for Meraz Ahasan, including animated sections, GitHub profile data, a contact form fallback, and an optional AI portfolio assistant endpoint.
+Premium React and Vite portfolio for MD Meraz Ahasan Shah, focused on MERN stack projects, recruiter-ready case studies, GitHub activity, a contact workflow, and an optional AI portfolio assistant endpoint.
+
+## Highlights
+
+- Featured CareerConnect MERN job portal case study with seeker, employer, and admin workflows
+- Real CareerConnect screenshots for admin, seeker, and employer dashboards
+- Supporting project case studies with problem, solution, proof, source code, and contact paths
+- Responsive SaaS-style UI with day/night theme and subtle 3D background depth
+- Production build and ESLint checks configured for clean review
 
 ## Tech Stack
 
 - React 19 and Vite
 - Tailwind CSS
 - Framer Motion and AOS
-- React Three Fiber / Three.js hero scene
+- Lightweight CSS/React 3D background layer
 - Vercel-style serverless API route for chatbot responses
+
+## Featured Project
+
+CareerConnect is a role-based hiring platform built around practical MERN workflows:
+
+- JWT authentication and role-aware routing
+- Seeker, employer, and admin dashboards
+- Job posting, discovery, and application tracking
+- Admin management for users, jobs, and platform control
+- Live demo: https://job-portal-system-neon.vercel.app
+- Source code: https://github.com/Meraz210/job-portal-system
 
 ## Local Development
 
@@ -52,6 +71,13 @@ npm run dev
 npm run build
 npm run lint
 npm run preview
+```
+
+Before sharing or deploying, run:
+
+```bash
+npm.cmd run build
+npm.cmd run lint
 ```
 
 ## Deployment Notes

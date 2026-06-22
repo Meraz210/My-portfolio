@@ -3,8 +3,6 @@ import {
   ArrowRight,
   BriefcaseBusiness,
   CheckCircle2,
-  Code2,
-  Database,
   Download,
   ExternalLink,
   GitBranch,
@@ -21,7 +19,6 @@ import {
   Send,
   Server,
   ShieldCheck,
-  Sparkles,
   Sun,
   Users,
   X,
@@ -33,7 +30,6 @@ import PortfolioChatbot from "./components/PortfolioChatbot";
 import profileImage from "./assets/profile-premium.webp";
 
 const cvUrl = `${import.meta.env.BASE_URL}MD_MERAZ_AHASAN_SHAH_CV.pdf`;
-const HeroScene3D = lazy(() => import("./components/HeroScene3D"));
 const PremiumBackground3D = lazy(() => import("./components/PremiumBackground3D"));
 const projectAsset = (path) => `${import.meta.env.BASE_URL}projects/${path}`;
 
@@ -63,46 +59,61 @@ const projects = [
     title: "StudyHub",
     type: "Learning Product",
     text: "Collaborative education platform for study goals, course resources, progress tracking, and responsive student workflows.",
+    problem: "Students need one organized place to track study goals, resources, and progress without jumping between disconnected tools.",
+    solution: "A responsive learning dashboard structure with resource discovery, progress context, and clean student-first workflows.",
+    proof: "Shows product thinking around education workflows, reusable React UI, API-ready structure, and mobile-friendly presentation.",
     icon: Globe2,
     tech: ["React", "API", "Tailwind"],
     source: "https://github.com/Meraz210/StudyHub",
-    caseStudy: "#projects",
+    caseStudy: "#studyhub-case",
   },
   {
     title: "Attendance System",
     type: "Education Operations",
     text: "Role-based attendance system for student records, daily status tracking, reports, and admin workflows.",
+    problem: "Manual attendance tracking makes daily records, reporting, and admin review slow and error-prone.",
+    solution: "A role-aware attendance workflow for student records, daily status management, reporting context, and admin operations.",
+    proof: "Demonstrates CRUD depth, database-backed workflows, protected admin thinking, and practical education operations.",
     icon: GraduationCap,
     tech: ["React", "Node.js", "MongoDB"],
     source: "https://github.com/Meraz210/Attendance-system",
-    caseStudy: "#projects",
+    caseStudy: "#attendance-system-case",
   },
   {
     title: "YBTDigital",
     type: "Business Website",
     text: "Responsive service presentation site focused on clear messaging, service discovery, SEO, and conversion flow.",
+    problem: "Service businesses need a fast, clear web presence that explains offers and guides visitors toward contact.",
+    solution: "A responsive business website structure focused on service clarity, scanning, SEO readiness, and conversion flow.",
+    proof: "Shows client-facing UI judgment, content hierarchy, responsive layout work, and business-oriented presentation.",
     icon: Rocket,
     tech: ["React", "UI/UX", "SEO"],
     source: "https://github.com/Meraz210/YBTDigital",
-    caseStudy: "#projects",
+    caseStudy: "#ybtdigital-case",
   },
   {
     title: "Tea-Shop",
     type: "Commerce Interface",
     text: "E-commerce style product browsing experience with clean catalog presentation and responsive layouts.",
+    problem: "Small commerce experiences need clear product browsing, attractive catalog presentation, and low-friction navigation.",
+    solution: "A clean product catalog interface with responsive cards, commerce-style structure, and readable product discovery.",
+    proof: "Highlights frontend polish, layout discipline, product-card UI, and buyer-facing responsive design.",
     icon: ShieldCheck,
     tech: ["React", "Commerce", "CSS3"],
     source: "https://github.com/Meraz210/Tea-Shop",
-    caseStudy: "#projects",
+    caseStudy: "#tea-shop-case",
   },
   {
     title: "MediCare Hospital",
     type: "Healthcare Dashboard",
     text: "Hospital service interface for appointment context, doctor information, patient workflows, and admin views.",
+    problem: "Healthcare users need quick access to services, doctors, appointment context, and structured admin information.",
+    solution: "A healthcare interface concept with service discovery, doctor information, patient workflow context, and dashboard-ready layout.",
+    proof: "Demonstrates domain-aware UI, information architecture, and the ability to model practical service workflows.",
     icon: Server,
     tech: ["React", "Node.js", "UI"],
     source: "https://github.com/Meraz210/MediCare-Hospital",
-    caseStudy: "#projects",
+    caseStudy: "#medicare-hospital-case",
   },
 ];
 
@@ -124,60 +135,46 @@ const aboutHighlights = [
   "Performance Optimization",
 ];
 
-const skillGroups = [
-  {
-    title: "Frontend",
-    icon: Code2,
-    focus: "Responsive interfaces, dashboards, and product UI",
-    skills: ["React.js", "Next.js", "Tailwind CSS", "HTML5", "CSS3", "Framer Motion"],
-  },
-  {
-    title: "Backend",
-    icon: Server,
-    focus: "APIs, authentication, business logic, and route protection",
-    skills: ["Node.js", "Express.js", "NestJS", "REST APIs", "JWT", "Firebase"],
-  },
-  {
-    title: "Database",
-    icon: Database,
-    focus: "Data modeling, CRUD workflows, and relational/noSQL usage",
-    skills: ["MongoDB", "MySQL", "SQL Server", "PostgreSQL"],
-  },
-  {
-    title: "Tools",
-    icon: GitBranch,
-    focus: "Version control, deployment preparation, and daily workflow",
-    skills: ["Git", "GitHub", "Linux", "VS Code", "Vercel"],
-  },
-  {
-    title: "Programming",
-    icon: Sparkles,
-    focus: "Problem solving across web, academic, and systems work",
-    skills: ["JavaScript", "TypeScript", "Python", "Java", "C++", "PHP"],
-  },
-];
-
-const skillMeta = {
-  Frontend: { label: "Core", level: 92 },
-  Backend: { label: "Core", level: 88 },
-  Database: { label: "Production", level: 82 },
-  Tools: { label: "Workflow", level: 86 },
-  Programming: { label: "Familiar", level: 78 },
+const skillBarGroups = {
+  technical: [
+    ["React.js", 92],
+    ["Node.js & Express.js", 88],
+    ["MongoDB & Database Design", 84],
+    ["REST API Development", 90],
+    ["JWT Authentication", 86],
+    ["Tailwind CSS & Responsive UI", 92],
+    ["Git, GitHub & Deployment", 86],
+  ],
+  professional: [
+    ["Problem Solving", 88],
+    ["Product Thinking", 84],
+    ["Communication", 82],
+    ["Team Collaboration", 90],
+    ["Adaptability", 88],
+    ["Project Ownership", 86],
+  ],
 };
 
-const capabilityHighlights = [
-  ["Frontend Systems", "Responsive product UI, dashboards, and interaction patterns."],
-  ["Backend Architecture", "REST APIs, auth flows, route protection, and business logic."],
-  ["Database Design", "MongoDB and SQL-backed models for practical app workflows."],
-  ["Deployment Workflow", "Git, GitHub, Vercel, environment setup, and release readiness."],
+const capabilityChips = [
+  ["React Interfaces", 92],
+  ["REST APIs", 90],
+  ["JWT Auth", 86],
+  ["MongoDB", 84],
+  ["Dashboard UI", 90],
+  ["Responsive Design", 92],
+  ["GitHub Workflow", 86],
+  ["Problem Solving", 88],
+  ["Communication", 82],
+  ["Project Ownership", 86],
 ];
 
-const coreStack = [
-  "MERN Stack",
-  "React + Node + MongoDB",
-  "JWT Authentication",
-  "REST API Development",
-  "Responsive UI Systems",
+const contactEndpoint = import.meta.env.VITE_FORMSPREE_ENDPOINT;
+
+const recruiterProof = [
+  ["Production Build", "Vite production build and ESLint checks pass cleanly."],
+  ["Real Deployment", "CareerConnect has a live deployment plus source code review path."],
+  ["Role Coverage", "Seeker, employer, and admin workflows prove full-stack depth."],
+  ["Contact Ready", "Form submission uses Formspree when configured, with mail fallback."],
 ];
 
 const journey = [
@@ -246,6 +243,12 @@ const careerConnectPanels = [
   ["Login", "JWT sign-in and role-aware routing.", "Auth", projectAsset("careerconnect/careerconnect-admin.jpg")],
 ];
 
+const careerConnectGallery = [
+  ["Admin dashboard", "Platform management for users, jobs, applications, and role control.", projectAsset("careerconnect/careerconnect-admin.jpg")],
+  ["Seeker workflow", "Job discovery, application context, and seeker-facing dashboard flow.", projectAsset("careerconnect/careerconnect-seeker.jpg")],
+  ["Employer workflow", "Employer dashboard for posting jobs and reviewing applicants.", projectAsset("careerconnect/careerconnect-employer.jpg")],
+];
+
 const fadeUp = {
   initial: false,
   whileInView: { opacity: 1, y: 0 },
@@ -276,11 +279,10 @@ function Navbar({ theme, onThemeToggle }) {
 
   return (
     <header className="saas-nav-wrap">
-      <nav className="saas-nav">
-        <a href="#home" className="saas-brand"><span>MS</span> MD Meraz Ahasan Shah</a>
+      <nav className="saas-nav" aria-label="Primary navigation">
         <div className="saas-nav-links">
           {navItems.map(([label, href]) => (
-            <a key={href} href={href} className={active === href ? "is-active" : ""}>{label}</a>
+            <a key={href} href={href} className={active === href ? "is-active" : ""} aria-current={active === href ? "page" : undefined}>{label}</a>
           ))}
         </div>
         <div className="saas-nav-actions">
@@ -293,20 +295,26 @@ function Navbar({ theme, onThemeToggle }) {
           >
             {isDay ? <Moon className="h-4 w-4" /> : <Sun className="h-4 w-4" />}
           </button>
-          <a href={cvUrl} target="_blank" rel="noreferrer" download className="saas-nav-cta"><Download className="h-4 w-4" /> Download CV</a>
         </div>
-        <button type="button" className="saas-menu-btn" onClick={() => setOpen((value) => !value)} aria-label="Toggle navigation">
+        <button
+          type="button"
+          className="saas-menu-btn"
+          onClick={() => setOpen((value) => !value)}
+          aria-label="Toggle navigation"
+          aria-controls="mobile-navigation"
+          aria-expanded={open}
+        >
           {open ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
         </button>
       </nav>
       {open && (
-        <div className="saas-mobile-menu">
+        <div id="mobile-navigation" className="saas-mobile-menu">
           <button type="button" className="saas-theme-toggle saas-theme-toggle-mobile" onClick={onThemeToggle}>
             {isDay ? <Moon className="h-4 w-4" /> : <Sun className="h-4 w-4" />}
             <span>{isDay ? "Switch to night mode" : "Switch to day mode"}</span>
           </button>
           {navItems.map(([label, href]) => (
-            <a key={href} href={href} onClick={() => setOpen(false)}>{label}</a>
+            <a key={href} href={href} onClick={() => setOpen(false)} aria-current={active === href ? "page" : undefined}>{label}</a>
           ))}
         </div>
       )}
@@ -324,24 +332,62 @@ function SectionHeader({ eyebrow, title, children }) {
   );
 }
 
+function CountUpStat({ value }) {
+  const number = Number.parseInt(value, 10);
+  const suffix = value.replace(String(number), "");
+  const [displayValue, setDisplayValue] = useState(Number.isNaN(number) ? value : 1);
+
+  useEffect(() => {
+    if (Number.isNaN(number)) {
+      return undefined;
+    }
+
+    let frameId;
+    const duration = 950;
+    const startTime = performance.now();
+    const startValue = 1;
+
+    const update = (time) => {
+      const progress = Math.min((time - startTime) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setDisplayValue(Math.round(startValue + (number - startValue) * eased));
+
+      if (progress < 1) {
+        frameId = requestAnimationFrame(update);
+      }
+    };
+
+    frameId = requestAnimationFrame(update);
+    return () => cancelAnimationFrame(frameId);
+  }, [number, value]);
+
+  if (Number.isNaN(number)) {
+    return (
+      <motion.strong initial={{ opacity: 0, y: 8 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+        {value}
+      </motion.strong>
+    );
+  }
+
+  return <strong>{displayValue}{suffix}</strong>;
+}
+
 function Hero() {
   return (
     <section id="home" className="saas-section saas-hero">
       <motion.div initial="hidden" animate="show" variants={{ hidden: {}, show: { transition: { staggerChildren: 0.08 } } }} className="saas-hero-copy">
-        <motion.p variants={{ hidden: { opacity: 0, y: 14 }, show: { opacity: 1, y: 0 } }} className="saas-pill">Full-Stack MERN Developer</motion.p>
-        <motion.h1 variants={{ hidden: { opacity: 0, y: 14 }, show: { opacity: 1, y: 0 } }}>MD Meraz Ahasan Shah</motion.h1>
+        <motion.h1 variants={{ hidden: { opacity: 0, y: 14 }, show: { opacity: 1, y: 0 } }}>Full-Stack Developer building clean, scalable web products.</motion.h1>
         <motion.p variants={{ hidden: { opacity: 0, y: 14 }, show: { opacity: 1, y: 0 } }} className="saas-hero-subtitle">
-          I build scalable web applications, REST APIs, dashboards, and digital products with React, Node.js, Express, MongoDB, and clean product-focused UI.
+          I design and build recruiter-ready web applications, REST APIs, dashboards, and product interfaces with React, Node.js, Express, MongoDB, and clean UI execution.
         </motion.p>
         <motion.div variants={{ hidden: { opacity: 0, y: 14 }, show: { opacity: 1, y: 0 } }} className="saas-hero-actions">
           <a href="#projects" className="saas-btn saas-btn-primary">View Projects <ArrowRight className="h-4 w-4" /></a>
           <a href="#contact" className="saas-btn saas-btn-secondary">Contact Me</a>
-          <a href={cvUrl} target="_blank" rel="noreferrer" download className="saas-btn saas-btn-ghost" aria-label="Download CV"><Download className="h-4 w-4" /></a>
         </motion.div>
         <motion.div variants={{ hidden: { opacity: 0, y: 14 }, show: { opacity: 1, y: 0 } }} className="saas-hero-stats">
           {heroStats.map(([value, label]) => (
             <div key={label}>
-              <strong>{value}</strong>
+              <CountUpStat value={value} />
               <span>{label}</span>
             </div>
           ))}
@@ -349,9 +395,6 @@ function Hero() {
       </motion.div>
 
       <motion.aside {...fadeUp} className="saas-hero-visual" aria-label="Developer profile and product preview">
-        <Suspense fallback={<div className="saas-hero-3d-fallback" aria-hidden="true" />}>
-          <HeroScene3D />
-        </Suspense>
         <div className="saas-profile-card">
           <div className="saas-profile-image-wrap">
             <img src={profileImage} alt="MD Meraz Ahasan Shah" width="920" height="1149" loading="eager" decoding="async" fetchPriority="high" />
@@ -455,6 +498,11 @@ function FeaturedProject() {
               <h3>A complete MERN hiring workflow.</h3>
               <span>CareerConnect uses protected routes, JWT authentication, role-based access, application tracking, and admin management to model a real job portal system.</span>
             </article>
+            <article>
+              <p>Result</p>
+              <h3>Clear proof of full-stack product execution.</h3>
+              <span>The project gives recruiters a live demo, real dashboard screenshots, role coverage, and source code that shows practical MERN architecture.</span>
+            </article>
           </div>
           <div className="saas-stack-row">
             {careerConnect.tech.map((item) => <span key={item}>{item}</span>)}
@@ -477,12 +525,20 @@ function FeaturedProject() {
           </div>
         </div>
       </motion.div>
-      <div className="saas-screenshot-grid">
-        {careerConnect.screenshots.map(([title, text, Icon]) => (
-          <motion.article key={title} {...fadeUp} className="saas-screenshot-card">
-            <Icon className="h-5 w-5" />
-            <h3>{title}</h3>
-            <p>{text}</p>
+      <div className="saas-real-screenshot-grid" aria-label="CareerConnect real product screenshots">
+        {careerConnectGallery.map(([title, text, image], index) => (
+          <motion.article
+            key={title}
+            {...fadeUp}
+            transition={{ duration: 0.45, delay: index * 0.05 }}
+            className="saas-real-screenshot-card"
+          >
+            <img src={image} alt={`${title} screenshot`} loading="lazy" />
+            <div>
+              <span>0{index + 1}</span>
+              <h3>{title}</h3>
+              <p>{text}</p>
+            </div>
           </motion.article>
         ))}
       </div>
@@ -513,17 +569,107 @@ function Projects() {
               <h3>{project.title}</h3>
               <p className="saas-project-type">{project.type}</p>
               <p>{project.text}</p>
+              <div className="saas-project-proof">
+                <span>{project.live ? "Live demo available" : "Source code review ready"}</span>
+                <span>{project.live ? "Production-style deployment" : "Demo deployment planned"}</span>
+              </div>
               <div className="saas-stack-row">
                 {project.tech.map((item) => <span key={item}>{item}</span>)}
               </div>
               <div className="saas-project-actions">
-                {project.live ? <a href={project.live} target="_blank" rel="noreferrer">Live Demo</a> : <button type="button" disabled>Coming Soon</button>}
+                {project.live ? (
+                  <a href={project.live} target="_blank" rel="noreferrer">Live Demo</a>
+                ) : (
+                  <a href={project.source} target="_blank" rel="noreferrer">Source Review</a>
+                )}
                 <a href={project.source} target="_blank" rel="noreferrer">GitHub Repo</a>
                 <a href={project.caseStudy}>Case Study</a>
               </div>
             </motion.article>
           );
         })}
+      </div>
+    </section>
+  );
+}
+
+function SupportingCaseStudies() {
+  const caseStudies = projects.filter((project) => !project.featured);
+
+  return (
+    <section className="saas-section" id="case-studies">
+      <SectionHeader eyebrow="Project Proof" title="Supporting case studies with practical product thinking">
+        Each supporting project is framed by the problem, implementation direction, and the proof a reviewer can inspect in code.
+      </SectionHeader>
+      <div className="saas-case-study-grid">
+        {caseStudies.map((project, index) => {
+          const Icon = project.icon;
+          const caseId = project.caseStudy.replace("#", "");
+
+          return (
+            <motion.article
+              id={caseId}
+              key={project.title}
+              {...fadeUp}
+              transition={{ duration: 0.45, delay: index * 0.04 }}
+              className="saas-mini-case-study"
+            >
+              <div className="saas-mini-case-head">
+                <span><Icon className="h-5 w-5" /></span>
+                <div>
+                  <p>{project.type}</p>
+                  <h3>{project.title}</h3>
+                </div>
+              </div>
+              <div className="saas-mini-case-body">
+                <div>
+                  <b>Problem</b>
+                  <p>{project.problem}</p>
+                </div>
+                <div>
+                  <b>Solution</b>
+                  <p>{project.solution}</p>
+                </div>
+                <div>
+                  <b>Proof</b>
+                  <p>{project.proof}</p>
+                </div>
+              </div>
+              <div className="saas-stack-row">
+                {project.tech.map((item) => <span key={item}>{item}</span>)}
+              </div>
+              <div className="saas-project-actions">
+                {project.live && <a href={project.live} target="_blank" rel="noreferrer">Live Demo <ExternalLink className="h-3.5 w-3.5" /></a>}
+                <a href={project.source} target="_blank" rel="noreferrer">Source Code <GitBranch className="h-3.5 w-3.5" /></a>
+                <a href="#contact">Discuss Project <ArrowRight className="h-3.5 w-3.5" /></a>
+              </div>
+            </motion.article>
+          );
+        })}
+      </div>
+    </section>
+  );
+}
+
+function RecruiterProof() {
+  return (
+    <section className="saas-section">
+      <SectionHeader eyebrow="Recruiter Proof" title="Ready for review, demo, and contact">
+        The portfolio now highlights build health, deployment status, role coverage, and contact readiness so reviewers can evaluate quickly.
+      </SectionHeader>
+      <div className="saas-recruiter-proof-grid">
+        {recruiterProof.map(([title, text], index) => (
+          <motion.article
+            key={title}
+            {...fadeUp}
+            transition={{ duration: 0.45, delay: index * 0.04 }}
+            className="saas-recruiter-proof-card"
+          >
+            <span><CheckCircle2 className="h-5 w-5" /></span>
+            <h3>{title}</h3>
+            <p>{text}</p>
+          </motion.article>
+        ))}
       </div>
     </section>
   );
@@ -568,77 +714,62 @@ let available = true;`}</pre>
 
 function Skills() {
   return (
-    <div id="skills" className="saas-skills-command">
-      <motion.div {...fadeUp} className="saas-skills-intro">
-        <p className="saas-pill">Engineering Toolkit</p>
-        <h2>Full-stack command center for building product workflows.</h2>
-        <p>
-          A focused toolkit for shipping scalable MERN applications, protected APIs, responsive dashboards, and production-ready user flows.
-        </p>
-        <div className="saas-capability-grid">
-          {capabilityHighlights.map(([title, text]) => (
-            <article key={title}>
-              <CheckCircle2 className="h-4 w-4" />
+    <section id="skills" className="saas-section saas-skills-board">
+      <SectionHeader eyebrow="My Skills" title="Technical depth and professional delivery">
+        A focused view of the tools and working habits I use to build MERN products, dashboards, APIs, and reliable user flows.
+      </SectionHeader>
+      <motion.div {...fadeUp} className="saas-skill-bars-panel" aria-label="Technical and professional skills">
+        <div className="saas-skill-bars-column">
+          <h3>Technical Skills</h3>
+          {skillBarGroups.technical.map(([skill, level]) => (
+            <div key={skill} className="saas-skill-bar-row">
               <div>
-                <h3>{title}</h3>
-                <p>{text}</p>
+                <span>{skill}</span>
+                <b>{level}%</b>
               </div>
-            </article>
+              <i style={{ "--skill-level": `${level}%` }} />
+            </div>
           ))}
         </div>
-        <div className="saas-core-stack-panel">
-          <span>Core Stack</span>
-          <div>
-            {coreStack.map((item) => <b key={item}>{item}</b>)}
-          </div>
+        <div className="saas-skill-bars-column is-professional">
+          <h3>Professional Skills</h3>
+          {skillBarGroups.professional.map(([skill, level]) => (
+            <div key={skill} className="saas-skill-bar-row">
+              <div>
+                <span>{skill}</span>
+                <b>{level}%</b>
+              </div>
+              <i style={{ "--skill-level": `${level}%` }} />
+            </div>
+          ))}
         </div>
       </motion.div>
-
-      <motion.div {...fadeUp} className="saas-skills-matrix" aria-label="Full-stack skills matrix">
-        <div className="saas-matrix-topbar">
-          <span>stack.map(delivery)</span>
-          <i />
-        </div>
-        <div className="saas-matrix-grid">
-          {skillGroups.map(({ title, icon: Icon, focus, skills }, index) => {
-            const meta = skillMeta[title];
-            return (
-              <article key={title} className="saas-skill-card" style={{ "--skill-index": index, "--skill-level": `${meta.level}%` }}>
-                <div className="saas-skill-head">
-                  <span><Icon className="h-5 w-5" /></span>
-                  <div>
-                    <p>{meta.label}</p>
-                    <h3>{title}</h3>
-                  </div>
-                </div>
-                <p>{focus}</p>
-                <div className="saas-skill-meter" aria-hidden="true">
-                  <i />
-                </div>
-                <div className="saas-skill-tags">
-                  {skills.map((skill, skillIndex) => (
-                    <span key={skill} className={skillIndex < 3 ? "is-core" : ""}>{skill}</span>
-                  ))}
-                </div>
-              </article>
-            );
-          })}
-        </div>
-        <div className="saas-skill-orbit" aria-hidden="true">
-          <span />
-          <span />
-          <span />
+      <motion.div {...fadeUp} className="saas-capability-chip-strip" aria-label="Key capability highlights">
+        <div className="saas-capability-chip-track">
+          {capabilityChips.map(([label, level], index) => (
+            <span key={label} className={index % 2 ? "is-blue" : ""}>
+              <i />
+              <b>{label}</b>
+              <em>{level}%</em>
+            </span>
+          ))}
+          {capabilityChips.map(([label, level], index) => (
+            <span key={`${label}-duplicate`} className={index % 2 ? "is-blue" : ""} aria-hidden="true">
+              <i />
+              <b>{label}</b>
+              <em>{level}%</em>
+            </span>
+          ))}
         </div>
       </motion.div>
-    </div>
+    </section>
   );
 }
 
 function AboutAndSkills() {
   return (
-    <section className="saas-section saas-about-toolkit">
+    <section className="saas-section">
       <About />
-      <Skills />
     </section>
   );
 }
@@ -700,13 +831,52 @@ function JourneyAndGitHub() {
 }
 
 function Contact() {
+  const [status, setStatus] = useState("idle");
+  const isSubmitting = status === "submitting";
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const form = event.currentTarget;
+    const data = new FormData(form);
+    const payload = {
+      name: data.get("name"),
+      email: data.get("email"),
+      message: data.get("message"),
+    };
+
+    if (!contactEndpoint) {
+      window.location.href = `mailto:merazahasan210@gmail.com?subject=${encodeURIComponent(`Portfolio message from ${payload.name}`)}&body=${encodeURIComponent(`${payload.message}\n\nFrom: ${payload.name} <${payload.email}>`)}`;
+      setStatus("fallback");
+      return;
+    }
+
+    setStatus("submitting");
+
+    try {
+      const response = await fetch(contactEndpoint, {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+        },
+        body: data,
+      });
+
+      if (!response.ok) throw new Error("Unable to send message");
+
+      form.reset();
+      setStatus("sent");
+    } catch {
+      setStatus("error");
+    }
+  };
+
   return (
     <section id="contact" className="saas-section">
       <motion.div {...fadeUp} className="saas-contact">
         <div>
           <p className="saas-pill">Contact</p>
           <h2>Let's build something useful.</h2>
-          <p>Available for internships, junior developer roles, freelance projects, and collaboration. Send a short message and your email app will open with the details ready.</p>
+          <p>Available for internships, junior developer roles, freelance projects, and collaboration. Send a short message through the portfolio form or use the direct contact links.</p>
           <div className="saas-available">
             <h3>Available For</h3>
             {availability.map((item) => <span key={item}><CheckCircle2 className="h-4 w-4" /> {item}</span>)}
@@ -721,11 +891,7 @@ function Contact() {
         </div>
         <form
           className="saas-contact-form"
-          onSubmit={(event) => {
-            event.preventDefault();
-            const data = new FormData(event.currentTarget);
-            window.location.href = `mailto:merazahasan210@gmail.com?subject=${encodeURIComponent(`Portfolio message from ${data.get("name")}`)}&body=${encodeURIComponent(`${data.get("message")}\n\nFrom: ${data.get("name")} <${data.get("email")}>`)}`;
-          }}
+          onSubmit={handleSubmit}
         >
           <label>
             <span>Name</span>
@@ -739,30 +905,13 @@ function Contact() {
             <span>Message</span>
             <textarea required name="message" rows="6" placeholder="Tell me about the role, project, or collaboration..." />
           </label>
-          <button type="submit" className="saas-btn saas-btn-primary">Send Message <Send className="h-4 w-4" /></button>
+          <button type="submit" className="saas-btn saas-btn-primary" disabled={isSubmitting}>
+            {isSubmitting ? "Sending..." : "Send Message"} <Send className="h-4 w-4" />
+          </button>
+          {status === "sent" && <p className="saas-form-status is-success">Message sent. I will reply as soon as possible.</p>}
+          {status === "fallback" && <p className="saas-form-status">Email app opened because no form endpoint is configured.</p>}
+          {status === "error" && <p className="saas-form-status is-error">Message failed. Please use email or LinkedIn instead.</p>}
         </form>
-        <aside className="saas-contact-info-card" aria-label="Contact details">
-          <div className="saas-contact-visual">
-            <Mail className="h-10 w-10" />
-          </div>
-          <div>
-            <span>Email</span>
-            <a href="mailto:merazahasan210@gmail.com">merazahasan210@gmail.com</a>
-          </div>
-          <div>
-            <span>Phone</span>
-            <a href="tel:+8801568088936">+8801568088936</a>
-          </div>
-          <div>
-            <span>Location</span>
-            <p>Dhaka, Bangladesh</p>
-          </div>
-          <div className="saas-socials">
-            <a href="https://github.com/Meraz210" target="_blank" rel="noreferrer" aria-label="GitHub"><GitBranch className="h-4 w-4" /></a>
-            <a href="https://www.linkedin.com/in/merazahasan" target="_blank" rel="noreferrer" aria-label="LinkedIn"><FaLinkedinIn className="h-4 w-4" /></a>
-            <a href="mailto:merazahasan210@gmail.com" aria-label="Email"><Mail className="h-4 w-4" /></a>
-          </div>
-        </aside>
       </motion.div>
     </section>
   );
@@ -813,15 +962,19 @@ export default function App() {
 
   return (
     <div className="saas-page" data-theme={theme}>
+      <a href="#main-content" className="skip-link">Skip to content</a>
       <Suspense fallback={<div className="premium-bg-fallback" aria-hidden="true" />}>
         <PremiumBackground3D />
       </Suspense>
       <Navbar theme={theme} onThemeToggle={toggleTheme} />
-      <main>
+      <main id="main-content">
         <Hero />
         <FeaturedProject />
         <Projects />
+        <SupportingCaseStudies />
+        <RecruiterProof />
         <AboutAndSkills />
+        <Skills />
         <JourneyAndGitHub />
         <Contact />
       </main>

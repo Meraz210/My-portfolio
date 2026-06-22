@@ -32,7 +32,10 @@ export default function HeroScene3D() {
         </>
       )}
 
-      <div className="saas-ai-cube"><span>AI</span></div>
+      <div className="saas-ai-cube">
+        <span>AI</span>
+        <small>Assistant Core</small>
+      </div>
 
       {!reduced && (
         <>
@@ -92,6 +95,11 @@ export default function HeroScene3D() {
           <p>&nbsp;&nbsp;build(<span>"clean products"</span>);</p>
           <p>&nbsp;&nbsp;learn(<span>"impact"</span>);</p>
           <p>&#125;;</p>
+          <div className="saas-terminal-metrics">
+            <b>UI</b>
+            <b>API</b>
+            <b>DB</b>
+          </div>
           <i />
           <i />
           <i />
