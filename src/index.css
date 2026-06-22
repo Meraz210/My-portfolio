@@ -6922,17 +6922,19 @@ body {
   display: flex;
   width: max-content;
   gap: 0.8rem;
-  animation: capability-chip-run 14s linear infinite;
+  animation: capability-chip-run 9s linear infinite;
+  animation-play-state: running;
   will-change: transform;
 }
 
 .saas-capability-chip-strip:hover .saas-capability-chip-track {
-  animation-play-state: paused;
+  animation-play-state: running;
 }
 
 .saas-capability-chip-strip span {
   display: inline-flex;
   align-items: center;
+  flex: 0 0 auto;
   gap: 0.6rem;
   min-height: 3rem;
   border: 1px solid rgba(148, 163, 184, 0.18);
@@ -6984,10 +6986,10 @@ body {
 
 @keyframes capability-chip-run {
   from {
-    transform: translateX(0);
+    transform: translate3d(0, 0, 0);
   }
   to {
-    transform: translateX(calc(-50% - 0.4rem));
+    transform: translate3d(calc(-50% - 0.4rem), 0, 0);
   }
 }
 
