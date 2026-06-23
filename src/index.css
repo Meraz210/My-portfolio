@@ -8042,41 +8042,50 @@ body {
 }
 
 .saas-hero {
-  min-height: min(860px, 100svh);
-  padding-top: 7.2rem;
-  padding-bottom: 4.2rem;
+  min-height: min(690px, 86svh);
+  padding-top: 5.8rem;
+  padding-bottom: 2.4rem;
 }
 
 .saas-hero h1 {
-  font-size: clamp(3.1rem, 5.9vw, 5.25rem);
+  max-width: 620px;
+  font-size: clamp(2.55rem, 4.65vw, 4.15rem);
+  line-height: 0.98;
 }
 
 .saas-hero-subtitle {
-  max-width: 620px;
-  font-size: 1.04rem;
+  max-width: 590px;
+  font-size: 0.99rem;
+  line-height: 1.58;
 }
 
 .saas-hero-actions {
-  margin-top: 1.45rem;
+  margin-top: 1.15rem;
 }
 
 .saas-hero-stats {
-  max-width: 540px;
-  margin-top: 1.45rem;
+  max-width: 510px;
+  margin-top: 1.12rem;
 }
 
 .saas-hero-stats div {
-  min-height: 5.45rem;
-  padding: 1rem;
+  min-height: 4.8rem;
+  padding: 0.82rem;
 }
 
 .saas-profile-card {
-  max-width: 370px;
+  max-width: 305px;
   margin-inline: auto;
+  padding: 1rem;
 }
 
 .saas-hero-visual .saas-profile-image-wrap {
-  max-height: 390px;
+  max-height: 260px;
+  aspect-ratio: 4 / 3.45;
+}
+
+.saas-hero-visual .saas-socials {
+  display: none;
 }
 
 .saas-featured-project,
@@ -8131,6 +8140,55 @@ body {
   overflow: hidden;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
+}
+
+.saas-project-outcome {
+  border: 1px solid rgba(34, 211, 238, 0.16);
+  border-radius: 0.75rem;
+  background:
+    linear-gradient(135deg, rgba(34, 211, 238, 0.08), transparent 58%),
+    rgba(2, 6, 23, 0.24);
+  padding: 0.68rem 0.75rem;
+  color: #c7f9ff;
+  font-size: 0.78rem;
+  font-weight: 800;
+  line-height: 1.55;
+}
+
+.saas-impact-row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.65rem;
+}
+
+.saas-impact-row div {
+  border: 1px solid rgba(148, 163, 184, 0.14);
+  border-radius: 0.85rem;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.045), transparent 60%),
+    rgba(15, 23, 42, 0.48);
+  padding: 0.74rem;
+}
+
+.saas-impact-row strong,
+.saas-impact-row span {
+  display: block;
+}
+
+.saas-impact-row strong {
+  color: var(--saas-primary);
+  font-family: "Sora", system-ui, sans-serif;
+  font-size: 1.05rem;
+  line-height: 1;
+}
+
+.saas-impact-row span {
+  margin-top: 0.24rem;
+  color: var(--saas-muted);
+  font-size: 0.68rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .saas-mini-case-body {
@@ -8193,6 +8251,33 @@ body {
   padding: 0.55rem 0.82rem;
 }
 
+.saas-contact-trust {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.5rem;
+}
+
+.saas-contact-trust span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  min-height: 2.35rem;
+  border: 1px solid rgba(34, 211, 238, 0.14);
+  border-radius: 0.75rem;
+  background: rgba(8, 47, 73, 0.16);
+  color: #bfecf6;
+  font-size: 0.7rem;
+  font-weight: 900;
+  letter-spacing: 0.02em;
+  text-align: center;
+}
+
+.saas-contact-trust svg {
+  flex: 0 0 auto;
+  color: var(--saas-primary);
+}
+
 .saas-two-col {
   gap: clamp(1rem, 2vw, 1.35rem);
 }
@@ -8242,39 +8327,40 @@ body {
 
   .saas-hero {
     min-height: auto;
-    gap: 1rem;
-    padding-top: 5rem;
-    padding-bottom: 1.6rem;
+    gap: 0.8rem;
+    padding-top: 4.65rem;
+    padding-bottom: 1.2rem;
   }
 
   .saas-hero h1 {
     margin-top: 0;
-    font-size: clamp(2rem, 9.2vw, 2.55rem);
+    font-size: clamp(1.82rem, 8.4vw, 2.28rem);
+    line-height: 1.04;
   }
 
   .saas-hero-subtitle {
-    margin-top: 0.7rem;
-    font-size: 0.92rem;
-    line-height: 1.55;
+    margin-top: 0.52rem;
+    font-size: 0.86rem;
+    line-height: 1.48;
   }
 
   .saas-hero-actions {
-    gap: 0.55rem;
-    margin-top: 1rem;
+    gap: 0.48rem;
+    margin-top: 0.78rem;
   }
 
   .saas-btn {
-    min-height: 2.75rem;
+    min-height: 2.55rem;
   }
 
   .saas-hero-stats {
     gap: 0.45rem;
-    margin-top: 1rem;
+    margin-top: 0.78rem;
   }
 
   .saas-hero-stats div {
-    min-height: 4.25rem;
-    padding: 0.65rem;
+    min-height: 3.85rem;
+    padding: 0.54rem;
   }
 
   .saas-hero-stats strong {
@@ -8286,12 +8372,12 @@ body {
   }
 
   .saas-profile-card {
-    padding: 0.72rem;
+    padding: 0.62rem;
   }
 
   .saas-hero-visual .saas-profile-image-wrap {
-    max-height: 250px;
-    aspect-ratio: 4 / 3.15;
+    max-height: 190px;
+    aspect-ratio: 4 / 2.75;
   }
 
   .saas-profile-card h2 {
@@ -8352,6 +8438,7 @@ body {
   }
 
   .saas-project-card > p:not(.saas-project-type),
+  .saas-project-outcome,
   .saas-mini-case-body p,
   .saas-recruiter-proof-card p,
   .saas-real-screenshot-card p {
@@ -8395,6 +8482,20 @@ body {
 
   .saas-capability-chip-strip b {
     font-size: 0.78rem;
+  }
+
+  .saas-impact-row,
+  .saas-contact-trust {
+    grid-template-columns: 1fr;
+    gap: 0.42rem;
+  }
+
+  .saas-impact-row div {
+    padding: 0.62rem 0.7rem;
+  }
+
+  .saas-contact-trust span:nth-child(n + 3) {
+    display: none;
   }
 
   .saas-about-image,

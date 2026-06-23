@@ -48,6 +48,7 @@ const projects = [
     title: "CareerConnect",
     type: "Job Portal System",
     text: "Role-based hiring platform with seeker, employer, and admin dashboards, JWT authentication, application tracking, and admin management.",
+    outcome: "Result: Full role-based product workflow with live demo and review-ready source code.",
     icon: BriefcaseBusiness,
     tech: ["MERN", "JWT", "Role Access"],
     live: "https://job-portal-system-neon.vercel.app",
@@ -59,6 +60,7 @@ const projects = [
     title: "StudyHub",
     type: "Learning Product",
     text: "Collaborative education platform for study goals, course resources, progress tracking, and responsive student workflows.",
+    outcome: "Result: Clean student workflow concept with reusable UI and API-ready structure.",
     problem: "Students need one organized place to track study goals, resources, and progress without jumping between disconnected tools.",
     solution: "A responsive learning dashboard structure with resource discovery, progress context, and clean student-first workflows.",
     proof: "Shows product thinking around education workflows, reusable React UI, API-ready structure, and mobile-friendly presentation.",
@@ -71,6 +73,7 @@ const projects = [
     title: "Attendance System",
     type: "Education Operations",
     text: "Role-based attendance system for student records, daily status tracking, reports, and admin workflows.",
+    outcome: "Result: Practical admin workflow for records, reporting, and daily operations.",
     problem: "Manual attendance tracking makes daily records, reporting, and admin review slow and error-prone.",
     solution: "A role-aware attendance workflow for student records, daily status management, reporting context, and admin operations.",
     proof: "Demonstrates CRUD depth, database-backed workflows, protected admin thinking, and practical education operations.",
@@ -83,6 +86,7 @@ const projects = [
     title: "YBTDigital",
     type: "Business Website",
     text: "Responsive service presentation site focused on clear messaging, service discovery, SEO, and conversion flow.",
+    outcome: "Result: Client-facing site structure optimized for trust, clarity, and contact flow.",
     problem: "Service businesses need a fast, clear web presence that explains offers and guides visitors toward contact.",
     solution: "A responsive business website structure focused on service clarity, scanning, SEO readiness, and conversion flow.",
     proof: "Shows client-facing UI judgment, content hierarchy, responsive layout work, and business-oriented presentation.",
@@ -95,6 +99,7 @@ const projects = [
     title: "Tea-Shop",
     type: "Commerce Interface",
     text: "E-commerce style product browsing experience with clean catalog presentation and responsive layouts.",
+    outcome: "Result: Buyer-friendly catalog UI with responsive product discovery.",
     problem: "Small commerce experiences need clear product browsing, attractive catalog presentation, and low-friction navigation.",
     solution: "A clean product catalog interface with responsive cards, commerce-style structure, and readable product discovery.",
     proof: "Highlights frontend polish, layout discipline, product-card UI, and buyer-facing responsive design.",
@@ -107,6 +112,7 @@ const projects = [
     title: "MediCare Hospital",
     type: "Healthcare Dashboard",
     text: "Hospital service interface for appointment context, doctor information, patient workflows, and admin views.",
+    outcome: "Result: Domain-aware healthcare interface with structured service workflows.",
     problem: "Healthcare users need quick access to services, doctors, appointment context, and structured admin information.",
     solution: "A healthcare interface concept with service discovery, doctor information, patient workflow context, and dashboard-ready layout.",
     proof: "Demonstrates domain-aware UI, information architecture, and the ability to model practical service workflows.",
@@ -217,6 +223,11 @@ const experienceItems = [
 
 const careerConnect = {
   tech: ["React", "Node.js", "Express.js", "MongoDB", "JWT", "REST APIs", "Tailwind CSS"],
+  impact: [
+    ["3", "Role dashboards"],
+    ["JWT", "Protected access"],
+    ["Live", "Deployment ready"],
+  ],
   features: [
     "Seeker, employer, and admin dashboards",
     "JWT authentication with role-based access",
@@ -537,6 +548,14 @@ function FeaturedProject() {
           <div className="saas-stack-row">
             {careerConnect.tech.map((item) => <span key={item}>{item}</span>)}
           </div>
+          <div className="saas-impact-row" aria-label="CareerConnect project impact">
+            {careerConnect.impact.map(([value, label]) => (
+              <div key={label}>
+                <strong>{value}</strong>
+                <span>{label}</span>
+              </div>
+            ))}
+          </div>
           <div className="saas-architecture">
             <div><LockKeyhole className="h-4 w-4" /> JWT authentication</div>
             <div><Users className="h-4 w-4" /> Seeker, Employer, Admin</div>
@@ -599,6 +618,7 @@ function Projects() {
               <h3>{project.title}</h3>
               <p className="saas-project-type">{project.type}</p>
               <p>{project.text}</p>
+              <p className="saas-project-outcome">{project.outcome}</p>
               <div className="saas-project-proof">
                 <span>{project.live ? "Live demo available" : "Source code review ready"}</span>
                 <span>{project.live ? "Production-style deployment" : "Demo deployment planned"}</span>
@@ -1017,6 +1037,11 @@ function Contact() {
           <button type="submit" className="saas-btn saas-btn-primary" disabled={isSubmitting}>
             {isSubmitting ? "Sending..." : "Send Message"} <Send className="h-4 w-4" />
           </button>
+          <div className="saas-contact-trust" aria-label="Contact expectations">
+            <span><CheckCircle2 className="h-3.5 w-3.5" /> Clear project scope</span>
+            <span><ShieldCheck className="h-3.5 w-3.5" /> Fast follow-up</span>
+            <span><GitBranch className="h-3.5 w-3.5" /> Code review ready</span>
+          </div>
           {status === "sent" && <p className="saas-form-status is-success">Message sent. I will reply as soon as possible.</p>}
           {status === "fallback" && <p className="saas-form-status">Email app opened because no form endpoint is configured.</p>}
           {status === "error" && <p className="saas-form-status is-error">Message failed. Please use email or LinkedIn instead.</p>}
