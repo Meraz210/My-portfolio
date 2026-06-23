@@ -815,15 +815,16 @@ function SkillChip({ label, level, index, duplicate = false }) {
 }
 
 function SkillChipSlider({ chips }) {
+  const renderChips = (duplicate = false) =>
+    chips.map(([label, level], index) => (
+      <SkillChip key={duplicate ? `${label}-duplicate` : label} label={label} level={level} index={index} duplicate={duplicate} />
+    ));
+
   return (
     <motion.div {...fadeUp} className="saas-capability-chip-strip" aria-label="Key capability highlights">
       <div className="saas-capability-chip-track">
-        {chips.map(([label, level], index) => (
-          <SkillChip key={label} label={label} level={level} index={index} />
-        ))}
-        {chips.map(([label, level], index) => (
-          <SkillChip key={`${label}-duplicate`} label={label} level={level} index={index} duplicate />
-        ))}
+        <div className="saas-capability-chip-group">{renderChips()}</div>
+        <div className="saas-capability-chip-group" aria-hidden="true">{renderChips(true)}</div>
       </div>
     </motion.div>
   );

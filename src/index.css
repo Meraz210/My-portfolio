@@ -6929,13 +6929,15 @@ body {
   display: flex;
   width: max-content;
   gap: 0.8rem;
-  animation: capability-chip-run 12s linear infinite;
+  animation: capability-chip-run 18s linear infinite;
   animation-play-state: running;
   will-change: transform;
 }
 
-.saas-capability-chip-strip:hover .saas-capability-chip-track {
-  animation-play-state: paused;
+.saas-capability-chip-group {
+  display: flex;
+  flex: 0 0 auto;
+  gap: 0.8rem;
 }
 
 .saas-capability-chip-strip span {
@@ -7799,34 +7801,32 @@ body {
 
 @media (max-width: 760px) {
   .saas-capability-chip-strip {
-    overflow-x: auto;
+    overflow-x: hidden;
     overflow-y: hidden;
-    scroll-snap-type: x proximity;
     scrollbar-width: none;
   }
 
   .saas-capability-chip-strip::before,
   .saas-capability-chip-strip::after {
-    display: none;
+    display: block;
+    width: 2rem;
   }
 
   .saas-capability-chip-track {
     display: flex;
     width: max-content;
     gap: 0.55rem;
-    animation: none;
+    animation: capability-chip-run 16s linear infinite;
+  }
+
+  .saas-capability-chip-group {
+    gap: 0.55rem;
   }
 
   .saas-capability-chip-track span,
   .saas-capability-chip-track span:nth-child(n + 7) {
     display: inline-flex;
     width: auto;
-    scroll-snap-align: start;
-  }
-
-  .saas-capability-chip-strip::-webkit-scrollbar,
-  .saas-capability-chip-track span[aria-hidden="true"] {
-    display: none;
   }
 
   .saas-capability-chip-strip span {
