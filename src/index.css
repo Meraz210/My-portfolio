@@ -6934,6 +6934,10 @@ body {
   will-change: transform;
 }
 
+.saas-capability-chip-strip:hover .saas-capability-chip-track {
+  animation-play-state: paused;
+}
+
 .saas-capability-chip-group {
   display: flex;
   flex: 0 0 auto;
@@ -7727,19 +7731,19 @@ body {
   }
 
   .saas-capability-chip-track {
-    display: grid;
-    width: 100%;
+    display: flex;
+    width: max-content;
     gap: 0.55rem;
-    animation: none;
+    animation: capability-chip-run 16s linear infinite;
   }
 
   .saas-capability-chip-track span[aria-hidden="true"] {
-    display: none;
+    display: inline-flex;
   }
 
   .saas-capability-chip-strip span {
-    width: 100%;
-    justify-content: space-between;
+    width: auto;
+    justify-content: flex-start;
     min-height: 2.75rem;
     padding: 0.62rem 0.8rem;
   }
@@ -7824,6 +7828,7 @@ body {
   }
 
   .saas-capability-chip-track span,
+  .saas-capability-chip-track span[aria-hidden="true"],
   .saas-capability-chip-track span:nth-child(n + 7) {
     display: inline-flex;
     width: auto;

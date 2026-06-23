@@ -804,9 +804,9 @@ function SkillColumn({ title, skills, variant }) {
   );
 }
 
-function SkillChip({ label, level, index, duplicate = false }) {
+function SkillChip({ label, level, index }) {
   return (
-    <span className={index % 2 ? "is-blue" : ""} aria-hidden={duplicate ? "true" : undefined}>
+    <span className={index % 2 ? "is-blue" : ""}>
       <i />
       <b>{label}</b>
       <em>{level}%</em>
@@ -817,7 +817,7 @@ function SkillChip({ label, level, index, duplicate = false }) {
 function SkillChipSlider({ chips }) {
   const renderChips = (duplicate = false) =>
     chips.map(([label, level], index) => (
-      <SkillChip key={duplicate ? `${label}-duplicate` : label} label={label} level={level} index={index} duplicate={duplicate} />
+      <SkillChip key={duplicate ? `${label}-duplicate` : label} label={label} level={level} index={index} />
     ));
 
   return (
