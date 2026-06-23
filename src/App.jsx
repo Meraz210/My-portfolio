@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import {
   ArrowRight,
   BriefcaseBusiness,
@@ -24,7 +24,7 @@ import {
   X,
 } from "lucide-react";
 import { FaLinkedinIn } from "react-icons/fa";
-import { Suspense, lazy, useEffect, useState } from "react";
+import { Suspense, lazy, useEffect, useRef, useState } from "react";
 import GitHubStats from "./components/GitHubStats";
 import PortfolioChatbot from "./components/PortfolioChatbot";
 import profileImage from "./assets/profile-premium.webp";
@@ -712,6 +712,95 @@ let available = true;`}</pre>
   );
 }
 
+function SkillBarRow({ skill, level, index, variant = "technical" }) {
+  const ref = useRef(null);
+  const isVisible = useInView(ref, { once: true, margin: "-80px" });
+  const [displayLevel, setDisplayLevel] = useState(0);
+  const delay = index * 110;
+
+  useEffect(() => {
+    if (!isVisible) return undefined;
+
+    let frameId;
+    let timeoutId;
+    const duration = 900;
+
+    timeoutId = window.setTimeout(() => {
+      const startTime = performance.now();
+
+      const update = (time) => {
+        const progress = Math.min((time - startTime) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        setDisplayLevel(Math.round(level * eased));
+
+        if (progress < 1) {
+          frameId = requestAnimationFrame(update);
+        }
+      };
+
+      frameId = requestAnimationFrame(update);
+    }, delay);
+
+    return () => {
+      window.clearTimeout(timeoutId);
+      cancelAnimationFrame(frameId);
+    };
+  }, [delay, isVisible, level]);
+
+  return (
+    <div
+      ref={ref}
+      className={`saas-skill-bar-row ${variant === "professional" ? "is-professional" : ""}`}
+      style={{
+        "--skill-level": isVisible ? `${level}%` : "0%",
+        "--skill-delay": `${delay}ms`,
+      }}
+    >
+      <div>
+        <span>{skill}</span>
+        <b>{displayLevel}%</b>
+      </div>
+      <i aria-hidden="true" />
+    </div>
+  );
+}
+
+function SkillColumn({ title, skills, variant }) {
+  return (
+    <div className={`saas-skill-bars-column ${variant === "professional" ? "is-professional" : ""}`}>
+      <h3>{title}</h3>
+      {skills.map(([skill, level], index) => (
+        <SkillBarRow key={skill} skill={skill} level={level} index={index} variant={variant} />
+      ))}
+    </div>
+  );
+}
+
+function SkillChip({ label, level, index, duplicate = false }) {
+  return (
+    <span className={index % 2 ? "is-blue" : ""} aria-hidden={duplicate ? "true" : undefined}>
+      <i />
+      <b>{label}</b>
+      <em>{level}%</em>
+    </span>
+  );
+}
+
+function SkillChipSlider({ chips }) {
+  return (
+    <motion.div {...fadeUp} className="saas-capability-chip-strip" aria-label="Key capability highlights">
+      <div className="saas-capability-chip-track">
+        {chips.map(([label, level], index) => (
+          <SkillChip key={label} label={label} level={level} index={index} />
+        ))}
+        {chips.map(([label, level], index) => (
+          <SkillChip key={`${label}-duplicate`} label={label} level={level} index={index} duplicate />
+        ))}
+      </div>
+    </motion.div>
+  );
+}
+
 function Skills() {
   return (
     <section id="skills" className="saas-section saas-skills-board">
@@ -719,49 +808,10 @@ function Skills() {
         A focused view of the tools and working habits I use to build MERN products, dashboards, APIs, and reliable user flows.
       </SectionHeader>
       <motion.div {...fadeUp} className="saas-skill-bars-panel" aria-label="Technical and professional skills">
-        <div className="saas-skill-bars-column">
-          <h3>Technical Skills</h3>
-          {skillBarGroups.technical.map(([skill, level]) => (
-            <div key={skill} className="saas-skill-bar-row">
-              <div>
-                <span>{skill}</span>
-                <b>{level}%</b>
-              </div>
-              <i style={{ "--skill-level": `${level}%` }} />
-            </div>
-          ))}
-        </div>
-        <div className="saas-skill-bars-column is-professional">
-          <h3>Professional Skills</h3>
-          {skillBarGroups.professional.map(([skill, level]) => (
-            <div key={skill} className="saas-skill-bar-row">
-              <div>
-                <span>{skill}</span>
-                <b>{level}%</b>
-              </div>
-              <i style={{ "--skill-level": `${level}%` }} />
-            </div>
-          ))}
-        </div>
+        <SkillColumn title="Technical Skills" skills={skillBarGroups.technical} variant="technical" />
+        <SkillColumn title="Professional Skills" skills={skillBarGroups.professional} variant="professional" />
       </motion.div>
-      <motion.div {...fadeUp} className="saas-capability-chip-strip" aria-label="Key capability highlights">
-        <div className="saas-capability-chip-track">
-          {capabilityChips.map(([label, level], index) => (
-            <span key={label} className={index % 2 ? "is-blue" : ""}>
-              <i />
-              <b>{label}</b>
-              <em>{level}%</em>
-            </span>
-          ))}
-          {capabilityChips.map(([label, level], index) => (
-            <span key={`${label}-duplicate`} className={index % 2 ? "is-blue" : ""} aria-hidden="true">
-              <i />
-              <b>{label}</b>
-              <em>{level}%</em>
-            </span>
-          ))}
-        </div>
-      </motion.div>
+      <SkillChipSlider chips={capabilityChips} />
     </section>
   );
 }
