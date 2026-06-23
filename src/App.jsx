@@ -261,13 +261,28 @@ function Navbar({ theme, onThemeToggle }) {
   const [active, setActive] = useState("#home");
   const isDay = theme === "day";
 
+  const scrollToSection = (event, href) => {
+    event.preventDefault();
+    const section = document.querySelector(href);
+    if (!section) return;
+
+    const anchorTarget = section.querySelector(".saas-section-header") || section;
+    const top = anchorTarget.getBoundingClientRect().top + window.scrollY - 104;
+
+    setActive(href);
+    setOpen(false);
+    window.history.pushState(null, "", href);
+    window.scrollTo({ top, behavior: "smooth" });
+  };
+
   useEffect(() => {
     const onScroll = () => {
+      const activationLine = Math.min(window.innerHeight * 0.45, 360);
       const current = navItems
         .map(([, href]) => href)
         .findLast((href) => {
           const element = document.querySelector(href);
-          return element && element.getBoundingClientRect().top <= 128;
+          return element && element.getBoundingClientRect().top <= activationLine;
         });
       if (current) setActive(current);
     };
@@ -282,7 +297,15 @@ function Navbar({ theme, onThemeToggle }) {
       <nav className="saas-nav" aria-label="Primary navigation">
         <div className="saas-nav-links">
           {navItems.map(([label, href]) => (
-            <a key={href} href={href} className={active === href ? "is-active" : ""} aria-current={active === href ? "page" : undefined}>{label}</a>
+            <a
+              key={href}
+              href={href}
+              className={active === href ? "is-active" : ""}
+              aria-current={active === href ? "page" : undefined}
+              onClick={(event) => scrollToSection(event, href)}
+            >
+              {label}
+            </a>
           ))}
         </div>
         <div className="saas-nav-actions">
@@ -314,7 +337,14 @@ function Navbar({ theme, onThemeToggle }) {
             <span>{isDay ? "Switch to night mode" : "Switch to day mode"}</span>
           </button>
           {navItems.map(([label, href]) => (
-            <a key={href} href={href} onClick={() => setOpen(false)} aria-current={active === href ? "page" : undefined}>{label}</a>
+            <a
+              key={href}
+              href={href}
+              onClick={(event) => scrollToSection(event, href)}
+              aria-current={active === href ? "page" : undefined}
+            >
+              {label}
+            </a>
           ))}
         </div>
       )}
