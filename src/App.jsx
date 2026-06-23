@@ -1,4 +1,4 @@
-import { motion, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 import {
   ArrowRight,
   BriefcaseBusiness,
@@ -712,18 +712,45 @@ let available = true;`}</pre>
   );
 }
 
-function SkillBarRow({ skill, level, index, variant = "technical" }) {
+function useOnceInView() {
   const ref = useRef(null);
-  const isVisible = useInView(ref, { once: true, margin: "-80px" });
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const element = ref.current;
+    if (!element || isVisible) return undefined;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect();
+        }
+      },
+      {
+        threshold: 0.28,
+        rootMargin: "0px 0px -12% 0px",
+      }
+    );
+
+    observer.observe(element);
+    return () => observer.disconnect();
+  }, [isVisible]);
+
+  return [ref, isVisible];
+}
+
+function SkillBarRow({ skill, level, index, variant = "technical" }) {
+  const [ref, isVisible] = useOnceInView();
   const [displayLevel, setDisplayLevel] = useState(0);
-  const delay = index * 110;
+  const delay = index * 130;
+  const duration = 1300 + Math.min(index, 4) * 90;
 
   useEffect(() => {
     if (!isVisible) return undefined;
 
     let frameId;
     let timeoutId;
-    const duration = 900;
 
     timeoutId = window.setTimeout(() => {
       const startTime = performance.now();
@@ -745,7 +772,7 @@ function SkillBarRow({ skill, level, index, variant = "technical" }) {
       window.clearTimeout(timeoutId);
       cancelAnimationFrame(frameId);
     };
-  }, [delay, isVisible, level]);
+  }, [delay, duration, isVisible, level]);
 
   return (
     <div
@@ -754,6 +781,7 @@ function SkillBarRow({ skill, level, index, variant = "technical" }) {
       style={{
         "--skill-level": isVisible ? `${level}%` : "0%",
         "--skill-delay": `${delay}ms`,
+        "--skill-duration": `${duration}ms`,
       }}
     >
       <div>
