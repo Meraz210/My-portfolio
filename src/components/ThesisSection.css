@@ -1,0 +1,174 @@
+.saas-thesis-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(240px, 0.43fr);
+  gap: clamp(1.25rem, 3vw, 2.5rem);
+  padding: clamp(1.1rem, 3vw, 2.25rem);
+  border: 1px solid var(--saas-border);
+  border-radius: 1.25rem;
+  background: var(--saas-card);
+  color: var(--saas-text);
+}
+
+.saas-thesis-copy,
+.saas-thesis-results {
+  min-width: 0;
+}
+
+.saas-thesis-meta,
+.saas-thesis-meta span,
+.saas-thesis-actions,
+.saas-thesis-contact,
+.saas-thesis-result-head {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.saas-thesis-meta {
+  flex-wrap: wrap;
+  gap: 0.65rem 1rem;
+  color: var(--saas-primary);
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.saas-thesis-copy h3 {
+  margin-top: 1rem;
+  font-size: clamp(1.15rem, 2vw, 1.6rem);
+  line-height: 1.4;
+  letter-spacing: -0.025em;
+  text-wrap: pretty;
+}
+
+.saas-thesis-summary,
+.saas-thesis-contributions {
+  margin-top: 1rem;
+  color: var(--saas-muted);
+  font-size: 0.92rem;
+  line-height: 1.75;
+}
+
+.saas-thesis-contributions {
+  display: grid;
+  gap: 0.65rem;
+  list-style: disc;
+  padding-left: 1.2rem;
+}
+
+.saas-thesis-contributions li::marker {
+  color: var(--saas-primary);
+}
+
+.saas-thesis-tools {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1.25rem;
+  padding: 0;
+  list-style: none;
+}
+
+.saas-thesis-tools li {
+  padding: 0.4rem 0.65rem;
+  border: 1px solid var(--saas-border);
+  border-radius: 0.5rem;
+  background: var(--saas-soft);
+  color: var(--saas-text);
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.saas-thesis-actions {
+  flex-wrap: wrap;
+  gap: 0.8rem 1.2rem;
+  margin-top: 1.5rem;
+}
+
+.saas-thesis-contact {
+  min-height: 2.75rem;
+  color: var(--saas-primary);
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.saas-thesis-contact:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.3rem;
+}
+
+.saas-thesis-results {
+  align-self: start;
+  padding: clamp(1.15rem, 2vw, 1.75rem);
+  border: 1px solid var(--saas-border);
+  border-radius: 1rem;
+  background: var(--saas-soft);
+}
+
+.saas-thesis-result-head {
+  color: var(--saas-primary);
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.saas-thesis-score {
+  display: block;
+  margin-top: 1.3rem;
+  color: var(--saas-primary);
+  font-size: clamp(3rem, 5vw, 4rem);
+  line-height: 1.1;
+  letter-spacing: -0.055em;
+}
+
+.saas-thesis-score span {
+  font-size: 0.55em;
+}
+
+.saas-thesis-score-label {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.saas-thesis-result-note {
+  margin-top: 0.7rem;
+  color: var(--saas-muted);
+  font-size: 0.8rem;
+  line-height: 1.65;
+}
+
+.saas-thesis-stats {
+  display: grid;
+  gap: 0.9rem;
+  margin-top: 1.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--saas-border);
+}
+
+.saas-thesis-stats div {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.saas-thesis-stats dt {
+  color: var(--saas-muted);
+  font-size: 0.8rem;
+}
+
+.saas-thesis-stats dd {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 800;
+}
+
+@media (max-width: 760px) {
+  .saas-thesis-card {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .saas-thesis-actions > a {
+    justify-content: center;
+    width: 100%;
+  }
+}
