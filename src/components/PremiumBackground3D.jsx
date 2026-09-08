@@ -41,6 +41,14 @@ export default function PremiumBackground3D() {
         <div className="premium-depth-beam premium-depth-beam-right" />
         <div className="premium-grid-floor" />
         <div className="premium-horizon-grid" />
+        <div className="premium-data-core">
+          <div className="premium-core-face premium-core-front">
+            <span>03</span>
+          </div>
+          <div className="premium-core-face premium-core-back" />
+          <div className="premium-core-ring" />
+          <div className="premium-core-ring premium-core-ring-two" />
+        </div>
         {!reduced && (
           <>
             <div className="premium-panel premium-panel-left">

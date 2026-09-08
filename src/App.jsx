@@ -128,7 +128,7 @@ const projects = [
 const heroStats = [
   ["6+", "Projects"],
   ["15+", "APIs"],
-  ["3", "Roles Built"],
+  ["3+", "User Roles"],
   ["Open", "To Work"],
 ];
 
